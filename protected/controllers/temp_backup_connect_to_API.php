@@ -1,4 +1,5 @@
 <?php
+// Example file to connect to MAMBU API
 // Point to phar
 include('httpful-0.2.0.phar');
 $uri = 'https://danta.sandbox.mambu.com//api/gljournalentries?from=2009-01-01&to=2012-12-31';
