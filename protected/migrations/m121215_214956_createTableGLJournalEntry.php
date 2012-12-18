@@ -11,7 +11,7 @@ class m121215_214956_createTableGLJournalEntry extends CDbMigration
 			'creditAccount'=>'string NOT NULL',
 			'creditAmount'=>'money NOT NULL',
 			'branchID'=>'integer',
-			'JournalEntry_date'=>'date NOT NULL',
+			'journalEntry_date'=>'date NOT NULL',
 			'notes'=>'text',
 			'user_id' => 'integer NOT NULL',
 			'createdon' => 'timestamp NOT NULL',

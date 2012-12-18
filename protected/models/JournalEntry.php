@@ -10,7 +10,7 @@
  * @property string $creditAccount
  * @property string $creditAmount
  * @property integer $branchID
- * @property string $JournalEntry_date
+ * @property string $journalEntry_date
  * @property string $notes
  * @property integer $user_id
  * @property string $createdon
@@ -44,14 +44,14 @@ class JournalEntry extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('debitAccount, debitAmount, creditAccount, creditAmount, JournalEntry_date, user_id, createdon', 'required'),
-			array('branchID, user_id', 'numerical', 'integerOnly'=>true),
+			array('debitAccount, debitAmount, creditAccount, creditAmount, journalEntry_date', 'required'),
+			array('branchID', 'numerical', 'integerOnly'=>true),
 			array('debitAccount, creditAccount', 'length', 'max'=>255),
 			array('debitAmount, creditAmount', 'length', 'max'=>19),
-			array('notes, updatedon', 'safe'),
+			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, debitAccount, debitAmount, creditAccount, creditAmount, branchID, JournalEntry_date, notes, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, debitAccount, debitAmount, creditAccount, creditAmount, branchID, journalEntry_date, notes, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,7 +78,7 @@ class JournalEntry extends CActiveRecord
 			'creditAccount' => 'Credit Account',
 			'creditAmount' => 'Credit Amount',
 			'branchID' => 'Branch',
-			'JournalEntry_date' => 'Journal Entry Date',
+			'journalEntry_date' => 'Journal Entry Date',
 			'notes' => 'Notes',
 			'user_id' => 'User',
 			'createdon' => 'Createdon',
@@ -103,7 +103,7 @@ class JournalEntry extends CActiveRecord
 		$criteria->compare('creditAccount',$this->creditAccount,true);
 		$criteria->compare('creditAmount',$this->creditAmount,true);
 		$criteria->compare('branchID',$this->branchID);
-		$criteria->compare('JournalEntry_date',$this->JournalEntry_date,true);
+		$criteria->compare('journalEntry_date',$this->journalEntry_date,true);
 		$criteria->compare('notes',$this->notes,true);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('createdon',$this->createdon,true);
@@ -118,6 +118,25 @@ class JournalEntry extends CActiveRecord
 	{
 	    if(parent::beforeSave())
 	    {
+			include('httpful-0.2.0.phar');
+			$uri = 'https://danta.sandbox.mambu.com//api/gljournalentries';
+			$response = \Httpful\Request::post($uri)
+				->sendsJson()              
+				->authenticateWith('api', 'api1234')
+				->body("{
+					'date'			:'$this->journalEntry_date',
+					'debitAccount1'	:'$this->debitAccount',
+					'debitAmount1'	:'$this->debitAmount',
+					'creditAccount1':'$this->creditAccount',
+					'creditAmount1'	:'$this->creditAmount',
+					'notes'			:'$this->notes'
+					}")
+				->send();
+
+			// echo "La respuesta fue " . $response->body->returnCode . " " . $response->body->returnStatus;
+			// echo "La respuesta fue " . var_dump($response);
+			// Yii::app()->end();
+
 	        if($this->isNewRecord)
 	        {
 	            // $this->createdon=$this->updatedon=time();

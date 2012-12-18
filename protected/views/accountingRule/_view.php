@@ -17,6 +17,14 @@
 	<?php echo CHtml::encode($data->type_id); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('bank')); ?>:</b>
+	<?php echo CHtml::encode($data->bank); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode($data->description); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('debitAccount1')); ?>:</b>
 	<?php echo CHtml::encode($data->debitAccount1); ?>
 	<br />

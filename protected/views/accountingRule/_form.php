@@ -29,6 +29,18 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'bank'); ?>
+		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bank?', false=>'Cash?')); ?>
+		<?php echo $form->error($model,'bank'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'description'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'debitAccount1'); ?>
 		<?php echo $form->textField($model,'debitAccount1',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'debitAccount1'); ?>

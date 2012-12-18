@@ -70,8 +70,18 @@ class OperationController extends Controller
 		if(isset($_POST['Operation']))
 		{
 			$model->attributes=$_POST['Operation'];
-			if($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+			if ($accountingRule=AccountingRule::model()->findByAttributes(array('input'=>$model->input, 'type_id'=>$model->type_id, 'bank'=>$model->bank)))
+			{
+				$journalEntry=new JournalEntry;
+				$journalEntry->debitAccount = $accountingRule->debitAccount1;
+				$journalEntry->debitAmount = $model->amount;
+				$journalEntry->creditAccount = $accountingRule->creditAccount1;
+				$journalEntry->creditAmount = $model->amount;
+				$journalEntry->journalEntry_date = $model->operation_date;
+				$journalEntry->notes = $model->description;
+				if ($journalEntry->save())
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 

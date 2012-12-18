@@ -9,9 +9,10 @@
  * @property integer $type_id
  * @property string $debitAccount1
  * @property string $creditAccount1
+ * @property string $description
+ * @property boolean $bank
  * @property integer $user_id
  * @property string $createdon
- * @property string $updatedon
  */
 class AccountingRule extends CActiveRecord
 {
@@ -41,12 +42,12 @@ class AccountingRule extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('input, type_id, debitAccount1, creditAccount1', 'required'),
-			array('input, type_id', 'numerical', 'integerOnly'=>true),
-			array('debitAccount1, creditAccount1', 'length', 'max'=>255),
+			array('input, bank, type_id, debitAccount1, creditAccount1', 'required'),
+			array('type_id', 'numerical', 'integerOnly'=>true),
+			array('debitAccount1, creditAccount1, description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, input, type_id, debitAccount1, creditAccount1, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, input, type_id, bank, debitAccount1, creditAccount1, description, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,10 +69,12 @@ class AccountingRule extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'input' => 'Input',
+			'input' => 'Input?',
 			'type_id' => 'Type',
+			'bank' => 'Bank?',
 			'debitAccount1' => 'Debit Account1',
 			'creditAccount1' => 'Credit Account1',
+			'description' => 'Description',
 			'user_id' => 'User',
 			'createdon' => 'Createdon',
 			'updatedon' => 'Updatedon',
@@ -92,6 +95,8 @@ class AccountingRule extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('input',$this->input);
 		$criteria->compare('type_id',$this->type_id);
+		$criteria->compare('bank',$this->bank);
+		$criteria->compare('description',$this->description, true);
 		$criteria->compare('debitAccount1',$this->debitAccount1,true);
 		$criteria->compare('creditAccount1',$this->creditAccount1,true);
 		$criteria->compare('user_id',$this->user_id);

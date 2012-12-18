@@ -29,8 +29,8 @@
 	<?php echo CHtml::encode($data->branchID); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('JournalEntry_date')); ?>:</b>
-	<?php echo CHtml::encode($data->JournalEntry_date); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('journalEntry_date')); ?>:</b>
+	<?php echo CHtml::encode($data->journalEntry_date); ?>
 	<br />
 
 	<?php /*

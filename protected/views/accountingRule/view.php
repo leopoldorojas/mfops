@@ -24,6 +24,8 @@ $this->menu=array(
 		'id',
 		'input',
 		'type_id',
+		'bank',
+		'description',
 		'debitAccount1',
 		'creditAccount1',
 		'user_id',

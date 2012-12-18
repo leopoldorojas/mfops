@@ -46,9 +46,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'JournalEntry_date'); ?>
-		<?php echo $form->textField($model,'JournalEntry_date'); ?>
-		<?php echo $form->error($model,'JournalEntry_date'); ?>
+		<?php echo $form->labelEx($model,'journalEntry_date'); ?>
+		<?php echo $form->textField($model,'journalEntry_date'); ?>
+		<?php echo $form->error($model,'journalEntry_date'); ?>
 	</div>
 
 	<div class="row">

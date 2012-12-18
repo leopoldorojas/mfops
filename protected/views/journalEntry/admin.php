@@ -52,7 +52,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'creditAmount',
 		'branchID',
 		/*
-		'JournalEntry_date',
+		'journalEntry_date',
 		'notes',
 		'user_id',
 		'createdon',

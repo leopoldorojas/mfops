@@ -42,8 +42,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'JournalEntry_date'); ?>
-		<?php echo $form->textField($model,'JournalEntry_date'); ?>
+		<?php echo $form->label($model,'journalEntry_date'); ?>
+		<?php echo $form->textField($model,'journalEntry_date'); ?>
 	</div>
 
 	<div class="row">

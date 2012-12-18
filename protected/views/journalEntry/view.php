@@ -27,7 +27,7 @@ $this->menu=array(
 		'creditAccount',
 		'creditAmount',
 		'branchID',
-		'JournalEntry_date',
+		'journalEntry_date',
 		'notes',
 		'user_id',
 		'createdon',
