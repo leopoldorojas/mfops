@@ -4,17 +4,10 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h1 style="text-align: center">Bienvenida/o al</br><i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<p>El Sistema de Operaciones para Instituciones Microfinancieras tiene como propósito apoyar a dichas instituciones (IMF) en el control y gestión de sus operaciones financieras distintas a las del control de su cartera. En otras palabras es un sistema para gestionar los movimientos de dinero que ocurren en la institución pero que no pertences a los movimientos de desembolsos, cobros y pagos de créditos. No es un sistema financiero de cartera. Su principal objetivo es que los movimientos operativos tengan un efecto en la contabilidad de la institución y, de esta manera, mantener una gestión contable integral.</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+<p>Actualmente el sistema está diseñado para integrarse con el <a href="http://www.mambu.com/es" target=_blank>Sistema de Microfinanzas Mambu</a> - <a href="http://www.mambu.com/es" target=_blank>www.mambu.com</a></p>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<p>Para más detalles del sistema de información, por favor contáctese a <a href="mailto:info@arckanto.com">info@arckanto.com</a> o visite el sitio Web de <a href="http://www.arckanto.com" target=_blank>Arckanto software</a>, empresa desarrolladora del sistema.</p>
