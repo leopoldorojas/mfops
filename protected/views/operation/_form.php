@@ -11,7 +11,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -46,20 +46,20 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'input'); ?>
-		<?php echo $form->radioButtonList($model,'input', array(true=>'Money input', false=>'Money output')); ?>
+		<?php echo $form->radioButtonList($model,'input', array(true=>'Entrada de dinero', false=>'Salida de dinero')); ?>
 		<?php echo $form->error($model,'input'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'bank'); ?>
-		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bank movement', false=>'Cash movement')); ?>
+		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bancos', false=>'Caja')); ?>
 		<?php echo $form->error($model,'bank'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>
 		<?php echo $form->dropdownlist($model,'type_id',
-			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Please, select a Movement Type')); ?>
+			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento')); ?>
 		<?php echo $form->error($model,'type_id'); ?>
 	</div>
 
@@ -78,7 +78,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'entity_id'); ?>
 		<?php echo $form->dropdownlist($model,'entity_id', 
-			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Please, select an Operation Entity')); ?>
+			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
 		<?php echo $form->error($model,'entity_id'); ?>
 	</div>
 
@@ -101,7 +101,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Grabar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -76,18 +76,18 @@ class Operation extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'type_id' => 'Type',
-			'input' => 'Money input?',
-			'bank' => 'Bank movement?',
-			'operation_date' => 'Operation Date',
-			'amount' => 'Amount',
-			'entity_id' => 'Entity',
-			'entity_name' => 'Entity Name',
-			'reference_price' => 'Reference Price',
-			'description' => 'Description',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'type_id' => 'Tipo',
+			'input' => '¿Entrada de dinero?',
+			'bank' => '¿Bancos o Caja?',
+			'operation_date' => 'Fecha',
+			'amount' => 'Monto',
+			'entity_id' => 'Entidad de operación',
+			'entity_name' => 'Nombre de la entidad',
+			'reference_price' => 'Precio de referencia',
+			'description' => 'Descripción',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creado en',
+			'updatedon' => 'Actualizado en',
 		);
 	}
 

@@ -18,18 +18,18 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'input'); ?>
-		<?php echo $form->radioButtonList($model,'input', array(true=>'Money input', false=>'Money output')); ?>
+		<?php echo $form->radioButtonList($model,'input', array(true=>'Entrada de dinero', false=>'Salida de dinero')); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'bank'); ?>
-		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bank movement', false=>'Cash movement')); ?>
+		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bancos', false=>'Caja')); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'type_id'); ?>
 		<?php echo $form->dropdownlist($model,'type_id',
-			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Please, select a Movement Type')); ?>
+			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento')); ?>
 	</div>
 
 	<div class="row">
@@ -45,7 +45,7 @@
 	<div class="row">
 		<?php echo $form->label($model,'entity_id'); ?>
 		<?php echo $form->dropdownlist($model,'entity_id',
-			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Please, select an Operation Entity')); ?>
+			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de operación')); ?>
 	</div>
 
 	<div class="row">
@@ -64,7 +64,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton('Buscar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

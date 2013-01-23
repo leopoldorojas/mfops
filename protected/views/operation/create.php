@@ -3,16 +3,16 @@
 /* @var $model Operation */
 
 $this->breadcrumbs=array(
-	'Operations'=>array('index'),
-	'Create',
+	'Movimientos'=>array('index'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Operation', 'url'=>array('index')),
-	array('label'=>'Manage Operation', 'url'=>array('admin')),
+	array('label'=>'Listar Movimientos', 'url'=>array('index')),
+	array('label'=>'Administrar movimientos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Operation</h1>
+<h1>Registrar movimiento</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

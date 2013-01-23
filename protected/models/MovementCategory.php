@@ -65,10 +65,10 @@ class MovementCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'description' => 'Description',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'description' => 'Descripción',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creado en',
+			'updatedon' => 'Actualizado en',
 		);
 	}
 

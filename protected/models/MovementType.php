@@ -68,11 +68,11 @@ class MovementType extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'movement_category_id' => 'Movement Category',
-			'description' => 'Description',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'movement_category_id' => 'Categoría',
+			'description' => 'Descripción',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creado en',
+			'updatedon' => 'Actualizado en',
 		);
 	}
 
