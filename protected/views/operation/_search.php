@@ -18,13 +18,15 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'input'); ?>
-		<?php echo $form->radioButtonList($model,'input', array(true=>'Entrada de dinero', false=>'Salida de dinero')); ?>
-	</div>
+		<?php echo $form->dropdownlist($model,'input',
+			array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?')); ?>
+	</div>	
 
 	<div class="row">
 		<?php echo $form->label($model,'bank'); ?>
-		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bancos', false=>'Caja')); ?>
-	</div>
+		<?php echo $form->dropdownlist($model,'bank',
+			array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?')); ?>
+	</div>	
 
 	<div class="row">
 		<?php echo $form->label($model,'type_id'); ?>

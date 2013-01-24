@@ -3,19 +3,19 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
-	'Movement Categories'=>array('index'),
+	'Categorías de Movimientos'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List MovementCategory', 'url'=>array('index')),
-	array('label'=>'Create MovementCategory', 'url'=>array('create')),
-	array('label'=>'View MovementCategory', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage MovementCategory', 'url'=>array('admin')),
+	array('label'=>'Listar Categorías', 'url'=>array('index')),
+	array('label'=>'Crear Categoría', 'url'=>array('create')),
+	array('label'=>'Ver Categoría', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Categorías', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update MovementCategory <?php echo $model->id; ?></h1>
+<h1>Actualizar Categoría de Movimientos <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

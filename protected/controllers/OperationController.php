@@ -82,6 +82,8 @@ class OperationController extends Controller
 				if ($journalEntry->save())
 					if($model->save())
 						$this->redirect(array('view','id'=>$model->id));
+			} else {
+				throw new CHttpException(404,'La regla contable no existe. No se pudo grabar');
 			}
 		}
 

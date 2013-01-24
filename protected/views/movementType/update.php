@@ -3,19 +3,19 @@
 /* @var $model MovementType */
 
 $this->breadcrumbs=array(
-	'Movement Types'=>array('index'),
+	'Tipos de Movimiento'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List MovementType', 'url'=>array('index')),
-	array('label'=>'Create MovementType', 'url'=>array('create')),
-	array('label'=>'View MovementType', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage MovementType', 'url'=>array('admin')),
+	array('label'=>'Listar Tipos de Movimiento', 'url'=>array('index')),
+	array('label'=>'Crear Tipos de Movimiento', 'url'=>array('create')),
+	array('label'=>'Ver Tipo de Movimiento', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Tipos de Movimiento', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update MovementType <?php echo $model->id; ?></h1>
+<h1>Actualizar Tipo de Movimiento <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,20 +3,20 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
-	'Movement Categories'=>array('index'),
+	'Categorías de Movimientos'=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List MovementCategory', 'url'=>array('index')),
-	array('label'=>'Create MovementCategory', 'url'=>array('create')),
-	array('label'=>'Update MovementCategory', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete MovementCategory', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage MovementCategory', 'url'=>array('admin')),
+	array('label'=>'Listar Categorías', 'url'=>array('index')),
+	array('label'=>'Crear Categoría', 'url'=>array('create')),
+	array('label'=>'Actualizar Categoría', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Borrar Categoría', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Está seguro que desea borrarla?')),
+	array('label'=>'Administrar Categorías', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View MovementCategory #<?php echo $model->id; ?></h1>
+<h1>Categoría de Movimiento #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

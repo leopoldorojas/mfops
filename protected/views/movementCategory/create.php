@@ -3,16 +3,16 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
-	'Movement Categories'=>array('index'),
-	'Create',
+	'Categorías de Movimientos'=>array('index'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List MovementCategory', 'url'=>array('index')),
-	array('label'=>'Manage MovementCategory', 'url'=>array('admin')),
+	array('label'=>'Listar Categorías', 'url'=>array('index')),
+	array('label'=>'Administrar Categorías', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create MovementCategory</h1>
+<h1>Crear Categoría de Movimientos</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Movement Types',
+	'Tipos de Movimiento',
 );
 
 $this->menu=array(
-	array('label'=>'Create MovementType', 'url'=>array('create')),
-	array('label'=>'Manage MovementType', 'url'=>array('admin')),
+	array('label'=>'Crear Tipo de Movimiento', 'url'=>array('create')),
+	array('label'=>'Administrar Tipos de Movimiento', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Movement Types</h1>
+<h1>Tipos de Movimiento</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
