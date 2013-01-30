@@ -1,8 +1,5 @@
 <?php
-// Testing github
-// Cambio hecho por Master
-// Cambio hecho por Development
-// Con el conflicto resuelto en master
+
 return CMap::mergeArray(
 	require(dirname(__FILE__).'/main.php'),
 	array(

@@ -131,9 +131,10 @@ class JournalEntry extends CActiveRecord
 					'creditAmount1'	:'$this->creditAmount',
 					'notes'			:'$this->notes'
 					}")
+				->withoutAutoParsing()
 				->send();
 
-			// echo "La respuesta fue " . $response->body->returnCode . " " . $response->body->returnStatus;
+			// "La respuesta fue " . $response->body->returnCode . " " . $response->body->returnStatus;
 			// echo "La respuesta fue " . var_dump($response);
 			// Yii::app()->end();
 

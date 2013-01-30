@@ -4,9 +4,9 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1 style="text-align: center">Bienvenida/o al</br><i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h2>Bienvenida/o al</br><?php echo CHtml::encode(Yii::app()->name); ?> - Grupo FINCA</h2>
 
-<p>El Sistema de Operaciones para Instituciones Microfinancieras tiene como propósito apoyar a dichas instituciones (IMF) en el control y gestión de sus operaciones financieras distintas a las del control de su cartera. En otras palabras es un sistema para gestionar los movimientos de dinero que ocurren en la institución pero que no pertences a los movimientos de desembolsos, cobros y pagos de créditos. No es un sistema financiero de cartera. Su principal objetivo es que los movimientos operativos tengan un efecto en la contabilidad de la institución y, de esta manera, mantener una gestión contable integral.</p>
+<p>El <b>Sistema de Operaciones para Instituciones Microfinancieras</b> tiene como propósito apoyar a las instituciones (IMF) con el control y gestión de sus operaciones financieras que sean distintas a las del control de su cartera. En otras palabras es un sistema para <b>gestionar los movimientos de dinero que ocurren en la institución</b> pero que no pertencen a los movimientos de desembolsos, cobros y pagos de créditos. No es un sistema financiero de cartera. Su principal objetivo es que los movimientos operativos tengan un efecto en la contabilidad de la institución y, de esta manera, mantener una gestión contable integral.</p>
 
 <p>Actualmente el sistema está diseñado para integrarse con el <a href="http://www.mambu.com/es" target=_blank>Sistema de Microfinanzas Mambu</a> - <a href="http://www.mambu.com/es" target=_blank>www.mambu.com</a></p>
 

@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Sistema de Operaciones para Instituciones Microfinancieras',
+	'theme'=>'finca',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
