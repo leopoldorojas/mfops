@@ -5,6 +5,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Microfinzas - Movimientos de Operaciones',
+	// Este es la actualización del branch development. Este es development.
 
 	// preloading 'log' component
 	'preload'=>array('log'),
