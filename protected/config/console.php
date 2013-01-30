@@ -4,13 +4,7 @@
 // Any writable CConsoleApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-<<<<<<< HEAD
-	'name'=>'Microfinzas - Movimientos de Operaciones de IMF',
-	// Actualización de master. Este es el master.
-=======
 	'name'=>'Microfinzas - Movimientos de Operaciones',
-	// Este es la actualización del branch development. Este es development.
->>>>>>> development
 
 	// preloading 'log' component
 	'preload'=>array('log'),
