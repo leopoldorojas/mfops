@@ -1,29 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "operation".
+ * This is the model class for table "document".
  *
- * The followings are the available columns in table 'operation':
+ * The followings are the available columns in table 'document':
  * @property integer $id
- * @property boolean $input
- * @property boolean $bank
- * @property integer $type_id
- * @property string $operation_date
- * @property string $amount
+ * @property integer $documentType_id
+ * @property string $number
+ * @property string $document_date
  * @property integer $entity_id
  * @property string $entity_name
- * @property string $reference_price
- * @property text $description
+ * @property string $description
  * @property integer $user_id
  * @property string $createdon
  * @property string $updatedon
  */
-class Operation extends CActiveRecord
+class Document extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Operation the static model class
+	 * @return Document the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -35,7 +32,7 @@ class Operation extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'operation';
+		return 'document';
 	}
 
 	/**
@@ -46,13 +43,13 @@ class Operation extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_id, operation_date, input, bank', 'required'),
-			array('type_id, entity_id', 'numerical', 'integerOnly'=>true),
-			array('amount, reference_price', 'length', 'max'=>19),
-			array('entity_name', 'length', 'max'=>255),
+			array('documentType_id, number, document_date', 'required'),
+			array('documentType_id, entity_id', 'numerical', 'integerOnly'=>true),
+			array('number, entity_name', 'length', 'max'=>50),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description', 'safe',),
+			array('id, documentType_id, number, document_date, entity_id, entity_name, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,8 +62,8 @@ class Operation extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'entity' => array(self::BELONGS_TO, 'OperationEntity', 'entity_id'),
-			'movement_type' => array(self::BELONGS_TO, 'MovementType', 'type_id'),
-			'document' => array(self::BELONGS_TO, 'Document', 'document_id'),
+			'document_type' => array(self::BELONGS_TO, 'DocumentType', 'documentType_id'),
+			'operations' => array(self::HAS_MANY, 'Operation', 'document_id'),
 		);
 	}
 
@@ -77,14 +74,11 @@ class Operation extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'type_id' => 'Tipo',
-			'input' => '¿Entrada de dinero?',
-			'bank' => '¿Bancos o Caja?',
-			'operation_date' => 'Fecha',
-			'amount' => 'Monto',
-			'entity_id' => 'Entidad de operación',
-			'entity_name' => 'Nombre de la entidad',
-			'reference_price' => 'Precio de referencia',
+			'documentType_id' => 'Tipo de Documento',
+			'number' => 'Número',
+			'document_date' => 'Fecha',
+			'entity_id' => 'Entidad',
+			'entity_name' => 'Nombre de Entidad',
 			'description' => 'Descripción',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
@@ -104,36 +98,18 @@ class Operation extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('type_id',$this->type_id);
-		$criteria->compare('input',$this->input);
-		$criteria->compare('bank',$this->bank);
-		$criteria->compare('operation_date',$this->operation_date,true);
-		$criteria->compare('amount',$this->amount,true);
+		$criteria->compare('documentType_id',$this->documentType_id);
+		$criteria->compare('number',$this->number,true);
+		$criteria->compare('document_date',$this->document_date,true);
 		$criteria->compare('entity_id',$this->entity_id);
 		$criteria->compare('entity_name',$this->entity_name,true);
-		$criteria->compare('reference_price',$this->reference_price,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	protected function beforeSave()
-	{
-	    if(parent::beforeSave())
-	    {
-	        if($this->isNewRecord)
-	        {
-	            // $this->createdon=$this->updatedon=time();
-	            // $this->user_id=Yii::app()->user->id;
-	            $this->user_id=1;
-	        }
-	        else
-	            $this->updatedon=time();
-	        return true;
-	    }
-	    else
-	        return false;
 	}
 }
