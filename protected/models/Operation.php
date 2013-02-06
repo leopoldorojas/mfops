@@ -14,6 +14,7 @@
  * @property string $entity_name
  * @property string $reference_price
  * @property text $description
+ * @property integer $document_id
  * @property integer $user_id
  * @property string $createdon
  * @property string $updatedon
@@ -52,7 +53,7 @@ class Operation extends CActiveRecord
 			array('entity_name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description', 'safe',),
+			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id', 'safe',),
 		);
 	}
 
@@ -86,6 +87,7 @@ class Operation extends CActiveRecord
 			'entity_name' => 'Nombre de la entidad',
 			'reference_price' => 'Precio de referencia',
 			'description' => 'Descripción',
+			'document_id' => 'Número de Documento',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',
@@ -113,6 +115,7 @@ class Operation extends CActiveRecord
 		$criteria->compare('entity_name',$this->entity_name,true);
 		$criteria->compare('reference_price',$this->reference_price,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('document_id',$this->document_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -121,7 +124,7 @@ class Operation extends CActiveRecord
 
 	public function validateDetail()
 	{
-		return (!empty($this->bank) || !empty($this->input) || !empty($this->type_id));
+		return (!($this->bank=="") || !($this->input=="") || !empty($this->type_id));
 	}
 
 	protected function beforeSave()

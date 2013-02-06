@@ -54,6 +54,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'entity_id',
 		'entity_name',
 		'description',
+		'document_id',
 		array(
 			'class'=>'CButtonColumn',
 		),

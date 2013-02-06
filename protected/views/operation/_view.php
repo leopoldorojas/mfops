@@ -45,6 +45,10 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('document_id')); ?>:</b>
+	<?php echo CHtml::encode($data->document_id); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />

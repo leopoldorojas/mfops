@@ -137,18 +137,20 @@ class DocumentController extends Controller
 		        		foreach($operations as $i=>$operation)
 		            		if(isset($_POST['Operation'][$i])) {
 		                		$operation->attributes=$_POST['Operation'][$i];
+		                		$operation->document_id=$model->id;
 	
 		            			if ($operation->validateDetail())
 			                		$operation->save();
 			                }
+
+           				$this->redirect(array('view','id'=>$model->id));
 		        	}
 	        	}
 				
-				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
-		$this->render('create',array(
+		$this->render('createBatch',array(
 			'model'=>$model,
 			'operations' => $operations,
 		));

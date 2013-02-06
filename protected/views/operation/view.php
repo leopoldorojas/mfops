@@ -31,6 +31,7 @@ $this->menu=array(
 		'entity_name',
 		'reference_price',
 		'description',
+		'document_id',
 		'user_id',
 		'createdon',
 		'updatedon',

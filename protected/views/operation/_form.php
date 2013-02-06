@@ -73,6 +73,12 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'document_id'); ?>
+		<?php echo $form->textField($model,'document_id',array('size'=>19,'maxlength'=>19)); ?>
+		<?php echo $form->error($model,'document_id'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Grabar'); ?>
 	</div>

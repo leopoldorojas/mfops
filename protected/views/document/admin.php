@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Movimientos', 'url'=>array('create')),
+	array('label'=>'Registrar Movimientos', 'url'=>array('createBatch')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Movimientos', 'url'=>array('create')),
+	array('label'=>'Registrar Movimientos', 'url'=>array('createBatch')),
 	array('label'=>'Ver Documento', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );

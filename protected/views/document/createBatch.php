@@ -15,7 +15,8 @@ $this->menu=array(
 
 <h1>Registrar Movimientos</h1>
 
-<?php echo $this->renderPartial('_form', array(
+<?php echo $this->renderPartial('_formBatch', array(
 	'model'=>$model,
+	'operations'=>$operations,
 	));
 ?>

@@ -61,8 +61,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->label($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'document_id'); ?>
+		<?php echo $form->textField($model,'document_id',array('size'=>19,'maxlength'=>19)); ?>
 	</div>
 
 	<div class="row buttons">
