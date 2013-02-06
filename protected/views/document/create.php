@@ -3,16 +3,19 @@
 /* @var $model Document */
 
 $this->breadcrumbs=array(
-	'Documents'=>array('index'),
-	'Create',
+	'Documentos'=>array('index'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Document', 'url'=>array('index')),
-	array('label'=>'Manage Document', 'url'=>array('admin')),
+	array('label'=>'Listar Documentos', 'url'=>array('index')),
+	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Document</h1>
+<h1>Registrar Movimientos</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array(
+	'model'=>$model,
+	'operations'=>$operations,
+	)); ?>

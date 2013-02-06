@@ -3,16 +3,16 @@
 /* @var $model Document */
 
 $this->breadcrumbs=array(
-	'Documents'=>array('index'),
+	'Documentos'=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List Document', 'url'=>array('index')),
-	array('label'=>'Create Document', 'url'=>array('create')),
-	array('label'=>'Update Document', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Document', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Document', 'url'=>array('admin')),
+	array('label'=>'Listar Documentos', 'url'=>array('index')),
+	array('label'=>'Registrar Movimientos', 'url'=>array('create')),
+	array('label'=>'Actualizar Documento', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Borrar Documento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que deseas borrarlo?')),
+	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 ?>
 
@@ -28,8 +28,5 @@ $this->menu=array(
 		'entity_id',
 		'entity_name',
 		'description',
-		'user_id',
-		'createdon',
-		'updatedon',
 	),
 )); ?>

@@ -3,12 +3,12 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Documents',
+	'Documentos',
 );
 
 $this->menu=array(
-	array('label'=>'Create Document', 'url'=>array('create')),
-	array('label'=>'Manage Document', 'url'=>array('admin')),
+	array('label'=>'Registrar Movimientos', 'url'=>array('create')),
+	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 ?>
 

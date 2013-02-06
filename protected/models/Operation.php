@@ -119,6 +119,11 @@ class Operation extends CActiveRecord
 		));
 	}
 
+	public function validateDetail()
+	{
+		return (!empty($this->bank) || !empty($this->input) || !empty($this->type_id));
+	}
+
 	protected function beforeSave()
 	{
 	    if(parent::beforeSave())

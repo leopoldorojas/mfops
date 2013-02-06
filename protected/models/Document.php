@@ -104,12 +104,27 @@ class Document extends CActiveRecord
 		$criteria->compare('entity_id',$this->entity_id);
 		$criteria->compare('entity_name',$this->entity_name,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	protected function beforeSave()
+	{
+	    if(parent::beforeSave())
+	    {
+	        if($this->isNewRecord)
+	        {
+	            // $this->createdon=$this->updatedon=time();
+	            // $this->user_id=Yii::app()->user->id;
+	            $this->user_id=1;
+	        }
+	        else
+	            $this->updatedon=time();
+	        return true;
+	    }
+	    else
+	        return false;
 	}
 }

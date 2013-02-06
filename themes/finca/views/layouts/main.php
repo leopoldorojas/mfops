@@ -30,7 +30,8 @@
 			'items'=>array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')),
 				// array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Movimientos', 'url'=>array('operation/admin')),
+				array('label'=>'Movimientos', 'url'=>array('document/admin')),
+				array('label'=>'Movimientos detallados', 'url'=>array('operation/admin')),
 				array('label'=>'Tipos de Movimiento', 'url'=>array('movementtype/admin')),
 				array('label'=>'Categorías de Movimiento', 'url'=>array('movementCategory/admin')),
 				array('label'=>'Contacto', 'url'=>array('/site/contact')),

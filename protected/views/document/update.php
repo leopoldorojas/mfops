@@ -3,19 +3,19 @@
 /* @var $model Document */
 
 $this->breadcrumbs=array(
-	'Documents'=>array('index'),
+	'Documentos'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar Documentos',
 );
 
 $this->menu=array(
-	array('label'=>'List Document', 'url'=>array('index')),
-	array('label'=>'Create Document', 'url'=>array('create')),
-	array('label'=>'View Document', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Document', 'url'=>array('admin')),
+	array('label'=>'Listar Documentos', 'url'=>array('index')),
+	array('label'=>'Registrar Movimientos', 'url'=>array('create')),
+	array('label'=>'Ver Documento', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Document <?php echo $model->id; ?></h1>
+<h1>Actualizar Documento <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

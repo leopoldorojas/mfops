@@ -32,7 +32,7 @@ class DocumentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'createBatch'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -104,6 +104,81 @@ class DocumentController extends Controller
 	}
 
 	/**
+	 * Creates a new model with several instances of the child model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreateBatch()
+	{
+		$model=new Document;
+		$operations=$this->getOperationsOfADocument();
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Document']))
+		{
+			$model->attributes=$_POST['Document'];
+			if($model->validate())
+			{	
+				if(isset($_POST['Operation']))
+				{
+					$valid=true;
+	        
+	        		foreach($operations as $i=>$operation)
+	            		if(isset($_POST['Operation'][$i])) {
+	                		$operation->attributes=$_POST['Operation'][$i];
+	            			if ($operation->validateDetail())
+		                		$valid=$operation->validate() && $valid;
+	                	}
+
+	        		if($valid)  { // all items are valid
+						$model->save();
+
+		        		foreach($operations as $i=>$operation)
+		            		if(isset($_POST['Operation'][$i])) {
+		                		$operation->attributes=$_POST['Operation'][$i];
+	
+		            			if ($operation->validateDetail())
+			                		$operation->save();
+			                }
+		        	}
+	        	}
+				
+				$this->redirect(array('view','id'=>$model->id));
+			}
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
+			'operations' => $operations,
+		));
+	}
+
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionUpdateBatch($id)
+	{
+		$model=$this->loadModel($id);
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Document']))
+		{
+			$model->attributes=$_POST['Document'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
@@ -156,6 +231,15 @@ class DocumentController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+
+	public function getOperationsOfADocument($document_id=0, $number_of_rows=5)
+	{
+		$operations = array();
+		if ($document_id == 0)
+			for ($i = 1; $i <= $number_of_rows; $i++)
+				$operations[] = new Operation;
+		return $operations;
 	}
 
 	/**

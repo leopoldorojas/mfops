@@ -18,7 +18,8 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'documentType_id'); ?>
-		<?php echo $form->textField($model,'documentType_id'); ?>
+		<?php echo $form->dropdownlist($model,'documentType_id',
+			CHtml::listData(DocumentType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de documento')); ?>
 	</div>
 
 	<div class="row">
@@ -33,7 +34,8 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'entity_id'); ?>
-		<?php echo $form->textField($model,'entity_id'); ?>
+		<?php echo $form->dropdownlist($model,'entity_id', 
+			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
 	</div>
 
 	<div class="row">
@@ -46,23 +48,8 @@
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'updatedon'); ?>
-		<?php echo $form->textField($model,'updatedon'); ?>
-	</div>
-
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton('Buscar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
