@@ -72,24 +72,16 @@ class OperationController extends Controller
 			$model->attributes=$_POST['Operation'];
 
 			if ($model->validate())
-				if ($accountingRule=AccountingRule::model()->findByAttributes(array('input'=>$model->input, 'type_id'=>$model->type_id, 'bank'=>$model->bank)))
-				{
-					$journalEntry=new JournalEntry;
-					$journalEntry->debitAccount = $accountingRule->debitAccount1;
-					$journalEntry->debitAmount = $model->amount;
-					$journalEntry->creditAccount = $accountingRule->creditAccount1;
-					$journalEntry->creditAmount = $model->amount;
-					$journalEntry->journalEntry_date = $model->operation_date;
-					$journalEntry->notes = $model->description;
-					if ($journalEntry->save()) {
-						if($model->save())
-							$this->redirect(array('view','id'=>$model->id));
-					} else {
-						Yii::app()->user->setFlash('error', "No se pudo grabar la transacción. Si el monto no es cero, intente más tarde");
-					}
+			{
+				$journalEntry=new JournalEntry;
+				$status = $journalEntry->saveOperation($model);
+				if ($status['status']=='success') {
+					if($model->save())
+						$this->redirect(array('view','id'=>$model->id));
 				} else {
-					Yii::app()->user->setFlash('error','La regla contable no existe. No se pudo grabar');
+					Yii::app()->user->setFlash('error', $status['message']);
 				}
+			}
 		}
 
 		$this->render('create',array(

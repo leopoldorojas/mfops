@@ -18,6 +18,12 @@ $this->menu=array(
 
 <h1>View Document #<?php echo $model->id; ?></h1>
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(

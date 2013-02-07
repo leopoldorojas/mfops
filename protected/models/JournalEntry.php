@@ -114,6 +114,26 @@ class JournalEntry extends CActiveRecord
 		));
 	}
 
+	public function saveOperation($operation)
+	{
+		if ($accountingRule=AccountingRule::model()->findByAttributes(array('input'=>$operation->input, 'type_id'=>$operation->type_id, 'bank'=>$operation->bank)))
+		{
+			$this->debitAccount = $accountingRule->debitAccount1;
+			$this->debitAmount = $operation->amount;
+			$this->creditAccount = $accountingRule->creditAccount1;
+			$this->creditAmount = $operation->amount;
+			$this->journalEntry_date = $operation->operation_date;
+			$this->notes = $operation->description;
+			if ($this->save()) {
+				return array('status'=>'success', 'message'=>"Operación grabada exitosamente");
+			} else {
+				return array('status'=>'error', 'message'=>"No se pudo grabar la transacción. Intente más tarde");;
+			}
+		} else {
+			return array('status'=>'error', 'message'=>'La regla contable no existe. No se pudo grabar');
+		}		
+	}
+
 	protected function beforeSave()
 	{
 	    if(parent::beforeSave())

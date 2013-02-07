@@ -15,6 +15,12 @@ $this->menu=array(
 
 <h1>Registrar Movimientos</h1>
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
 <?php echo $this->renderPartial('_formBatch', array(
 	'model'=>$model,
 	'operations'=>$operations,

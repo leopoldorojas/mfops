@@ -47,7 +47,7 @@ class Operation extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_id, operation_date, input, bank', 'required'),
+			array('type_id, operation_date, input, bank, amount, document_id', 'required'),
 			array('type_id, entity_id', 'numerical', 'integerOnly'=>true),
 			array('amount, reference_price', 'length', 'max'=>19),
 			array('entity_name', 'length', 'max'=>255),

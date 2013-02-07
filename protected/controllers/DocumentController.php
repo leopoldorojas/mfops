@@ -127,23 +127,38 @@ class DocumentController extends Controller
 	        		foreach($operations as $i=>$operation)
 	            		if(isset($_POST['Operation'][$i])) {
 	                		$operation->attributes=$_POST['Operation'][$i];
+	                		$operation->document_id=1; // Temporal Document ID in order pass validate()
 	            			if ($operation->validateDetail())
-		                		$valid=$operation->validate() && $valid;
+		                		$valid=$operation->validate() && $valid; // OJOOOO AQUI DEBO VALIDATE CON REGLAS CONTABLES TAMBIEN
 	                	}
 
 	        		if($valid)  { // all items are valid
-						$model->save();
+	        			if($model->save())
+	        			{
+		        			$journalEntryHasErrors=false;
 
-		        		foreach($operations as $i=>$operation)
-		            		if(isset($_POST['Operation'][$i])) {
-		                		$operation->attributes=$_POST['Operation'][$i];
-		                		$operation->document_id=$model->id;
-	
-		            			if ($operation->validateDetail())
-			                		$operation->save();
-			                }
+			        		foreach($operations as $i=>$operation)
+			            		if(isset($_POST['Operation'][$i])) {
+			                		$operation->attributes=$_POST['Operation'][$i];
+			                		$operation->document_id=$model->id;
+		
+			            			if ($operation->validateDetail()) {
+										$journalEntry=new JournalEntry;
+										$status = $journalEntry->saveOperation($operation);
+										if ($status['status']=='success') {
+											$operation->save();
+										} else {
+											if (!$journalEntryHasErrors) {
+												$journalEntryHasErrors=true;
+												Yii::app()->user->setFlash('error', 'Uno o más de los detalles de movimientos de la transacción anterior no pudieron grabar, posiblemente por fallas de conexión con sistema externo');
+											}
 
-           				$this->redirect(array('view','id'=>$model->id));
+											// Yii::app()->user->setFlash('error', $status['message']);
+										}
+									}
+				                }
+               				$this->redirect(array('view','id'=>$model->id));
+				        }
 		        	}
 	        	}
 				
