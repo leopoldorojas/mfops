@@ -123,16 +123,19 @@ class DocumentController extends Controller
 				if(isset($_POST['Operation']))
 				{
 					$valid=true;
+					$validAccountingRule = true;
 	        
 	        		foreach($operations as $i=>$operation)
 	            		if(isset($_POST['Operation'][$i])) {
 	                		$operation->attributes=$_POST['Operation'][$i];
 	                		$operation->document_id=1; // Temporal Document ID in order pass validate()
-	            			if ($operation->validateDetail())
-		                		$valid=$operation->validate() && $valid; // OJOOOO AQUI DEBO VALIDATE CON REGLAS CONTABLES TAMBIEN
+	            			if ($operation->validateDetail()) {
+		                		$valid=$operation->validate() && $valid;
+		                		$validAccountingRule=$operation->accountingRule() && $validAccountingRule;
+		                	}
 	                	}
 
-	        		if($valid)  { // all items are valid
+	        		if($valid && $validAccountingRule)  { // all items are valid
 	        			if($model->save())
 	        			{
 		        			$journalEntryHasErrors=false;
@@ -150,7 +153,7 @@ class DocumentController extends Controller
 										} else {
 											if (!$journalEntryHasErrors) {
 												$journalEntryHasErrors=true;
-												Yii::app()->user->setFlash('error', 'Uno o más de los detalles de movimientos de la transacción anterior no pudieron grabar, posiblemente por fallas de conexión con sistema externo');
+												Yii::app()->user->setFlash('error', 'Uno o más de los detalles de movimientos de la transacción anterior no se pudieron grabar, posiblemente por fallas de conexión con sistema externo');
 											}
 
 											// Yii::app()->user->setFlash('error', $status['message']);
@@ -159,7 +162,8 @@ class DocumentController extends Controller
 				                }
                				$this->redirect(array('view','id'=>$model->id));
 				        }
-		        	}
+		        	} elseif (!$validAccountingRule)
+		        		Yii::app()->user->setFlash('error', 'Uno o más de las detalles de movimientos no tiene la Regla Contable definida en el sistema');
 	        	}
 				
 			}

@@ -127,6 +127,11 @@ class Operation extends CActiveRecord
 		return (!($this->bank=="") || !($this->input=="") || !empty($this->type_id));
 	}
 
+	public function accountingRule()
+	{
+		return AccountingRule::model()->findByAttributes(array('input'=>$this->input, 'type_id'=>$this->type_id, 'bank'=>$this->bank));
+	}
+
 	protected function beforeSave()
 	{
 	    if(parent::beforeSave())
@@ -144,4 +149,5 @@ class Operation extends CActiveRecord
 	    else
 	        return false;
 	}
+
 }
