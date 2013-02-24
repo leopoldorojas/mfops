@@ -138,25 +138,16 @@ class JournalEntry extends CActiveRecord
 	{
 	    if(parent::beforeSave())
 	    {
-			include('httpful-0.2.0.phar');
-			$uri = 'https://danta.sandbox.mambu.com//api/gljournalentries';
-			$response = \Httpful\Request::post($uri)
-				->sendsJson()              
-				->authenticateWith('api', 'api1234')
-				->body("{
-					'date'			:'$this->journalEntry_date',
-					'debitAccount1'	:'$this->debitAccount',
-					'debitAmount1'	:'$this->debitAmount',
-					'creditAccount1':'$this->creditAccount',
-					'creditAmount1'	:'$this->creditAmount',
-					'notes'			:'$this->notes'
-					}")
-				->withoutAutoParsing()
-				->send();
+	    	Yii::app()->mambu->postBody = "{
+				'date'			:'$this->journalEntry_date',
+				'debitAccount1'	:'$this->debitAccount',
+				'debitAmount1'	:'$this->debitAmount',
+				'creditAccount1':'$this->creditAccount',
+				'creditAmount1'	:'$this->creditAmount',
+				'notes'			:'$this->notes'
+				}";
 
-			// "La respuesta fue " . $response->body->returnCode . " " . $response->body->returnStatus;
-			// echo "La respuesta fue " . var_dump($response);
-			// Yii::app()->end();
+			$response = Yii::app()->mambu->postingToMambu();
 
 	        if($this->isNewRecord)
 	        {
@@ -166,7 +157,8 @@ class JournalEntry extends CActiveRecord
 	        }
 	        else
 	            $this->updatedon=time();
-	        return true;
+	        
+	        return ($response['returnCode'] == 0);
 	    }
 	    else
 	        return false;

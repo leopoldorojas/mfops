@@ -30,6 +30,14 @@ return array(
 
 	// application components
 	'components'=>array(
+		'mambu'=>array(
+        	'class'=>'MambuConnection',
+			'tenantUrl'=>'https://danta.sandbox.mambu.com',
+			'restClientLib'=>'httpful-0.2.0.phar',
+			'apiSubdirectory'=>'api',
+			'user'=>'api',
+			'password'=>'api1234',
+		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
