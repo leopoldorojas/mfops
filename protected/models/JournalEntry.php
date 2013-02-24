@@ -138,27 +138,28 @@ class JournalEntry extends CActiveRecord
 	{
 	    if(parent::beforeSave())
 	    {
-	    	Yii::app()->mambu->postBody = "{
-				'date'			:'$this->journalEntry_date',
-				'debitAccount1'	:'$this->debitAccount',
-				'debitAmount1'	:'$this->debitAmount',
-				'creditAccount1':'$this->creditAccount',
-				'creditAmount1'	:'$this->creditAmount',
-				'notes'			:'$this->notes'
-				}";
-
-			$response = Yii::app()->mambu->postingToMambu();
-
 	        if($this->isNewRecord)
 	        {
-	            // $this->createdon=$this->updatedon=time();
-	            // $this->user_id=Yii::app()->user->id;
 	            $this->user_id=1;
 	        }
 	        else
 	            $this->updatedon=time();
-	        
-	        return ($response['returnCode'] == 0);
+
+	        if (Yii::app()->mambu->init())
+	        {
+		    	Yii::app()->mambu->postBody = "{
+					'date'			:'$this->journalEntry_date',
+					'debitAccount1'	:'$this->debitAccount',
+					'debitAmount1'	:'$this->debitAmount',
+					'creditAccount1':'$this->creditAccount',
+					'creditAmount1'	:'$this->creditAmount',
+					'notes'			:'$this->notes'
+					}";
+
+				$response = Yii::app()->mambu->post();
+		        return ($response['success']);
+		    } else
+		    	return false;
 	    }
 	    else
 	        return false;

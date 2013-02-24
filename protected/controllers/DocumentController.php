@@ -124,7 +124,7 @@ class DocumentController extends Controller
 				{
 					$valid=true;
 					$validAccountingRule = true;
-	        
+
 	        		foreach($operations as $i=>$operation)
 	            		if(isset($_POST['Operation'][$i])) {
 	                		$operation->attributes=$_POST['Operation'][$i];
@@ -135,7 +135,8 @@ class DocumentController extends Controller
 		                	}
 	                	}
 
-	        		if($valid && $validAccountingRule)  { // all items are valid
+	        		// if($valid && $validAccountingRule)  { 	// all items are valid 
+	        		if($valid && $validAccountingRule && Yii::app()->mambu->init())  { 	// all items are valid and there is a valid Mambu connection
 	        			if($model->save())
 	        			{
 		        			$journalEntryHasErrors=false;
@@ -155,8 +156,6 @@ class DocumentController extends Controller
 												$journalEntryHasErrors=true;
 												Yii::app()->user->setFlash('error', 'El documento sí se grabó pero uno o más de los detalles de movimientos de la transacción anterior no se pudieron grabar, posiblemente por fallas de conexión con sistema externo');
 											}
-
-											// Yii::app()->user->setFlash('error', $status['message']);
 										}
 									}
 				                }
@@ -164,6 +163,8 @@ class DocumentController extends Controller
 				        }
 		        	} elseif (!$validAccountingRule)
 		        		Yii::app()->user->setFlash('error', 'Uno o más de las detalles de movimientos no tiene la Regla Contable definida en el sistema');
+		        		elseif ($valid)
+		        			Yii::app()->user->setFlash('error', 'No hay conexión con el sistema externo. La transacción no puede ser grabada en este momento. Intente más tarde.');
 	        	}
 				
 			}
