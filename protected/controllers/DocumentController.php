@@ -136,7 +136,7 @@ class DocumentController extends Controller
 	                	}
 
 	        		// if($valid && $validAccountingRule)  { 	// all items are valid 
-	        		if($valid && $validAccountingRule && Yii::app()->mambu->init())  { 	// all items are valid and there is a valid Mambu connection
+	        		if($valid && $validAccountingRule && Yii::app()->mambu->connect())  { 	// all items are valid and there is a valid Mambu connection
 	        			if($model->save())
 	        			{
 		        			$journalEntryHasErrors=false;

@@ -10,11 +10,11 @@ class MambuConnection extends CApplicationComponent
 	public $transaction="gljournalentries";
 	public $tenantUrl, $restClientLib, $apiSubdirectory, $user, $password;
 	private $uri;
-	private $alreadyInit = false;
+	private $alreadyConnect = false;
 
-	public function init()
+	public function connect()
 	{
-		if (!$this->alreadyInit)
+		if (!$this->alreadyConnect)
 		{
 			require_once($this->restClientLib);
 			$this->uri = "$this->tenantUrl/$this->apiSubdirectory/$this->transaction";
@@ -27,8 +27,8 @@ class MambuConnection extends CApplicationComponent
 				->body($testBody)
 				->send();
 
-			$this->alreadyInit = ($response->body->returnCode == 0);
-			return $this->alreadyInit;
+			$this->alreadyConnect = ($response->body->returnCode == 0);
+			return $this->alreadyConnect;
 		} else
 			return true;
 	}

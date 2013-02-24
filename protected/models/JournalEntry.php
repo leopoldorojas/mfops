@@ -145,7 +145,7 @@ class JournalEntry extends CActiveRecord
 	        else
 	            $this->updatedon=time();
 
-	        if (Yii::app()->mambu->init())
+	        if (Yii::app()->mambu->isInitialized && Yii::app()->mambu->connect())
 	        {
 		    	Yii::app()->mambu->postBody = "{
 					'date'			:'$this->journalEntry_date',
