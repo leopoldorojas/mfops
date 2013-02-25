@@ -30,11 +30,12 @@
 			'items'=>array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')),
 				// array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Movimientos', 'url'=>array('document/admin')),
-				array('label'=>'Movimientos detallados', 'url'=>array('operation/admin')),
-				array('label'=>'Tipos de Movimiento', 'url'=>array('movementtype/admin')),
-				array('label'=>'Categorías de Movimiento', 'url'=>array('movementCategory/admin')),
-				array('label'=>'Contacto', 'url'=>array('/site/contact')),
+				array('label'=>'Documentos', 'url'=>array('document/admin')),
+				array('label'=>'Detalles de Documentos', 'url'=>array('operation/admin')),
+				array('label'=>'Asientos Diarios', 'url'=>array('journalEntry/admin')),
+				array('label'=>'Reglas Contables', 'url'=>array('accountingRule/admin')),
+				array('label'=>'Administración de Tipos', 'url'=>array('/site/typesAdmin')),
+				//array('label'=>'Contacto', 'url'=>array('/site/contact')),
 				array('label'=>'Iniciar Sesión', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Salir ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
