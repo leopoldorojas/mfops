@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This component is used to connect to Mambu via its API.
  */
@@ -18,16 +17,14 @@ class MambuConnection extends CApplicationComponent
 		{
 			require_once($this->restClientLib);
 			$this->uri = "$this->tenantUrl/$this->apiSubdirectory/$this->transaction";
-			$testUri = "$this->tenantUrl/$this->apiSubdirectory/glaccounts";
-			$testBody = "{'type' : 'EQUITY'}";
+			$testUri = "$this->tenantUrl/$this->apiSubdirectory/branches";		// Test requiring Branches only to confirm there is a connection
 
 			$response = \Httpful\Request::get($testUri)
 				->sendsJson()              
 				->authenticateWith($this->user, $this->password)
-				->body($testBody)
 				->send();
 
-			$this->alreadyConnect = ($response->body->returnCode == 0);
+			$this->alreadyConnect = ($response->code == 200);
 			return $this->alreadyConnect;
 		} else
 			return true;
@@ -39,15 +36,9 @@ class MambuConnection extends CApplicationComponent
 			->sendsJson()              
 			->authenticateWith($this->user, $this->password)
 			->body($this->postBody)
-			->withoutAutoParsing()
 			->send();
 
-		$responseDecoded = json_decode($response);
-		return array(
-			'success' => ($responseDecoded->returnCode == 0),
-			'returnCode' => $responseDecoded->returnCode,
-			'returnStatus' => $responseDecoded->returnStatus,
-		);
+		return ($response->code == 201);
 	}
 
 }

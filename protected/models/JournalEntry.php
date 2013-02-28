@@ -156,8 +156,7 @@ class JournalEntry extends CActiveRecord
 					'notes'			:'$this->notes'
 					}";
 
-				$response = Yii::app()->mambu->post();
-		        return ($response['success']);
+				return Yii::app()->mambu->post();
 		    } else
 		    	return false;
 	    }
