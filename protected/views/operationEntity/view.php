@@ -11,7 +11,7 @@ $this->menu=array(
 	array('label'=>'List OperationEntity', 'url'=>array('index')),
 	array('label'=>'Create OperationEntity', 'url'=>array('create')),
 	array('label'=>'Update OperationEntity', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete OperationEntity', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Delete OperationEntity', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Manage OperationEntity', 'url'=>array('admin')),
 );
 ?>

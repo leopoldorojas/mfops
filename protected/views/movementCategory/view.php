@@ -11,7 +11,7 @@ $this->menu=array(
 	array('label'=>'Listar Categorías', 'url'=>array('index')),
 	array('label'=>'Crear Categoría', 'url'=>array('create')),
 	array('label'=>'Actualizar Categoría', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar Categoría', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Está seguro que desea borrarla?')),
+	array('label'=>'Borrar Categoría', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Administrar Categorías', 'url'=>array('admin')),
 );
 ?>

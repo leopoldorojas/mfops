@@ -237,3 +237,8 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+#listmenu ul li
+{
+	line-height: 25px;
+}

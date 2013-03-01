@@ -3,19 +3,19 @@
 /* @var $model DocumentType */
 
 $this->breadcrumbs=array(
-	'Document Types'=>array('index'),
+	'Tipos de Documento'=>array('admin'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List DocumentType', 'url'=>array('index')),
-	array('label'=>'Create DocumentType', 'url'=>array('create')),
-	array('label'=>'View DocumentType', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage DocumentType', 'url'=>array('admin')),
+	// array('label'=>'List DocumentType', 'url'=>array('index')),
+	array('label'=>'Crear Tipo de Documento', 'url'=>array('create')),
+	array('label'=>'Ver Tipo de Documento', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Tipos de Documento', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update DocumentType <?php echo $model->id; ?></h1>
+<h1>Actualizar Tipo de Documento <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,16 +3,16 @@
 /* @var $model DocumentType */
 
 $this->breadcrumbs=array(
-	'Document Types'=>array('index'),
-	'Create',
+	'Tipos de Documento'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List DocumentType', 'url'=>array('index')),
-	array('label'=>'Manage DocumentType', 'url'=>array('admin')),
+	// array('label'=>'List DocumentType', 'url'=>array('index')),
+	array('label'=>'Administrar Tipos de Documento', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create DocumentType</h1>
+<h1>Crear Tipo de Documento</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Document Types',
+	'Tipos de Documento',
 );
 
 $this->menu=array(
-	array('label'=>'Create DocumentType', 'url'=>array('create')),
-	array('label'=>'Manage DocumentType', 'url'=>array('admin')),
+	array('label'=>'Crear Tipo de Documento', 'url'=>array('create')),
+	array('label'=>'Administrar Tipos de Documento', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Document Types</h1>
+<h1>Tipos de Documento</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

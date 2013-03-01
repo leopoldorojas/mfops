@@ -3,13 +3,13 @@
 /* @var $model Document */
 
 $this->breadcrumbs=array(
-	'Movimientos'=>array('index'),
+	'Documentos'=>array('admin'),
 	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Movimientos', 'url'=>array('createBatch')),
+	// array('label'=>'Listar Documentos', 'url'=>array('index')),
+	array('label'=>'Registrar Documento', 'url'=>array('createBatch')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

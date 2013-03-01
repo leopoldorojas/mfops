@@ -32,6 +32,11 @@ class SiteController extends Controller
 		$this->render('index');
 	}
 
+	public function actionTypesAdmin()
+	{
+		$this->render('typesAdmin');
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

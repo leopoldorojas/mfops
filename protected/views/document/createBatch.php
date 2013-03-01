@@ -3,17 +3,17 @@
 /* @var $model Document */
 
 $this->breadcrumbs=array(
-	'Documentos'=>array('index'),
-	'Crear',
+	'Documentos'=>array('admin'),
+	'Registrar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Documentos', 'url'=>array('index')),
+	// array('label'=>'Listar Documentos', 'url'=>array('index')),
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Registrar Movimientos</h1>
+<h1>Registrar Documento</h1>
 
 <?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {

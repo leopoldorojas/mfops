@@ -3,16 +3,16 @@
 /* @var $model JournalEntry */
 
 $this->breadcrumbs=array(
-	'Journal Entries'=>array('index'),
-	'Create',
+	'Asientos Diarios'=>array('admin'),
+	'Registrar',
 );
 
 $this->menu=array(
-	array('label'=>'List JournalEntry', 'url'=>array('index')),
-	array('label'=>'Manage JournalEntry', 'url'=>array('admin')),
+	// array('label'=>'List JournalEntry', 'url'=>array('index')),
+	array('label'=>'Administrar Asientos Diarios', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create JournalEntry</h1>
+<h1>Registrar Asiento Diario</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

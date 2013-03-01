@@ -11,7 +11,7 @@ $this->menu=array(
 	array('label'=>'Listar Movimientos', 'url'=>array('index')),
 	array('label'=>'Registrar movimiento', 'url'=>array('create')),
 	array('label'=>'Actualizar movimiento', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar movimiento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que quieres borrarlo?')),
+	array('label'=>'Borrar movimiento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Administrar movimientos', 'url'=>array('admin')),
 );
 ?>

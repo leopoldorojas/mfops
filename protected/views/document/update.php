@@ -3,14 +3,14 @@
 /* @var $model Document */
 
 $this->breadcrumbs=array(
-	'Documentos'=>array('index'),
+	'Documentos'=>array('admin'),
 	$model->id=>array('view','id'=>$model->id),
 	'Actualizar Documentos',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Movimientos', 'url'=>array('createBatch')),
+	// array('label'=>'Listar Documentos', 'url'=>array('index')),
+	array('label'=>'Registrar Documento', 'url'=>array('createBatch')),
 	array('label'=>'Ver Documento', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );

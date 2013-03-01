@@ -11,7 +11,7 @@ $this->menu=array(
 	array('label'=>'Listas Tipos de Movimiento', 'url'=>array('index')),
 	array('label'=>'Crear Tipo de Movimiento', 'url'=>array('create')),
 	array('label'=>'Actualizar Tipo de Movimiento', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar Tipo de Movimiento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Está seguro de que desea borrarlo?')),
+	array('label'=>'Borrar Tipo de Movimiento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Administrar Tipos de Movimiento', 'url'=>array('admin')),
 );
 ?>

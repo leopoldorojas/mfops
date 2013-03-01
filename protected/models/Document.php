@@ -73,7 +73,7 @@ class Document extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Id',
 			'documentType_id' => 'Tipo de Documento',
 			'number' => 'Número',
 			'document_date' => 'Fecha',

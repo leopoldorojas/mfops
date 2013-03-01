@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Accounting Rules',
+	'Reglas Contables',
 );
 
 $this->menu=array(
-	array('label'=>'Create AccountingRule', 'url'=>array('create')),
-	array('label'=>'Manage AccountingRule', 'url'=>array('admin')),
+	array('label'=>'Registrar Regla Contable', 'url'=>array('create')),
+	array('label'=>'Administrar Regla Contable', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Accounting Rules</h1>
+<h1>Reglas Contables</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

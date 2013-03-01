@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Journal Entries',
+	'Asientos Diarios',
 );
 
 $this->menu=array(
-	array('label'=>'Create JournalEntry', 'url'=>array('create')),
-	array('label'=>'Manage JournalEntry', 'url'=>array('admin')),
+	array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
+	array('label'=>'Administrar Asientos Diarios', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Journal Entries</h1>
+<h1>Asientos Diarios</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

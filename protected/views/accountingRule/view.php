@@ -3,20 +3,20 @@
 /* @var $model AccountingRule */
 
 $this->breadcrumbs=array(
-	'Accounting Rules'=>array('index'),
+	'Reglas Contables'=>array('admin'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List AccountingRule', 'url'=>array('index')),
-	array('label'=>'Create AccountingRule', 'url'=>array('create')),
-	array('label'=>'Update AccountingRule', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete AccountingRule', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage AccountingRule', 'url'=>array('admin')),
+	// array('label'=>'List AccountingRule', 'url'=>array('index')),
+	array('label'=>'Registrar Regla Contable', 'url'=>array('create')),
+	array('label'=>'Actualizar Regla Contable', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Borrar Regla Contable', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
+	array('label'=>'Administrar Reglas Contables', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View AccountingRule #<?php echo $model->id; ?></h1>
+<h1>Regla Contable Id <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
