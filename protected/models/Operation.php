@@ -69,6 +69,7 @@ class Operation extends CActiveRecord
 			'movement_type' => array(self::BELONGS_TO, 'MovementType', 'type_id'),
 			'document' => array(self::BELONGS_TO, 'Document', 'document_id'),
 			'accountingRule' => array(self::BELONGS_TO, 'AccountingRule', 'input, type_id, bank'),
+			'journalEntry' => array(self::HAS_ONE, 'JournalEntry', 'operation_id'),
 		);
 	}
 
