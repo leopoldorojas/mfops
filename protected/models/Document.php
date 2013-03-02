@@ -45,11 +45,11 @@ class Document extends CActiveRecord
 		return array(
 			array('documentType_id, number, document_date', 'required'),
 			array('documentType_id, entity_id', 'numerical', 'integerOnly'=>true),
-			array('number, entity_name', 'length', 'max'=>50),
+			array('number, entity_name', 'length', 'max'=>100),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, documentType_id, number, document_date, entity_id, entity_name, description', 'safe', 'on'=>'search'),
+			array('id, documentType_id, number, document_date, entity_id, entity_name, description, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,11 +75,11 @@ class Document extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'documentType_id' => 'Tipo de Documento',
-			'number' => 'Número',
-			'document_date' => 'Fecha',
-			'entity_id' => 'Entidad',
-			'entity_name' => 'Nombre de Entidad',
-			'description' => 'Descripción',
+			'number' => 'Número de Documento',
+			'document_date' => 'Fecha de Operación',
+			'entity_id' => 'Entidad de Operación',
+			'entity_name' => 'Nota acerca de la Entidad',
+			'description' => 'Descripción del Documento',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',
@@ -104,6 +104,7 @@ class Document extends CActiveRecord
 		$criteria->compare('entity_id',$this->entity_id);
 		$criteria->compare('entity_name',$this->entity_name,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('user_id',$this->user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

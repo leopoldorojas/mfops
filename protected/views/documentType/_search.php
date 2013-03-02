@@ -21,21 +21,6 @@
 		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'createdon'); ?>
-		<?php echo $form->textField($model,'createdon'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'updatedon'); ?>
-		<?php echo $form->textField($model,'updatedon'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Buscar'); ?>
 	</div>

@@ -3,12 +3,12 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
-	'Categorías de Movimientos'=>array('index'),
+	'Categorías de Movimientos'=>array('admin'),
 	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Categorías', 'url'=>array('index')),
+	// array('label'=>'Listar Categorías', 'url'=>array('index')),
 	array('label'=>'Administrar Categorías', 'url'=>array('admin')),
 );
 ?>

@@ -29,8 +29,8 @@ $this->menu=array(
 		'branchID',
 		'journalEntry_date',
 		'notes',
-		'user_id',
-		'createdon',
-		'updatedon',
+		// 'user_id',
+		// 'createdon',
+		// 'updatedon',
 	),
 )); ?>

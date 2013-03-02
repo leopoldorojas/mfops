@@ -23,8 +23,5 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'description',
-		'user_id',
-		'createdon',
-		'updatedon',
 	),
 )); ?>

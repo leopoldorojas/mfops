@@ -49,6 +49,7 @@
 	<?php echo CHtml::encode($data->document_id); ?>
 	<br />
 
+	<?php /* 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />
@@ -59,6 +60,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('updatedon')); ?>:</b>
 	<?php echo CHtml::encode($data->updatedon); ?>
-	<br />
+	<br /> */ ?>
 
 </div>

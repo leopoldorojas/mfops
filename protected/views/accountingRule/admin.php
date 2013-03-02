@@ -52,11 +52,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'description',
 		'debitAccount1',
 		'creditAccount1',
-		'user_id',
-		/*
-		'createdon',
-		'updatedon',
-		*/
+		// 'user_id',
 		array(
 			'class'=>'CButtonColumn',
 		),

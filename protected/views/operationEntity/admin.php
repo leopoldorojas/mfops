@@ -3,13 +3,13 @@
 /* @var $model OperationEntity */
 
 $this->breadcrumbs=array(
-	'Operation Entities'=>array('index'),
-	'Manage',
+	'Entidades de Operación'=>array('admin'),
+	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'List OperationEntity', 'url'=>array('index')),
-	array('label'=>'Create OperationEntity', 'url'=>array('create')),
+	// array('label'=>'Listar Entidades de Operación', 'url'=>array('index')),
+	array('label'=>'Crear Entidad de Operación', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Operation Entities</h1>
+<h1>Administrar Entidades de Operación</h1>
 
 <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -48,9 +48,6 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'id',
 		'name',
 		'code',
-		'user_id',
-		'createdon',
-		'updatedon',
 		array(
 			'class'=>'CButtonColumn',
 		),

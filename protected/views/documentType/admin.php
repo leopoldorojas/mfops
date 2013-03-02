@@ -47,9 +47,6 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'columns'=>array(
 		'id',
 		'description',
-		'user_id',
-		'createdon',
-		'updatedon',
 		array(
 			'class'=>'CButtonColumn',
 		),

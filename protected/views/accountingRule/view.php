@@ -28,8 +28,6 @@ $this->menu=array(
 		'description',
 		'debitAccount1',
 		'creditAccount1',
-		'user_id',
-		'createdon',
-		'updatedon',
+		// 'user_id',
 	),
 )); ?>

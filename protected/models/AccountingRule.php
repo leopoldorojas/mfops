@@ -47,7 +47,7 @@ class AccountingRule extends CActiveRecord
 			array('debitAccount1, creditAccount1, description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, input, type_id, bank, debitAccount1, creditAccount1, description, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, input, type_id, bank, debitAccount1, creditAccount1, description, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +59,14 @@ class AccountingRule extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'operations' => array(self::HAS_MANY, 'Operation', 'input, type_id, bank'),
 		);
 	}
+
+	/* public function operations()
+	{
+		return Operation::model()->findAllByAttributes(array('input'=>$this->input, 'type_id'=>$this->type_id, 'bank'=>$this->bank));
+	} */
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -68,16 +74,16 @@ class AccountingRule extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'input' => 'Input?',
-			'type_id' => 'Type',
-			'bank' => 'Bank?',
-			'debitAccount1' => 'Debit Account1',
-			'creditAccount1' => 'Credit Account1',
-			'description' => 'Description',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'id' => 'Id',
+			'input' => '¿Entrada o Salida de dinero?',
+			'type_id' => 'Tipo de Movimiento',
+			'bank' => '¿Caja o Bancos?',
+			'debitAccount1' => 'Cuenta a Debitar',
+			'creditAccount1' => 'Cuenta a Acreditar',
+			'description' => 'Descripción',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creada en',
+			'updatedon' => 'Actualizada en',
 		);
 	}
 
@@ -100,8 +106,6 @@ class AccountingRule extends CActiveRecord
 		$criteria->compare('debitAccount1',$this->debitAccount1,true);
 		$criteria->compare('creditAccount1',$this->creditAccount1,true);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

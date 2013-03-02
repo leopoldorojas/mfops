@@ -53,7 +53,7 @@ class Operation extends CActiveRecord
 			array('entity_name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id', 'safe',),
+			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id, user_id, createdon, updatedon', 'safe',),
 		);
 	}
 
@@ -68,8 +68,14 @@ class Operation extends CActiveRecord
 			'entity' => array(self::BELONGS_TO, 'OperationEntity', 'entity_id'),
 			'movement_type' => array(self::BELONGS_TO, 'MovementType', 'type_id'),
 			'document' => array(self::BELONGS_TO, 'Document', 'document_id'),
+			'accountingRule' => array(self::BELONGS_TO, 'AccountingRule', 'input, type_id, bank'),
 		);
 	}
+
+	/* public function accountingRule()
+	{
+		return AccountingRule::model()->findByAttributes(array('input'=>$this->input, 'type_id'=>$this->type_id, 'bank'=>$this->bank));
+	} */
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -77,15 +83,15 @@ class Operation extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Id',
 			'type_id' => 'Tipo',
-			'input' => '¿Entrada de dinero?',
-			'bank' => '¿Bancos o Caja?',
-			'operation_date' => 'Fecha',
+			'input' => '¿Entrada o Salida de dinero?',
+			'bank' => '¿Caja o Bancos?',
+			'operation_date' => 'Fecha del Movimiento',
 			'amount' => 'Monto',
 			'entity_id' => 'Entidad de operación',
-			'entity_name' => 'Nombre de la entidad',
-			'reference_price' => 'Precio de referencia',
+			'entity_name' => 'Nota acerca de la Entidad',
+			'reference_price' => 'Precio unitario',
 			'description' => 'Descripción',
 			'document_id' => 'Número de Documento',
 			'user_id' => 'Usuario',
@@ -116,6 +122,9 @@ class Operation extends CActiveRecord
 		$criteria->compare('reference_price',$this->reference_price,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('document_id',$this->document_id);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('createdon',$this->createdon,true);
+		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -125,11 +134,6 @@ class Operation extends CActiveRecord
 	public function validateDetail()
 	{
 		return (!($this->bank=="") || !($this->input=="") || !empty($this->type_id));
-	}
-
-	public function accountingRule()
-	{
-		return AccountingRule::model()->findByAttributes(array('input'=>$this->input, 'type_id'=>$this->type_id, 'bank'=>$this->bank));
 	}
 
 	protected function beforeSave()

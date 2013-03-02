@@ -13,17 +13,4 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('createdon')); ?>:</b>
-	<?php echo CHtml::encode($data->createdon); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('updatedon')); ?>:</b>
-	<?php echo CHtml::encode($data->updatedon); ?>
-	<br />
-
-
 </div>

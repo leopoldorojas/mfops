@@ -3,12 +3,12 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
-	'Categorías de Movimientos'=>array('index'),
+	'Categorías de Movimientos'=>array('admin'),
 	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Categorías', 'url'=>array('index')),
+	// array('label'=>'Listar Categorías', 'url'=>array('index')),
 	array('label'=>'Crear Categoría', 'url'=>array('create')),
 );
 
@@ -47,9 +47,6 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'columns'=>array(
 		'id',
 		'description',
-		'user_id',
-		'createdon',
-		'updatedon',
 		array(
 			'class'=>'CButtonColumn',
 		),

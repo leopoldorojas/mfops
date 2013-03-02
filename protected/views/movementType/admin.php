@@ -3,12 +3,12 @@
 /* @var $model MovementType */
 
 $this->breadcrumbs=array(
-	'Tipos de Movimiento'=>array('index'),
+	'Tipos de Movimiento'=>array('admin'),
 	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Tipos de Movimiento', 'url'=>array('index')),
+	// array('label'=>'Listar Tipos de Movimiento', 'url'=>array('index')),
 	array('label'=>'Crear Tipo de Movimiento', 'url'=>array('create')),
 );
 
@@ -48,9 +48,6 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'id',
 		'movement_category_id',
 		'description',
-		'user_id',
-		'createdon',
-		'updatedon',
 		array(
 			'class'=>'CButtonColumn',
 		),

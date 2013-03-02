@@ -3,12 +3,12 @@
 /* @var $model Operation */
 
 $this->breadcrumbs=array(
-	'Movimientos'=>array('index'),
+	'Movimientos'=>array('admin'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'Listar Movimientos', 'url'=>array('index')),
+	// array('label'=>'Listar Movimientos', 'url'=>array('index')),
 	array('label'=>'Registrar movimiento', 'url'=>array('create')),
 	array('label'=>'Actualizar movimiento', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Borrar movimiento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Movimiento #<?php echo $model->id; ?></h1>
+<h1>Movimiento Id <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -32,8 +32,8 @@ $this->menu=array(
 		'reference_price',
 		'description',
 		'document_id',
-		'user_id',
+		/* 'user_id',
 		'createdon',
-		'updatedon',
+		'updatedon', */
 	),
 )); ?>

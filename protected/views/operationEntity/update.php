@@ -3,19 +3,19 @@
 /* @var $model OperationEntity */
 
 $this->breadcrumbs=array(
-	'Operation Entities'=>array('index'),
+	'Entidades de Operación'=>array('admin'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List OperationEntity', 'url'=>array('index')),
-	array('label'=>'Create OperationEntity', 'url'=>array('create')),
-	array('label'=>'View OperationEntity', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage OperationEntity', 'url'=>array('admin')),
+	// array('label'=>'List OperationEntity', 'url'=>array('index')),
+	array('label'=>'Crear Entidad de Operación', 'url'=>array('create')),
+	array('label'=>'Ver Entidad de Operación', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Entidades de Operación', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update OperationEntity <?php echo $model->id; ?></h1>
+<h1>Actualizar Entidad de Operación <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

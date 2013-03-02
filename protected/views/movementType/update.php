@@ -3,13 +3,13 @@
 /* @var $model MovementType */
 
 $this->breadcrumbs=array(
-	'Tipos de Movimiento'=>array('index'),
+	'Tipos de Movimiento'=>array('admin'),
 	$model->id=>array('view','id'=>$model->id),
 	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Tipos de Movimiento', 'url'=>array('index')),
+	// array('label'=>'Listar Tipos de Movimiento', 'url'=>array('index')),
 	array('label'=>'Crear Tipos de Movimiento', 'url'=>array('create')),
 	array('label'=>'Ver Tipo de Movimiento', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Administrar Tipos de Movimiento', 'url'=>array('admin')),

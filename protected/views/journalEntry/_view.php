@@ -33,11 +33,11 @@
 	<?php echo CHtml::encode($data->journalEntry_date); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('notes')); ?>:</b>
 	<?php echo CHtml::encode($data->notes); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />

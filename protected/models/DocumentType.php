@@ -42,7 +42,7 @@ class DocumentType extends CActiveRecord
 			array('description', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, description, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +64,7 @@ class DocumentType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Id',
 			'description' => 'Descripción',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
@@ -85,9 +85,6 @@ class DocumentType extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

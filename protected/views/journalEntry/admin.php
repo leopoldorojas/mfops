@@ -51,9 +51,9 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'creditAccount',
 		'creditAmount',
 		'branchID',
-		/*
 		'journalEntry_date',
 		'notes',
+		/*
 		'user_id',
 		'createdon',
 		'updatedon',

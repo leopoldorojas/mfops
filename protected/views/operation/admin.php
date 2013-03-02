@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar movimientos', 'url'=>array('index')),
+	// array('label'=>'Listar movimientos', 'url'=>array('index')),
 	array('label'=>'Registrar movimiento', 'url'=>array('create')),
 );
 

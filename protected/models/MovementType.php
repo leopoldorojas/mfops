@@ -44,7 +44,7 @@ class MovementType extends CActiveRecord
 			array('description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, movement_category_id, description, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, movement_category_id, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,12 +67,12 @@ class MovementType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Id',
 			'movement_category_id' => 'Categoría',
 			'description' => 'Descripción',
 			'user_id' => 'Usuario',
-			'createdon' => 'Creado en',
-			'updatedon' => 'Actualizado en',
+			'createdon' => 'Creada en',
+			'updatedon' => 'Actualizada en',
 		);
 	}
 
@@ -90,9 +90,6 @@ class MovementType extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('movement_category_id',$this->movement_category_id);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

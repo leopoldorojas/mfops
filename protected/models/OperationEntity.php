@@ -43,7 +43,7 @@ class OperationEntity extends CActiveRecord
 			array('name, code', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, code, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, name, code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,6 +56,7 @@ class OperationEntity extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'operations' => array(self::HAS_MANY, 'Operation', 'entity_id'),
+			'documents' => array(self::HAS_MANY, 'Document', 'entity_id'),
 		);
 	}
 
@@ -65,12 +66,12 @@ class OperationEntity extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'code' => 'Code',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'id' => 'Id',
+			'name' => 'Nombre',
+			'code' => 'Identificador',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creada en',
+			'updatedon' => 'Actualizada en',
 		);
 	}
 
@@ -88,9 +89,6 @@ class OperationEntity extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('code',$this->code,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

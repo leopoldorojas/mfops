@@ -72,17 +72,17 @@ class JournalEntry extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'debitAccount' => 'Debit Account',
-			'debitAmount' => 'Debit Amount',
-			'creditAccount' => 'Credit Account',
-			'creditAmount' => 'Credit Amount',
-			'branchID' => 'Branch',
-			'journalEntry_date' => 'Journal Entry Date',
-			'notes' => 'Notes',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'id' => 'Id',
+			'debitAccount' => 'Cuenta de Débito',
+			'debitAmount' => 'Monto debitado',
+			'creditAccount' => 'Cuenta de Crédito',
+			'creditAmount' => 'Monto acreditado',
+			'branchID' => 'Sucursal',
+			'journalEntry_date' => 'Fecha del asiento',
+			'notes' => 'Notas',
+			'user_id' => 'Usuario',
+			'createdon' => 'Registrado en',
+			'updatedon' => 'Actualizado en',
 		);
 	}
 

@@ -51,12 +51,8 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'document_date',
 		'entity_id',
 		'entity_name',
-		/*
 		'description',
-		'user_id',
-		'createdon',
-		'updatedon',
-		*/
+		// 'user_id',
 		array(
 			'class'=>'CButtonColumn',
 		),

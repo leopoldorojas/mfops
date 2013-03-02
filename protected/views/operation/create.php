@@ -3,12 +3,12 @@
 /* @var $model Operation */
 
 $this->breadcrumbs=array(
-	'Movimientos'=>array('index'),
+	'Movimientos'=>array('admin'),
 	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Movimientos', 'url'=>array('index')),
+	// array('label'=>'Listar Movimientos', 'url'=>array('index')),
 	array('label'=>'Administrar movimientos', 'url'=>array('admin')),
 );
 ?>

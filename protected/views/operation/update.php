@@ -3,13 +3,13 @@
 /* @var $model Operation */
 
 $this->breadcrumbs=array(
-	'Movimientos'=>array('index'),
+	'Movimientos'=>array('admin'),
 	$model->id=>array('view','id'=>$model->id),
 	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar movimientos', 'url'=>array('index')),
+	// array('label'=>'Listar movimientos', 'url'=>array('index')),
 	array('label'=>'Registrar movimiento', 'url'=>array('create')),
 	array('label'=>'Ver movimiento', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Administrar movimientos', 'url'=>array('admin')),

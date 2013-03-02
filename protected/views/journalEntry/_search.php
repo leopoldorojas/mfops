@@ -51,7 +51,7 @@
 		<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
-	<div class="row">
+	<?php /* <div class="row">
 		<?php echo $form->label($model,'user_id'); ?>
 		<?php echo $form->textField($model,'user_id'); ?>
 	</div>
@@ -64,7 +64,7 @@
 	<div class="row">
 		<?php echo $form->label($model,'updatedon'); ?>
 		<?php echo $form->textField($model,'updatedon'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Buscar'); ?>
