@@ -17,6 +17,9 @@
  */
 class Document extends CActiveRecord
 {
+	public $totalAmount = 0;
+	public $calculatedTotalAmount = 0;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -83,6 +86,8 @@ class Document extends CActiveRecord
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',
+			'totalAmount' => 'Monto total',
+			'calculatedTotalAmount' => 'Total calculado',
 		);
 	}
 

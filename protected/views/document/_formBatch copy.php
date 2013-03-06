@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form" ng-controller="calculateTotal">
+<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'document-form',
@@ -55,13 +55,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'totalAmount'); ?>
-		<?php echo $form->textField($model,'totalAmount', array('ng-model'=>'totalAmount', 'placeholder'=>'Registre el monto')); ?>
+		<?php echo $form->textField($model,'totalAmount'); ?>
 		<?php echo $form->error($model,'totalAmount'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'calculatedTotalAmount'); ?>
-		<?php echo $form->textField($model,'calculatedTotalAmount', array('readonly'=>true, 'value'=>'{{calculatedTotalAmount()}}')); ?>
+		<?php echo $form->textField($model,'calculatedTotalAmount', array('readonly'=>true)); ?>
 	</div>
 
 	<hr />
@@ -107,11 +107,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<?php $amountModel = "amount" . "$i"; ?>
-			<?php echo CHtml::activeTextField($operation,"[$i]amount", array('ng-model'=>$amountModel, 'placeholder'=>'Monto del detalle')); ?>
-			<?php echo $form->error($operation,"[$i]amount"); ?>
-		</td>
+		<td><?php echo CHtml::activeTextField($operation,"[$i]amount"); ?></td>
 		<td>
 			<?php echo $form->dropdownlist($operation,"[$i]entity_id", 
 				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
