@@ -4,11 +4,16 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form" ng-controller="calculateTotal">
+<div class="form" ng-controller="adminTotal">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'document-form',
 	'enableAjaxValidation'=>false,
+	//'action'=>false,
+	//'method'=>false,
+	'htmlOptions' => array(
+		'ng-submit'=>'validateAmounts()',
+	),
 )); ?>
 
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>

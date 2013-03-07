@@ -12,21 +12,28 @@ $this->menu=array(
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 
-?>
+Yii::app()->clientScript->registerScript('angularController', "
+function adminTotal(\$scope) {
+	\$scope.amount0 = 0;
+	\$scope.amount1 = 0;
+	\$scope.amount2 = 0;
+	\$scope.amount3 = 0;
+	\$scope.amount4 = 0;
+	\$scope.varTotal = 0;
 
-<script>
-function calculateTotal($scope) {
-	$scope.amount0=0;
-	$scope.amount1=0;
-	$scope.amount2=0;
-	$scope.amount3=0;
-	$scope.amount4=0;
+	\$scope.calculatedTotalAmount = function() {
+		\$scope.varTotal = (parseInt(\$scope.amount0) + parseInt(\$scope.amount1) + parseInt(\$scope.amount2) + parseInt(\$scope.amount3) + parseInt(\$scope.amount4));
+		return \$scope.varTotal;
+  	}
 
-	$scope.calculatedTotalAmount = function() {
-		return ($scope.amount0 + $scope.amount1 + $scope.amount2 + $scope.amount3 + $scope.amount4)
-  	};
+	\$scope.validateAmounts = function() {
+		if (\$scope.varTotal != parseInt(\$scope.totalAmount)) {
+			alert ('Error: Los totales no coinciden ' +  \$scope.varTotal + ' '  + parseInt(\$scope.totalAmount));
+		}
+	}
 }
-</script>
+", CClientScript::POS_HEAD);
+?>
 
 <h1>Registrar Documento</h1>
 
