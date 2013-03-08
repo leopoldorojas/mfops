@@ -9,11 +9,6 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'document-form',
 	'enableAjaxValidation'=>false,
-	//'action'=>false,
-	//'method'=>false,
-	'htmlOptions' => array(
-		'ng-submit'=>'validateAmounts()',
-	),
 )); ?>
 
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
@@ -70,6 +65,7 @@
 	</div>
 
 	<hr />
+
 	<table>
 	<tr>
 		<th>Línea de Detalle</th>
@@ -142,7 +138,7 @@
 	</table>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar' : 'Grabar'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar' : 'Grabar', array('ng-disabled'=>'amountNotValid()')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -13,7 +13,7 @@ $this->menu=array(
 );
 
 Yii::app()->clientScript->registerScript('angularController', "
-function adminTotal(\$scope) {
+function adminTotal(\$scope, \$element, \$http) {
 	\$scope.amount0 = 0;
 	\$scope.amount1 = 0;
 	\$scope.amount2 = 0;
@@ -26,9 +26,11 @@ function adminTotal(\$scope) {
 		return \$scope.varTotal;
   	}
 
-	\$scope.validateAmounts = function() {
+	\$scope.amountNotValid = function() {
 		if (\$scope.varTotal != parseInt(\$scope.totalAmount)) {
-			alert ('Error: Los totales no coinciden ' +  \$scope.varTotal + ' '  + parseInt(\$scope.totalAmount));
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
