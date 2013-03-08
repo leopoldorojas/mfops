@@ -59,14 +59,14 @@ class AccountingRule extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'operations' => array(self::HAS_MANY, 'Operation', 'input, type_id, bank'),
+			// 'operations' => array(self::HAS_MANY, 'Operation', 'input, type_id, bank'),
 		);
 	}
 
-	/* public function operations()
+	public function operations()
 	{
 		return Operation::model()->findAllByAttributes(array('input'=>$this->input, 'type_id'=>$this->type_id, 'bank'=>$this->bank));
-	} */
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)

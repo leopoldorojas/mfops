@@ -68,15 +68,15 @@ class Operation extends CActiveRecord
 			'entity' => array(self::BELONGS_TO, 'OperationEntity', 'entity_id'),
 			'movement_type' => array(self::BELONGS_TO, 'MovementType', 'type_id'),
 			'document' => array(self::BELONGS_TO, 'Document', 'document_id'),
-			'accountingRule' => array(self::BELONGS_TO, 'AccountingRule', 'input, type_id, bank'),
+			// 'accountingRule' => array(self::BELONGS_TO, 'AccountingRule', 'input, type_id, bank'),
 			'journalEntry' => array(self::HAS_ONE, 'JournalEntry', 'operation_id'),
 		);
 	}
 
-	/* public function accountingRule()
+	public function accountingRule()
 	{
 		return AccountingRule::model()->findByAttributes(array('input'=>$this->input, 'type_id'=>$this->type_id, 'bank'=>$this->bank));
-	} */
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)

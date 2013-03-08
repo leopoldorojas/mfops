@@ -17,20 +17,20 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'input'); ?>
-		<?php echo $form->radioButtonList($model,'input', array(true=>'Money input', false=>'Money output')); ?>
+		<?php echo $form->radioButtonList($model,'input', array(true=>'Entrada de dinero', false=>'Salida de diner')); ?>
 		<?php echo $form->error($model,'input'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>
 		<?php echo $form->dropdownlist($model,'type_id',
-			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Please, select a Movement Type')); ?>
+			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione un Tipo de Movimiento')); ?>
 		<?php echo $form->error($model,'type_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'bank'); ?>
-		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bank?', false=>'Cash?')); ?>
+		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bancos', false=>'Caja')); ?>
 		<?php echo $form->error($model,'bank'); ?>
 	</div>
 
