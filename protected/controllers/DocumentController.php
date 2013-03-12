@@ -32,7 +32,7 @@ class DocumentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'createBatch'),
+				'actions'=>array('create','update', 'createBatch', 'createRestfulBatch'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -174,6 +174,81 @@ class DocumentController extends Controller
 			'model'=>$model,
 			'operations' => $operations,
 		));
+	}
+
+	public function actionCreateRestfulBatch()
+	{
+		$model=new Document;
+		$operation=new Operation;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		/* $posteo = json_decode(file_get_contents('php://input'), true);
+			echo '$posteo[Document][number] es ' . $posteo['Document']['number'];
+			echo '$posteo[Operation][0][monto] es ' . $posteo['Operation'][0]['monto'];
+			echo '$posteo[Operation][1][fecha] es ' . $posteo['Operation'][1]['fecha'];
+			Yii::app()->end(); */
+
+		if(isset($_POST['Document']))
+		{
+			$model->attributes=$_POST['Document'];
+			if($model->validate())
+			{	
+				if(isset($_POST['Operation']))
+				{
+					$valid=true;
+					$validAccountingRule = true;
+
+	        		foreach($operations as $i=>$operation)
+	            		if(isset($_POST['Operation'][$i])) {
+	                		$operation->attributes=$_POST['Operation'][$i];
+	                		$operation->document_id=1; // Temporal Document ID in order pass validate()
+	            			if ($operation->validateDetail()) {
+		                		$valid=$operation->validate() && $valid;
+		                		$validAccountingRule=$operation->accountingRule() && $validAccountingRule;
+		                	}
+	                	}
+
+	        		// if($valid && $validAccountingRule)  { 	// all items are valid 
+	        		if($valid && $validAccountingRule && Yii::app()->mambu->connect())  { 	// all items are valid and there is a valid Mambu connection
+	        			if($model->save())
+	        			{
+		        			$journalEntryHasErrors=false;
+
+			        		foreach($operations as $i=>$operation)
+			            		if(isset($_POST['Operation'][$i])) {
+			                		$operation->attributes=$_POST['Operation'][$i];
+			                		$operation->document_id=$model->id;
+		
+			            			if ($operation->validateDetail()) {
+										$journalEntry=new JournalEntry;
+										$status = $journalEntry->saveOperation($operation);
+										if ($status['status']=='success') {
+											$operation->save();
+										} else {
+											if (!$journalEntryHasErrors) {
+												$journalEntryHasErrors=true;
+												Yii::app()->user->setFlash('error', 'El documento sí se grabó pero uno o más de los detalles de movimientos de la transacción anterior no se pudieron grabar, posiblemente por fallas de conexión con sistema externo o datos inválidos para el sistema externo');
+											}
+										}
+									}
+				                }
+               				$this->redirect(array('view','id'=>$model->id));
+				        }
+		        	} elseif (!$validAccountingRule)
+		        		Yii::app()->user->setFlash('error', 'Uno o más de las detalles de movimientos no tiene la Regla Contable definida en el sistema');
+		        		elseif ($valid)
+		        			Yii::app()->user->setFlash('error', 'No hay conexión con el sistema externo. La transacción no puede ser grabada en este momento. Intente más tarde.');
+	        	}
+				
+			}
+		}
+
+		$this->render('createBatch',array(
+			'model'=>$model,
+			'operation' => $operation,
+		));		
 	}
 
 	/**

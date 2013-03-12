@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="form" ng-controller="adminTotal">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'document-form',
@@ -55,16 +55,17 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'totalAmount'); ?>
-		<?php echo $form->textField($model,'totalAmount'); ?>
+		<?php echo $form->textField($model,'totalAmount', array('ng-model'=>'totalAmount', 'placeholder'=>'Registre el monto')); ?>
 		<?php echo $form->error($model,'totalAmount'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'calculatedTotalAmount'); ?>
-		<?php echo $form->textField($model,'calculatedTotalAmount', array('readonly'=>true)); ?>
+		<?php echo $form->textField($model,'calculatedTotalAmount', array('readonly'=>true, 'value'=>'{{calculatedTotalAmount()}}')); ?>
 	</div>
 
 	<hr />
+
 	<table>
 	<tr>
 		<th>Línea de Detalle</th>
@@ -107,7 +108,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td><?php echo CHtml::activeTextField($operation,"[$i]amount"); ?></td>
+		<td>
+			<?php $amountModel = "amount" . "$i"; ?>
+			<?php echo CHtml::activeTextField($operation,"[$i]amount", array('ng-model'=>$amountModel, 'placeholder'=>'Monto del detalle')); ?>
+			<?php echo $form->error($operation,"[$i]amount"); ?>
+		</td>
 		<td>
 			<?php echo $form->dropdownlist($operation,"[$i]entity_id", 
 				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
@@ -133,7 +138,7 @@
 	</table>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar' : 'Grabar'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar' : 'Grabar', array('ng-disabled'=>'amountNotValid()')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

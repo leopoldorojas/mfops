@@ -8,7 +8,12 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'document-form',
+	'action'=>false,
+	'method'=>false,
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array(
+		'ng-submit'=>'submit()',
+	),
 )); ?>
 
 	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
@@ -69,72 +74,69 @@
 	<table>
 	<tr>
 		<th>Línea de Detalle</th>
-		<th><?php echo $form->labelEx($operations[0],'input'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'bank'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'type_id'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'operation_date'); ?></th>
+		<th><?php echo $form->labelEx($operation,'input'); ?></th>
+		<th><?php echo $form->labelEx($operation,'bank'); ?></th>
+		<th><?php echo $form->labelEx($operation,'type_id'); ?></th>
+		<th><?php echo $form->labelEx($operation,'operation_date'); ?></th>
 	</tr>
 	<tr>
-		<th><?php echo $form->labelEx($operations[0],'amount'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'entity_id'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'entity_name'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'reference_price'); ?></th>
-		<th><?php echo $form->labelEx($operations[0],'description'); ?></th>
+		<th><?php echo $form->labelEx($operation,'amount'); ?></th>
+		<th><?php echo $form->labelEx($operation,'entity_id'); ?></th>
+		<th><?php echo $form->labelEx($operation,'entity_name'); ?></th>
+		<th><?php echo $form->labelEx($operation,'reference_price'); ?></th>
+		<th><?php echo $form->labelEx($operation,'description'); ?></th>
 	</tr>
-	<?php foreach($operations as $i=>$operation): ?>
 	<tr>
-		<td>Detalle <?php echo $i+1; ?></td>
+		<td>Detalle <?php echo "1"; ?></td>
 		<td>
-			<?php echo $form->dropdownlist($operation,"[$i]input",
+			<?php echo $form->dropdownlist($operation,"input",
 				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?')); ?>
-			<?php echo $form->error($operation,"[$i]input"); ?>
+			<?php echo $form->error($operation,"input"); ?>
 		</td>
 
 		<td>
-			<?php echo $form->dropdownlist($operation,"[$i]bank",
+			<?php echo $form->dropdownlist($operation,"bank",
 				array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?')); ?>
-			<?php echo $form->error($operation,"[$i]bank"); ?>
+			<?php echo $form->error($operation,"bank"); ?>
 		</td>
 
 		<td>
-			<?php echo $form->dropdownlist($operation,"[$i]type_id",
+			<?php echo $form->dropdownlist($operation,"type_id",
 				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento')); ?>
-			<?php echo $form->error($operation,"[$i]type_id"); ?>
+			<?php echo $form->error($operation,"type_id"); ?>
 		</td>
 
 		<td>
-			<?php echo CHtml::activeDateField($operation,"[$i]operation_date"); ?>
-			<?php echo $form->error($operation,"[$i]operation_date"); ?>
+			<?php echo CHtml::activeDateField($operation,"operation_date"); ?>
+			<?php echo $form->error($operation,"operation_date"); ?>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<?php $amountModel = "amount" . "$i"; ?>
-			<?php echo CHtml::activeTextField($operation,"[$i]amount", array('ng-model'=>$amountModel, 'placeholder'=>'Monto del detalle')); ?>
-			<?php echo $form->error($operation,"[$i]amount"); ?>
+			<?php echo CHtml::activeTextField($operation,"amount", array('ng-model'=>'amount', 'placeholder'=>'Monto del detalle')); ?>
+			<?php echo $form->error($operation,"amount"); ?>
 		</td>
 		<td>
-			<?php echo $form->dropdownlist($operation,"[$i]entity_id", 
+			<?php echo $form->dropdownlist($operation,"entity_id", 
 				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
-			<?php echo $form->error($operation,"[$i]entity_id"); ?>
+			<?php echo $form->error($operation,"entity_id"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextField($operation,"[$i]entity_name"); ?>
-			<?php echo $form->error($operation,"[$i]entity_name"); ?>
+			<?php echo CHtml::activeTextField($operation,"entity_name"); ?>
+			<?php echo $form->error($operation,"entity_name"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextField($operation,"[$i]reference_price"); ?>
-			<?php echo $form->error($operation,"[$i]reference_price"); ?>
+			<?php echo CHtml::activeTextField($operation,"reference_price"); ?>
+			<?php echo $form->error($operation,"reference_price"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextArea($operation,"[$i]description"); ?>
-			<?php echo $form->error($operation,"[$i]description"); ?>
+			<?php echo CHtml::activeTextArea($operation,"description"); ?>
+			<?php echo $form->error($operation,"description"); ?>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="5"><hr /></td>
 	</tr>
-	<?php endforeach; ?>
 	</table>
 
 	<div class="row buttons">
