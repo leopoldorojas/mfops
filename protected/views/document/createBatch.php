@@ -16,6 +16,15 @@ Yii::app()->clientScript->registerScript('angularController', "
 function adminTotal(\$scope, \$http) {
 	\$scope.amount = 0;
 	\$scope.varTotal = 0;
+	\$scope.document = {}
+	\$scope.operations = [
+	    {input: 0},
+	    {input: 1},
+	    {input: 2},
+	    {input: 3},
+	    {input: 4},
+	    {input: 5}
+	];
 
 	\$scope.calculatedTotalAmount = function() {
 		\$scope.varTotal = parseInt(\$scope.amount);

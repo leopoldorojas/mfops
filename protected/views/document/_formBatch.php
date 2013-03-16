@@ -23,38 +23,38 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'documentType_id'); ?>
 		<?php echo $form->dropdownlist($model,'documentType_id',
-			CHtml::listData(DocumentType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de documento')); ?>
+			CHtml::listData(DocumentType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de documento', 'ng-model'=>'document.documentType_id')); ?>
 		<?php echo $form->error($model,'documentType_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'number'); ?>
-		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number')); ?>
 		<?php echo $form->error($model,'number'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'document_date'); ?>
-		<?php echo $form->textField($model,'document_date'); ?>
+		<?php echo $form->textField($model,'document_date', array('ng-model'=>'document.document_date')); ?>
 		<?php echo $form->error($model,'document_date'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'entity_id'); ?>
 		<?php echo $form->dropdownlist($model,'entity_id', 
-			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
+			CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación', 'ng-model'=>'document.entity_id')); ?>
 		<?php echo $form->error($model,'entity_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'entity_name'); ?>
-		<?php echo $form->textField($model,'entity_name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'entity_name',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.entity_name')); ?>
 		<?php echo $form->error($model,'entity_name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50, 'ng-model'=>'document.description')); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
@@ -86,58 +86,71 @@
 		<th><?php echo $form->labelEx($operation,'reference_price'); ?></th>
 		<th><?php echo $form->labelEx($operation,'description'); ?></th>
 	</tr>
+	</table>
+
+	<hr />
+	<ul style="list-style-type: none; margin:0; padding:0;">
+		<li ng-repeat="operation in operations">
+			<table>
+
 	<tr>
 		<td>Detalle <?php echo "1"; ?></td>
 		<td>
 			<?php echo $form->dropdownlist($operation,"input",
-				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?')); ?>
+				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?', 'ng-model'=>'operation.input')); ?>
 			<?php echo $form->error($operation,"input"); ?>
 		</td>
 
 		<td>
 			<?php echo $form->dropdownlist($operation,"bank",
-				array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?')); ?>
+				array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?', 'ng-model'=>'operation.bank')); ?>
 			<?php echo $form->error($operation,"bank"); ?>
 		</td>
 
 		<td>
 			<?php echo $form->dropdownlist($operation,"type_id",
-				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento')); ?>
+				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento', 'ng-model'=>'operation.type_id')); ?>
 			<?php echo $form->error($operation,"type_id"); ?>
 		</td>
 
 		<td>
-			<?php echo CHtml::activeDateField($operation,"operation_date"); ?>
+			<?php echo CHtml::activeDateField($operation,"operation_date", array('ng-model'=>'operation.operation_date')); ?>
 			<?php echo $form->error($operation,"operation_date"); ?>
 		</td>
+
 	</tr>
 	<tr>
+
 		<td>
-			<?php echo CHtml::activeTextField($operation,"amount", array('ng-model'=>'amount', 'placeholder'=>'Monto del detalle')); ?>
+			<?php echo CHtml::activeTextField($operation,"amount", array('placeholder'=>'Monto del detalle', 'ng-model'=>'operation.amount')); ?>
 			<?php echo $form->error($operation,"amount"); ?>
 		</td>
 		<td>
 			<?php echo $form->dropdownlist($operation,"entity_id", 
-				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación')); ?>
+				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación', 'ng-model'=>'operation.entity_id')); ?>
 			<?php echo $form->error($operation,"entity_id"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextField($operation,"entity_name"); ?>
+			<?php echo CHtml::activeTextField($operation,"entity_name", array('ng-model'=>'operation.entity_name')); ?>
 			<?php echo $form->error($operation,"entity_name"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextField($operation,"reference_price"); ?>
+			<?php echo CHtml::activeTextField($operation,"reference_price", array('ng-model'=>'operation.reference_price')); ?>
 			<?php echo $form->error($operation,"reference_price"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextArea($operation,"description"); ?>
+			<?php echo CHtml::activeTextArea($operation,"description", array('ng-model'=>'operation.description')); ?>
 			<?php echo $form->error($operation,"description"); ?>
 		</td>
 	</tr>
+
 	<tr>
 		<td colspan="5"><hr /></td>
 	</tr>
-	</table>
+
+			</table>
+		</li>
+	</ul>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar' : 'Grabar', array('ng-disabled'=>'amountNotValid()')); ?>
