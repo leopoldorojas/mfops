@@ -94,7 +94,7 @@
 			<table>
 
 	<tr>
-		<td>Detalle <?php echo "1"; ?></td>
+		<td>Detalle {{$index + 1}}</td>
 		<td>
 			<?php echo $form->dropdownlist($operation,"input",
 				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?', 'ng-model'=>'operation.input')); ?>
@@ -144,16 +144,17 @@
 		</td>
 	</tr>
 
-	<tr>
-		<td colspan="5"><hr /></td>
-	</tr>
-
 			</table>
 		</li>
+		<li>
+			<button ng-click="addOperation()" type="button">Agregar Movimiento</button>
+			<button ng-click="removeOperation()" type="button">Remover Movimiento</button>
+		</li>
+		<li><hr /></li>
 	</ul>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar' : 'Grabar', array('ng-disabled'=>'amountNotValid()')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar Documento' : 'Grabar', array('ng-disabled'=>'amountNotValid()')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

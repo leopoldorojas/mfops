@@ -184,11 +184,11 @@ class DocumentController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		/* $posteo = json_decode(file_get_contents('php://input'), true);
+		$posteo = json_decode(file_get_contents('php://input'), true);
 			echo '$posteo[Document][number] es ' . $posteo['Document']['number'];
-			echo '$posteo[Operation][0][monto] es ' . $posteo['Operation'][0]['monto'];
-			echo '$posteo[Operation][1][fecha] es ' . $posteo['Operation'][1]['fecha'];
-			Yii::app()->end(); */
+			echo '$posteo[Operation][0][amount] es ' . $posteo['Operation'][0]['amount'];
+			echo '$posteo[Operation][1][operation_date] es ' . $posteo['Operation'][1]['operation_date'];
+			Yii::app()->end();
 
 		if(isset($_POST['Document']))
 		{

@@ -18,18 +18,25 @@ function adminTotal(\$scope, \$http) {
 	\$scope.varTotal = 0;
 	\$scope.document = {}
 	\$scope.operations = [
-	    {input: 0},
-	    {input: 1},
-	    {input: 2},
-	    {input: 3},
-	    {input: 4},
-	    {input: 5}
+		{}
 	];
 
 	\$scope.calculatedTotalAmount = function() {
-		\$scope.varTotal = parseInt(\$scope.amount);
+		sumatory = 0;
+		angular.forEach(\$scope.operations, function(operation){
+  			sumatory += (operation.amount == null) ? 0 : parseInt(operation.amount);
+		});
+		\$scope.varTotal = sumatory;
 		return \$scope.varTotal;
-  	}
+  	};
+
+	\$scope.addOperation = function() {
+		\$scope.operations.push({});
+	};
+
+	\$scope.removeOperation = function() {
+		\$scope.operations.pop();
+	};
 
 	\$scope.submit = function() {
 		\$scope.method = 'POST';
@@ -37,22 +44,8 @@ function adminTotal(\$scope, \$http) {
 	    \$scope.code = null;
 	    \$scope.response = null;
 	    \$scope.dataToSend = {
-	    	'Document': {
-	    		'number':'a200',
-	    		'entitity':'entidad perfecta'
-	    	},
-	    	'Operation' : [
-	    		{
-	    			'monto':'1000',
-	    			'fecha':'hoy',
-	    			'detalle':'excelente'
-	    		},
-	    		{
-	    			'monto':'2000',
-	    			'fecha':'magnana',
-	    			'detalle':'excelente plus'	    			
-	    		}
-	    	]
+	    	'Document': \$scope.document,
+	    	'Operation': \$scope.operations 
 	    }
 
 	    \$http({method: \$scope.method, url: \$scope.url, data: \$scope.dataToSend, headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
