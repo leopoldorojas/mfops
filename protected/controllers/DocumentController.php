@@ -184,11 +184,14 @@ class DocumentController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		$posteo = json_decode(file_get_contents('php://input'), true);
+		/* $posteo = json_decode(file_get_contents('php://input'), true);
 			echo '$posteo[Document][number] es ' . $posteo['Document']['number'];
 			echo '$posteo[Operation][0][amount] es ' . $posteo['Operation'][0]['amount'];
 			echo '$posteo[Operation][1][operation_date] es ' . $posteo['Operation'][1]['operation_date'];
-			Yii::app()->end();
+			Yii::app()->end(); */
+
+
+		$_POST = json_decode(file_get_contents('php://input'), true);
 
 		if(isset($_POST['Document']))
 		{
@@ -199,6 +202,7 @@ class DocumentController extends Controller
 				{
 					$valid=true;
 					$validAccountingRule = true;
+					$operations=$this->getOperationsOfADocument(0,count($_POST['Operation']));
 
 	        		foreach($operations as $i=>$operation)
 	            		if(isset($_POST['Operation'][$i])) {
@@ -234,21 +238,42 @@ class DocumentController extends Controller
 										}
 									}
 				                }
-               				$this->redirect(array('view','id'=>$model->id));
+               				//$this->redirect(array('view','id'=>$model->id));
+				            $response = array(
+				            	'status' => 'success',
+				            	'model' => $model->id,
+				            	'message' => 'Transacción exitosa',
+				            );
+				            echo json_encode($response);
+				            Yii::app()->end();
 				        }
 		        	} elseif (!$validAccountingRule)
 		        		Yii::app()->user->setFlash('error', 'Uno o más de las detalles de movimientos no tiene la Regla Contable definida en el sistema');
 		        		elseif ($valid)
 		        			Yii::app()->user->setFlash('error', 'No hay conexión con el sistema externo. La transacción no puede ser grabada en este momento. Intente más tarde.');
+		        		else
+		        			Yii::app()->user->setFlash('error', 'Error en un detalle. Verifique montos del detalle y sus fechas de movimiento');
 	        	}
 				
+			} else {
+				Yii::app()->user->setFlash('error', 'El documento no es válido. Verifique el Tipo de Documento, Número de Documento y Fecha de Operación');
 			}
+		}
+
+		if (Yii::app()->user->hasFlash('error')) {
+            $response = array(
+            	'status' => 'error',
+            	'model' => 0,
+            	'message' => Yii::app()->user->getFlash('error'),
+            );
+            echo json_encode($response);
+            Yii::app()->end();
 		}
 
 		$this->render('createBatch',array(
 			'model'=>$model,
 			'operation' => $operation,
-		));		
+		));
 	}
 
 	/**

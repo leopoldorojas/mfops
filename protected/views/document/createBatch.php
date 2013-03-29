@@ -50,14 +50,19 @@ function adminTotal(\$scope, \$http) {
 
 	    \$http({method: \$scope.method, url: \$scope.url, data: \$scope.dataToSend, headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
 	      success(function(data, status) {
-	      	alert (data);
 	        \$scope.status = status;
 	        \$scope.data = data;
+
+	        if (data.status == 'success') {
+	        	window.location = 'http://localhost:8888/mfops/index.php/document/' + data.model.toString();
+	        } else {
+	        	alert(data.message);
+	        }
 	      }).
 	      error(function(data, status) {
-	      	alert ('Failed!!!');
-	        \$scope.data = data || 'Request failed';
+	        \$scope.data = data; 
 	        \$scope.status = status;
+	        alert('Error. La transacción ha fallado. Posiblemente por fallas de comunicación con el sistema externo. Consulte con su administrador del sistema');
 	    });
     }
 
