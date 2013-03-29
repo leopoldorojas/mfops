@@ -46,7 +46,7 @@ class Document extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('documentType_id, number, document_date', 'required'),
+			array('documentType_id, number, document_date, totalAmount', 'required'),
 			array('documentType_id, entity_id', 'numerical', 'integerOnly'=>true),
 			array('number, entity_name', 'length', 'max'=>100),
 			array('description', 'safe'),

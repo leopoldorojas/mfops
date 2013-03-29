@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	// array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Documento', 'url'=>array('createBatch')),
+	array('label'=>'Registrar Documento', 'url'=>array('createRestfulBatch')),
 	array('label'=>'Actualizar Documento', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Borrar Documento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),

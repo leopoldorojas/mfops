@@ -65,6 +65,16 @@ div.form .row
 	margin: 5px 0;
 }
 
+div.form .even-detail
+{
+	background: #F8F8F8;
+}
+
+div.form .odd-detail
+{
+	background: #E5F1F4;	
+}
+
 div.form .hint
 {
 	margin: 0;

@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	// array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Documento', 'url'=>array('createBatch')),
+	array('label'=>'Registrar Documento', 'url'=>array('createRestfulBatch')),
 	array('label'=>'Ver Documento', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );

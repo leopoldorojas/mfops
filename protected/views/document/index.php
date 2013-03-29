@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Registrar Documento', 'url'=>array('createBatch')),
+	array('label'=>'Registrar Documento', 'url'=>array('createRestfulBatch')),
 	array('label'=>'Administrar Documentos', 'url'=>array('admin')),
 );
 ?>

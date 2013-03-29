@@ -69,7 +69,7 @@
 		<?php echo $form->textField($model,'calculatedTotalAmount', array('readonly'=>true, 'value'=>'{{calculatedTotalAmount()}}')); ?>
 	</div>
 
-	<hr />
+	<?php /* <hr />
 
 	<table>
 	<tr>
@@ -86,60 +86,64 @@
 		<th><?php echo $form->labelEx($operation,'reference_price'); ?></th>
 		<th><?php echo $form->labelEx($operation,'description'); ?></th>
 	</tr>
-	</table>
+	</table> */ ?>
 
 	<hr />
 	<ul style="list-style-type: none; margin:0; padding:0;">
 		<li ng-repeat="operation in operations">
-			<table>
+			<table ng-class-odd="'odd-detail'" ng-class-even="'even-detail'"> 
 
 	<tr>
-		<td>Detalle {{$index + 1}}</td>
+		<!-- <td>Detalle {{$index + 1}}</td> -->
+
+		<td>
+			<?php echo $form->dropdownlist($operation,"type_id",
+				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Tipo de Movimiento', 'ng-model'=>'operation.type_id')); ?>
+			<?php echo $form->error($operation,"type_id"); ?>
+		</td>
+
 		<td>
 			<?php echo $form->dropdownlist($operation,"input",
-				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?', 'ng-model'=>'operation.input')); ?>
+				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'Entrada o Salida', 'ng-model'=>'operation.input')); ?>
 			<?php echo $form->error($operation,"input"); ?>
 		</td>
 
 		<td>
 			<?php echo $form->dropdownlist($operation,"bank",
-				array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?', 'ng-model'=>'operation.bank')); ?>
+				array(false=>'Caja', true=>'Bancos'), array('empty'=>'Caja o Bancos', 'ng-model'=>'operation.bank')); ?>
 			<?php echo $form->error($operation,"bank"); ?>
 		</td>
 
 		<td>
-			<?php echo $form->dropdownlist($operation,"type_id",
-				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento', 'ng-model'=>'operation.type_id')); ?>
-			<?php echo $form->error($operation,"type_id"); ?>
+			<?php echo CHtml::activeDateField($operation,"operation_date", array('placeholder'=>'Fecha de Movimiento', 'ng-model'=>'operation.operation_date')); ?>
+			<?php echo $form->error($operation,"operation_date"); ?>
 		</td>
 
 		<td>
-			<?php echo CHtml::activeDateField($operation,"operation_date", array('ng-model'=>'operation.operation_date')); ?>
-			<?php echo $form->error($operation,"operation_date"); ?>
+			<?php echo CHtml::activeTextField($operation,"amount", array('placeholder'=>'Monto del detalle', 'ng-model'=>'operation.amount')); ?>
+			<?php echo $form->error($operation,"amount"); ?>
 		</td>
 
 	</tr>
 	<tr>
 
 		<td>
-			<?php echo CHtml::activeTextField($operation,"amount", array('placeholder'=>'Monto del detalle', 'ng-model'=>'operation.amount')); ?>
-			<?php echo $form->error($operation,"amount"); ?>
-		</td>
-		<td>
 			<?php echo $form->dropdownlist($operation,"entity_id", 
-				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Seleccione entidad de la operación', 'ng-model'=>'operation.entity_id')); ?>
+				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Entidad de operación', 'ng-model'=>'operation.entity_id')); ?>
 			<?php echo $form->error($operation,"entity_id"); ?>
 		</td>
+
 		<td>
-			<?php echo CHtml::activeTextField($operation,"entity_name", array('ng-model'=>'operation.entity_name')); ?>
+			<?php echo CHtml::activeTextField($operation,"entity_name", array('placeholder'=>'Entidad', 'ng-model'=>'operation.entity_name')); ?>
 			<?php echo $form->error($operation,"entity_name"); ?>
 		</td>
 		<td>
-			<?php echo CHtml::activeTextField($operation,"reference_price", array('ng-model'=>'operation.reference_price')); ?>
+			<?php echo CHtml::activeTextField($operation,"reference_price", array('placeholder'=>'Precio de Referencia', 'ng-model'=>'operation.reference_price')); ?>
 			<?php echo $form->error($operation,"reference_price"); ?>
 		</td>
-		<td>
-			<?php echo CHtml::activeTextArea($operation,"description", array('ng-model'=>'operation.description')); ?>
+
+		<td colspan=2>
+			<?php echo CHtml::activeTextArea($operation,"description", array('placeholder'=>'Descripción del Detalle', 'ng-model'=>'operation.description')); ?>
 			<?php echo $form->error($operation,"description"); ?>
 		</td>
 	</tr>

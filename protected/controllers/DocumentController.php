@@ -256,7 +256,7 @@ class DocumentController extends Controller
 	        	}
 				
 			} else {
-				Yii::app()->user->setFlash('error', 'El documento no es válido. Verifique el Tipo de Documento, Número de Documento y Fecha de Operación');
+				Yii::app()->user->setFlash('error', 'El documento no es válido. Verifique el Tipo de Documento, Número de Documento, Fecha de Operación y Monto');
 			}
 		}
 
