@@ -3,13 +3,13 @@
 /* @var $model Operation */
 
 $this->breadcrumbs=array(
-	'Movimientos'=>array('index'),
-	'Administrar',
+	'Movimientos'=>array('admin'),
+	'Consultar',
 );
 
 $this->menu=array(
 	// array('label'=>'Listar movimientos', 'url'=>array('index')),
-	array('label'=>'Registrar movimiento', 'url'=>array('create')),
+	// array('label'=>'Registrar movimiento', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Movimientos</h1>
+<h1>Consultar Movimientos</h1>
 
 <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -57,6 +57,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'document_id',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}',
 		),
 	),
 )); ?>

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Documentos'=>array('admin'),
-	'Administrar',
+	'Consultar',
 );
 
 $this->menu=array(
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Documentos</h1>
+<h1>Consultar Documentos</h1>
 
 <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -55,6 +55,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		// 'user_id',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}',
 		),
 	),
 )); ?>

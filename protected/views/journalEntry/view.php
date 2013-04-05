@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	// array('label'=>'List JournalEntry', 'url'=>array('index')),
-	array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
-	array('label'=>'Actualizar Asiento Diario', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar Asiento Diario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
-	array('label'=>'Administrar Asientos Diarios', 'url'=>array('admin')),
+	//array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
+	//array('label'=>'Actualizar Asiento Diario', 'url'=>array('update', 'id'=>$model->id)),
+	//array('label'=>'Borrar Asiento Diario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
+	array('label'=>'Consultar Asientos', 'url'=>array('admin')),
 );
 ?>
 
