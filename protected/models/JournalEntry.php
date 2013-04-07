@@ -63,7 +63,7 @@ class JournalEntry extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'operation' => array(self::BELONGS_TO, 'Operation', 'operation_id'),
+			'operation' => array(self::HAS_ONE, 'Operation', 'journal_entry_id'),
 		);
 	}
 
@@ -126,9 +126,9 @@ class JournalEntry extends CActiveRecord
 			$this->journalEntry_date = $operation->operation_date;
 			$this->notes = $operation->description;
 			if ($this->save()) {
-				return array('status'=>'success', 'message'=>"Operación grabada exitosamente");
+				return array('journal_entry_id' => $this->id, 'status'=>'success', 'message'=>"Operación grabada exitosamente");
 			} else {
-				return array('status'=>'error', 'message'=>"No se pudo grabar la transacción. Intente más tarde");;
+				return array('journal_entry_id' => 0, 'status'=>'error', 'message'=>"No se pudo grabar la transacción. Intente más tarde");;
 			}
 		} else {
 			return array('status'=>'error', 'message'=>'La regla contable no existe. No se pudo grabar');
@@ -142,24 +142,23 @@ class JournalEntry extends CActiveRecord
 	        if($this->isNewRecord)
 	        {
 	            $this->user_id=1;
-	        }
-	        else
-	            $this->updatedon=time();
 
-	        if (Yii::app()->mambu->isInitialized && Yii::app()->mambu->connect())
-	        {
-		    	Yii::app()->mambu->postBody = "{
-					'date'			:'$this->journalEntry_date',
-					'debitAccount1'	:'$this->debitAccount',
-					'debitAmount1'	:'$this->debitAmount',
-					'creditAccount1':'$this->creditAccount',
-					'creditAmount1'	:'$this->creditAmount',
-					'notes'			:'$this->notes'
-					}";
+		        if (Yii::app()->mambu->isInitialized && Yii::app()->mambu->connect())
+		        {
+			    	Yii::app()->mambu->postBody = "{
+						'date'			:'$this->journalEntry_date',
+						'debitAccount1'	:'$this->debitAccount',
+						'debitAmount1'	:'$this->debitAmount',
+						'creditAccount1':'$this->creditAccount',
+						'creditAmount1'	:'$this->creditAmount',
+						'notes'			:'$this->notes'
+						}";
 
-				return Yii::app()->mambu->post();
+					return Yii::app()->mambu->post();
+			    } else
+			    	return false;
 		    } else
-		    	return false;
+	            $this->updatedon=time();
 	    }
 	    else
 	        return false;

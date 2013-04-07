@@ -42,6 +42,7 @@ class MovementType extends CActiveRecord
 			array('movement_category_id, description', 'required'),
 			array('movement_category_id', 'numerical', 'integerOnly'=>true),
 			array('description', 'length', 'max'=>255),
+			array('description', 'ext.UniqueAttributesValidator', 'with'=>'movement_category_id'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, movement_category_id, description', 'safe', 'on'=>'search'),

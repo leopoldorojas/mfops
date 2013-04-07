@@ -55,6 +55,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'entity_name',
 		'description',
 		'document_id',
+		'journal_entry_id',
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',

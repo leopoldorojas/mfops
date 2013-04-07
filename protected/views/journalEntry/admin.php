@@ -50,8 +50,12 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'debitAmount',
 		'creditAccount',
 		'creditAmount',
-		'branchID',
+		//'branchID',
 		'journalEntry_date',
+		array(
+			'header' => 'Operation',
+			'name' => 'operation.id',
+		),
 		'notes',
 		/*
 		'user_id',

@@ -42,9 +42,10 @@ class AccountingRule extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('input, bank, type_id, debitAccount1, creditAccount1', 'required'),
+			array('input, bank, type_id, debitAccount1, creditAccount1, description', 'required'),
 			array('type_id', 'numerical', 'integerOnly'=>true),
 			array('debitAccount1, creditAccount1, description', 'length', 'max'=>255),
+			array('type_id', 'ext.UniqueAttributesValidator', 'with'=>'input,bank', 'message'=>'Ya existe regla contable para este Tipo de Movimiento en conjunto con esta Entrada/Salida de dinero y Caja/Bancos'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, input, type_id, bank, debitAccount1, creditAccount1, description, user_id', 'safe', 'on'=>'search'),

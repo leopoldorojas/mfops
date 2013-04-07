@@ -69,7 +69,7 @@ class Operation extends CActiveRecord
 			'movement_type' => array(self::BELONGS_TO, 'MovementType', 'type_id'),
 			'document' => array(self::BELONGS_TO, 'Document', 'document_id'),
 			// 'accountingRule' => array(self::BELONGS_TO, 'AccountingRule', 'input, type_id, bank'),
-			'journalEntry' => array(self::HAS_ONE, 'JournalEntry', 'operation_id'),
+			'journalEntry' => array(self::BELONGS_TO, 'JournalEntry', 'journal_entry_id'),
 		);
 	}
 
@@ -86,15 +86,16 @@ class Operation extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'type_id' => 'Tipo',
-			'input' => '¿Entrada o Salida de dinero?',
+			'input' => '¿Entrada o Salida?',
 			'bank' => '¿Caja o Bancos?',
 			'operation_date' => 'Fecha del Movimiento',
 			'amount' => 'Monto',
-			'entity_id' => 'Entidad de operación',
-			'entity_name' => 'Nota acerca de la Entidad',
+			'entity_id' => 'Entidad operación',
+			'entity_name' => 'Notas o Entidad',
 			'reference_price' => 'Precio unitario',
 			'description' => 'Descripción',
 			'document_id' => 'Número de Documento',
+			'journal_entry_id' => 'Asiento Diario',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',

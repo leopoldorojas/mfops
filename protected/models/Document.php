@@ -49,6 +49,7 @@ class Document extends CActiveRecord
 			array('documentType_id, number, document_date, totalAmount', 'required'),
 			array('documentType_id, entity_id', 'numerical', 'integerOnly'=>true),
 			array('number, entity_name', 'length', 'max'=>100),
+			array('number', 'ext.UniqueAttributesValidator', 'with'=>'documentType_id,document_date'),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

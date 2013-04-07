@@ -41,6 +41,7 @@ class OperationEntity extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name, code', 'length', 'max'=>255),
+			array('name', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, code', 'safe', 'on'=>'search'),

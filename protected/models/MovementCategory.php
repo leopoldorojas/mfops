@@ -40,6 +40,7 @@ class MovementCategory extends CActiveRecord
 		return array(
 			array('description', 'required'),
 			array('description', 'length', 'max'=>255),
+			array('description','unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, description', 'safe', 'on'=>'search'),

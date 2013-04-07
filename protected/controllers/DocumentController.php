@@ -221,6 +221,7 @@ class DocumentController extends Controller
 										$journalEntry=new JournalEntry;
 										$status = $journalEntry->saveOperation($operation);
 										if ($status['status']=='success') {
+											$operation->journal_entry_id = $status['journal_entry_id'];
 											$operation->save();
 										} else {
 											if (!$journalEntryHasErrors) {
@@ -248,7 +249,7 @@ class DocumentController extends Controller
 	        	}
 				
 			} else {
-				Yii::app()->user->setFlash('error', 'El documento no es válido. Verifique el Tipo de Documento, Número de Documento, Fecha de Operación y Monto');
+				Yii::app()->user->setFlash('error', 'El documento no es válido. Verifique el Tipo de Documento, Número de Documento, Fecha de Operación y Monto. Verifique también que el documento no esté duplicado.');
 			}
 		}
 
