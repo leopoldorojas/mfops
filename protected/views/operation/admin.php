@@ -46,15 +46,21 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'input',
-		'bank',
-		'type_id',
+		array(
+			'header' => '¿Entrada o Salida?',
+			'value' => '$data->input ? "Entrada" : "Salida"',
+		),
+		array(
+			'header' => '¿Caja o Bancos?',
+			'value' => '$data->bank ? "Bancos" : "Caja"',
+		),
+		'movement_type.description:text:Tipo',
 		'operation_date',
-		'amount',
-		'entity_id',
+		'amount:number:Monto',
+		'entity.name:text:Entidad',
 		'entity_name',
 		'description',
-		'document_id',
+		'document.number:text:Número de Documento',
 		'journal_entry_id',
 		array(
 			'class'=>'CButtonColumn',

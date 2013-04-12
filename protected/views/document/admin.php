@@ -46,10 +46,10 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'documentType_id',
+		'document_type.description:text:Tipo de Documento',
 		'number',
 		'document_date',
-		'entity_id',
+		'entity.name:text:Entidad',
 		'entity_name',
 		'description',
 		// 'user_id',

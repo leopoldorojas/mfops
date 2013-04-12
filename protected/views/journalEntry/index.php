@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
-	array('label'=>'Administrar Asientos Diarios', 'url'=>array('admin')),
+	array('label'=>'Consultar Asientos Diarios', 'url'=>array('admin')),
 );
 ?>
 

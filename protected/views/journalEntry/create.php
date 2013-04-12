@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	// array('label'=>'List JournalEntry', 'url'=>array('index')),
-	array('label'=>'Administrar Asientos Diarios', 'url'=>array('admin')),
+	array('label'=>'Consultar Asientos Diarios', 'url'=>array('admin')),
 );
 ?>
 

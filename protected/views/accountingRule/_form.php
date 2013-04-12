@@ -17,9 +17,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'input'); ?>
-		<?php echo $form->radioButtonList($model,'input', array(true=>'Entrada de dinero', false=>'Salida de dinero')); ?>
+		<?php echo $form->dropdownlist($model,'input',
+			array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?')); ?>
 		<?php echo $form->error($model,'input'); ?>
-	</div>
+	</div>	
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>
@@ -30,9 +31,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'bank'); ?>
-		<?php echo $form->radioButtonList($model,'bank', array(false=>'Caja', true=>'Bancos')); ?>
+		<?php echo $form->dropdownlist($model,'bank',
+			array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?')); ?>
 		<?php echo $form->error($model,'bank'); ?>
-	</div>
+	</div>	
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>

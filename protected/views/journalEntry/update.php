@@ -12,7 +12,7 @@ $this->menu=array(
 	// array('label'=>'List JournalEntry', 'url'=>array('index')),
 	array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
 	array('label'=>'Ver Asiento Diario', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Administrar Asientos Diarios', 'url'=>array('admin')),
+	array('label'=>'Consultar Asientos Diarios', 'url'=>array('admin')),
 );
 ?>
 

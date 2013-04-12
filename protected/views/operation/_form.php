@@ -27,7 +27,7 @@
 		<?php echo $form->dropdownlist($model,'bank',
 			array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?')); ?>
 		<?php echo $form->error($model,'bank'); ?>
-	</div>	
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>

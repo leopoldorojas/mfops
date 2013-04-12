@@ -46,7 +46,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'movement_category_id',
+		'movement_category.description:text:Categoría de Movimiento',
 		'description',
 		array(
 			'class'=>'CButtonColumn',

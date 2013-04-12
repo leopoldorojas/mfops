@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	// array('label'=>'List JournalEntry', 'url'=>array('index')),
-	array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
+	// array('label'=>'Registrar Asiento Diario', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -52,10 +52,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'creditAmount',
 		//'branchID',
 		'journalEntry_date',
-		array(
-			'header' => 'Operation',
-			'name' => 'operation.id',
-		),
+		'operation.document.number:text:Número de Documento',
 		'notes',
 		/*
 		'user_id',

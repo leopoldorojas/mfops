@@ -46,9 +46,15 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'input',
-		'type_id',
-		'bank',
+		array(
+			'header' => '¿Entrada o Salida?',
+			'value' => '$data->input ? "Entrada" : "Salida"',
+		),
+		'movement_type.description:text:Tipo de Movimiento',
+		array(
+			'header' => '¿Caja o Bancos?',
+			'value' => '$data->bank ? "Bancos" : "Caja"',
+		),
 		'description',
 		'debitAccount1',
 		'creditAccount1',

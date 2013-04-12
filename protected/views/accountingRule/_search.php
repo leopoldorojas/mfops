@@ -18,18 +18,21 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'input'); ?>
-		<?php echo $form->textField($model,'input'); ?>
-	</div>
+		<?php echo $form->dropdownlist($model,'input',
+			array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'¿Entrada o Salida de dinero?')); ?>
+	</div>	
 
 	<div class="row">
 		<?php echo $form->label($model,'type_id'); ?>
-		<?php echo $form->textField($model,'type_id'); ?>
+		<?php echo $form->dropdownlist($model,'type_id',
+			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de movimiento')); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'bank'); ?>
-		<?php echo $form->radioButtonList($model,'bank', array(true=>'Bank?', false=>'Cash?')); ?>
-	</div>
+		<?php echo $form->dropdownlist($model,'bank',
+			array(false=>'Caja', true=>'Bancos'), array('empty'=>'¿Caja o Bancos?')); ?>
+	</div>	
 
 	<div class="row">
 		<?php echo $form->label($model,'description'); ?>

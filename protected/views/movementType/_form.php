@@ -17,7 +17,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'movement_category_id'); ?>
-		<?php echo $form->textField($model,'movement_category_id'); ?>
+		<?php echo $form->dropdownlist($model,'movement_category_id',
+			CHtml::listData(MovementCategory::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione una Categoría de Movimiento')); ?>
 		<?php echo $form->error($model,'movement_category_id'); ?>
 	</div>
 

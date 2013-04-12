@@ -90,6 +90,7 @@ class Operation extends CActiveRecord
 			'bank' => '¿Caja o Bancos?',
 			'operation_date' => 'Fecha del Movimiento',
 			'amount' => 'Monto',
+			'sAmount' => 'Monto',
 			'entity_id' => 'Entidad operación',
 			'entity_name' => 'Notas o Entidad',
 			'reference_price' => 'Precio unitario',
@@ -155,5 +156,4 @@ class Operation extends CActiveRecord
 	    else
 	        return false;
 	}
-
 }
