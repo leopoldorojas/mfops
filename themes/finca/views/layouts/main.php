@@ -13,10 +13,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/form.css" />
-
-	<!-- Angular.js -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
-
+	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 

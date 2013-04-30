@@ -126,12 +126,19 @@ class Document extends CActiveRecord
 	            // $this->createdon=$this->updatedon=time();
 	            // $this->user_id=Yii::app()->user->id;
 	            $this->user_id=1;
+	            if ($this->document_type->next_number > 0) {
+	            	$this->number = $this->document_type->next_number;
+	    			++$this->document_type->next_number;
+	    			$this->document_type->save();
+		    	}
 	        }
 	        else
 	            $this->updatedon=time();
+
 	        return true;
 	    }
 	    else
 	        return false;
 	}
+
 }

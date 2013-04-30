@@ -28,7 +28,7 @@ class DocumentTypeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin','view'),
+				'actions'=>array('admin','view','list'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user
@@ -121,6 +121,20 @@ class DocumentTypeController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+	/**
+	 * Lists all models in Json format. This is an action as a REST API
+	 */
+	public function actionList()
+	{
+		$models=DocumentType::model()->findAll();;
+    	$rows = array();
+        foreach($models as $model)
+            $rows[] = $model->attributes;
+
+        echo json_encode($rows);
+        Yii::app()->end();
 	}
 
 	/**

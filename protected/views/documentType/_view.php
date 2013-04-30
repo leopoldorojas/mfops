@@ -13,4 +13,8 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('next_number')); ?>:</b>
+	<?php echo CHtml::encode($data->next_number); ?>
+	<br />
+
 </div>

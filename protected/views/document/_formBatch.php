@@ -22,14 +22,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'documentType_id'); ?>
-		<?php echo $form->dropdownlist($model,'documentType_id',
-			CHtml::listData(DocumentType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione tipo de documento', 'ng-model'=>'document.documentType_id')); ?>
+		<select
+			ng-model='document.documentType_id'
+			ng-options="document_type.id as document_type.description for document_type in document_types"
+			ng-change="setDocumentNumber()">
+			<option value="">Seleccione tipo de documento</option>
+		</select>
 		<?php echo $form->error($model,'documentType_id'); ?>
 	</div>
 
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'number'); ?>
-		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number')); ?>
+		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number', 'ng-readonly'=>'document.number > 0')); ?>
 		<?php echo $form->error($model,'number'); ?>
 	</div>
 

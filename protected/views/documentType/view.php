@@ -23,5 +23,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'description',
+		'next_number',
 	),
 )); ?>

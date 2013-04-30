@@ -41,6 +41,7 @@ class DocumentType extends CActiveRecord
 			array('description', 'required'),
 			array('description', 'length', 'max'=>100),
 			array('description', 'unique'),
+			array('next_number', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, description', 'safe', 'on'=>'search'),
@@ -67,6 +68,7 @@ class DocumentType extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'description' => 'Descripción',
+			'next_number' => 'Próximo Número de Documento',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',

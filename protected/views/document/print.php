@@ -4,10 +4,6 @@
 
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/vendors/jquery.printPage.js');
 
-Yii::app()->clientScript->registerScript('print', "
-	$('.btnPrint').printPage();
-");
-
 $this->breadcrumbs=array(
 	'Documentos'=>array('admin'),
 	$model->id,
@@ -22,7 +18,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Documento Id <?php echo $model->id; ?></h1>
+<h1>Impresión de Documento Id <?php echo $model->id; ?></h1>
 
 <?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {
@@ -43,6 +39,3 @@ $this->menu=array(
 	),
 )); 
 ?>
-<p></p>
-<p><b>Si deseas imprimir el documento, por favor haz click en el siguiente enlace:</b><br />
-<a class="btnPrint" href='<?php echo $this->createUrl("document/print/$model->id"); ?>'>IMPRIMIR</a></p>

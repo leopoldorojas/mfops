@@ -28,7 +28,7 @@ class DocumentController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('createRestfulBatch', 'admin', 'view'),
+				'actions'=>array('createRestfulBatch', 'admin', 'view', 'print'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -330,6 +330,17 @@ class DocumentController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionPrint($id)
+	{
+		$this->render('print',array(
+			'model'=>$this->loadModel($id),
 		));
 	}
 

@@ -2,6 +2,9 @@
 /* @var $this DocumentController */
 /* @var $model Document */
 
+// Angular.js
+Yii::app()->clientScript->registerScriptFile('https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js');
+
 $this->breadcrumbs=array(
 	'Documentos'=>array('admin'),
 	'Registrar',
@@ -20,6 +23,31 @@ function adminTotal(\$scope, \$http) {
 	\$scope.operations = [
 		{}
 	];
+
+	\$http.get('http://localhost:8888/mfops/index.php/documentType/list').success(function(data) {
+    	\$scope.document_types = data;
+  	});
+
+	\$scope.setDocumentNumber = function() {
+		var index = 0;
+		index = findIndexByKeyValue(\$scope.document_types, 'id', \$scope.document.documentType_id);
+
+		if (index > 0) {
+			\$scope.document.number = \$scope.document_types[index].next_number;
+		} else {
+			\$scope.document.number = '';
+		}
+	}	
+
+	function findIndexByKeyValue(obj, key, value)
+	{
+	    for (var i = 0; i < obj.length; i++) {
+	        if (obj[i][key] == value) {
+	            return i;
+	        }
+	    }
+	    return null;
+	}
 
 	\$scope.calculatedTotalAmount = function() {
 		sumatory = 0;
