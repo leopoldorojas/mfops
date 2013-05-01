@@ -124,7 +124,7 @@ class JournalEntry extends CActiveRecord
 			$this->creditAccount = $accountingRule->creditAccount1;
 			$this->creditAmount = $operation->amount;
 			$this->journalEntry_date = $operation->operation_date;
-			$this->notes = $operation->description;
+			$this->notes = $operation->description . ". Documento en Sistema de Operaciones: $operation->document_id";
 			if ($this->save()) {
 				return array('journal_entry_id' => $this->id, 'status'=>'success', 'message'=>"Operación grabada exitosamente");
 			} else {
@@ -154,7 +154,16 @@ class JournalEntry extends CActiveRecord
 						'notes'			:'$this->notes'
 						}";
 
-					return Yii::app()->mambu->post();
+					$response = Yii::app()->mambu->post();
+
+					if ($response['return']) {
+						$entryID1 = $response['entryID1'];
+						$entryID2 = $response['entryID2'];
+						$transactionID = $response['transactionID'];
+						$this->notes .= " En Mambu => ID Asiento1: $entryID1, ID Asiento2: $entryID2, Identificador Transacción: $transactionID ";
+					}
+
+					return $response['return'];
 			    } else
 			    	return false;
 		    } else

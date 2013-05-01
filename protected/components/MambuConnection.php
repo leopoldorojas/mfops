@@ -38,7 +38,16 @@ class MambuConnection extends CApplicationComponent
 			->body($this->postBody)
 			->send();
 
-		return ($response->code == 201);
+		$return = array('return'=>false, 'entryID1'=>0, 'entryID2'=>0, 'transactionID' => "");
+		
+		if ($return['return'] = ($response->code == 201))
+		{
+			$return['entryID1'] = $response->body[0]->entryID;
+			$return['entryID2'] = $response->body[1]->entryID;
+			$return['transactionID'] = $response->body[0]->transactionID;
+		}
+
+		return $return;
 	}
 
 }
