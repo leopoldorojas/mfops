@@ -46,8 +46,19 @@ class AccountingRuleController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model=$this->loadModel($id);
+		$operation=new Operation('search');
+
+		if(isset($_GET['Operation']))
+			$operation->attributes=$_GET['Operation'];
+
+		$operation->input = $model->input;
+		$operation->type_id = $model->type_id;
+		$operation->bank = $model->bank;
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'operation'=>$operation,
 		));
 	}
 

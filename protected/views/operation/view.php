@@ -25,7 +25,7 @@ $this->menu=array(
 		'document.number:text:Número de Documento',
 		array(
 			'label' => '¿Entrada o Salida?',
-			'value' => CHtml::encode($model->input ? "Entrada" : "Salida"),
+			'value' => CHtml::encode($model->input ? "Entrada de Dinero" : "Salida de Dinero"),
 		),
 		array(
 			'label' => '¿Caja o Bancos?',
@@ -48,19 +48,26 @@ $this->menu=array(
 <hr/>
 <h2>Asiento Contable del Movimiento:</h2>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model->journalEntry,
-	'attributes'=>array(
-		'id',
-		'debitAccount',
-		'debitAmount:number:Monto Debitado',
-		'creditAccount',
-		'creditAmount:number:Monto Acreditado',
-		// 'branchID',
-		'journalEntry_date',
-		'notes',
-		// 'user_id',
-		// 'createdon',
-		// 'updatedon',
-	),
-)); ?>
+<?php 
+	if ($model->journalEntry) {
+		$this->widget('zii.widgets.CDetailView', array(
+			'data'=>$model->journalEntry,
+			'attributes'=>array(
+				'id',
+				'debitAccount',
+				'debitAmount:number:Monto Debitado',
+				'creditAccount',
+				'creditAmount:number:Monto Acreditado',
+				// 'branchID',
+				'journalEntry_date',
+				'notes',
+				// 'user_id',
+				// 'createdon',
+				// 'updatedon',
+			),
+		));
+	} else { ?>
+		<p><b>El Movimiento no tiene Asiento Contable Asociado</b></p>
+<?php
+	}
+?>

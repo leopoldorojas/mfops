@@ -61,7 +61,7 @@ class AccountingRule extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'movement_type' => array(self::BELONGS_TO, 'MovementType', 'type_id'),
-			// 'operations' => array(self::HAS_MANY, 'Operation', 'input, type_id, bank'),
+			//'operations' => array(self::HAS_MANY, 'Operation', 'input, type_id, bank'),
 		);
 	}
 

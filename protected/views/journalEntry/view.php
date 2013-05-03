@@ -39,22 +39,35 @@ $this->menu=array(
 <hr/>
 <h2>Movimiento al que corresponde el Asiento:</h2>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model->operation,
-	'attributes'=>array(
-		'id',
-		'input',
-		'bank',
-		'type_id',
-		'operation_date',
-		'amount:number:Monto',
-		'entity_id',
-		'entity_name',
-		'reference_price',
-		'description',
-		'document_id',
-		/* 'user_id',
-		'createdon',
-		'updatedon', */
-	),
-)); ?>
+<?php 
+	if ($model->operation) {
+		$this->widget('zii.widgets.CDetailView', array(
+			'data'=>$model->operation,
+			'attributes'=>array(
+				'id',
+				'document.number:text:Número de Documento',
+				array(
+					'label' => '¿Entrada o Salida?',
+					'value' => CHtml::encode($model->operation->input ? "Entrada de Dinero" : "Salida de Dinero"),
+				),
+				array(
+					'label' => '¿Caja o Bancos?',
+					'value' => CHtml::encode($model->operation->bank ? "Bancos" : "Caja"),
+				),
+				'movement_type.description:text:Tipo',
+				'operation_date',
+				'amount:number:Monto',
+				'entity.name:text:Entidad',
+				'entity_name',
+				'reference_price',
+				'description',
+				/* 'user_id',
+				'createdon',
+				'updatedon', */
+			),
+		));
+	} else { ?>
+		<p><b>El Asiento Contable no tiene Movimiento Asociado</b></p>
+<?php
+	}
+?>

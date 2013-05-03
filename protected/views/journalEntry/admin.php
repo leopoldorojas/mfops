@@ -47,9 +47,9 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'columns'=>array(
 		'id',
 		'debitAccount',
-		'debitAmount',
+		'debitAmount:number:Monto Debitado',
 		'creditAccount',
-		'creditAmount',
+		'creditAmount:number:Monto Acreditado',
 		//'branchID',
 		'journalEntry_date',
 		'operation.document.number:text:Número de Documento',
