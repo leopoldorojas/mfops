@@ -46,8 +46,15 @@ class MovementCategoryController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$movementType=new MovementType('search');
+
+		if(isset($_GET['MovementType']))
+			$operation->attributes=$_GET['MovementType'];
+
+		$movementType->movement_category_id = $id;
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'movementType'=>$movementType,
 		));
 	}
 

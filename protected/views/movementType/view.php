@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'movement_category_id',
+		'movement_category.description:text:Categoría de Movimiento',
 		'description',
 	),
 )); ?>

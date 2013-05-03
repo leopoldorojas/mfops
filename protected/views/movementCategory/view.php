@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Categoría de Movimiento Id <?php echo $model->id; ?></h1>
+<h1>Categoría de <?php echo $model->description; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -25,3 +25,21 @@ $this->menu=array(
 		'description',
 	),
 )); ?>
+
+<br/>
+<hr/>
+<h2>Tipos de Movimiento de esta Categoría:</h2>
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'movement-type-grid',
+	'dataProvider'=>$movementType->search(),
+	'filter'=>$movementType,
+	'columns'=>array(
+		'id',
+		'description',
+		array(
+			'class'=>'CButtonColumn',
+		),
+	),
+));
+?>
