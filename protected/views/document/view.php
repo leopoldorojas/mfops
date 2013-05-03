@@ -22,7 +22,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Documento Id <?php echo $model->id; ?></h1>
+<h1>Número de Documento: <?php echo $model->number; ?></h1>
 
 <?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {
@@ -34,15 +34,50 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'documentType_id',
+		'document_type.description:text:Tipo de Documento',
 		'number',
 		'document_date',
-		'entity_id',
+		'entity.name:text:Entidad',
 		'entity_name',
 		'description',
 	),
 )); 
 ?>
+
+<br/>
+<hr/>
+<h2>Movimientos del Documento:</h2>
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'operation-grid',
+	'dataProvider'=>$operation->search(),
+	'filter'=>$operation,
+	'columns'=>array(
+		'id',
+		array(
+			'header' => '¿Entrada o Salida?',
+			'value' => '$data->input ? "Entrada" : "Salida"',
+		),
+		array(
+			'header' => '¿Caja o Bancos?',
+			'value' => '$data->bank ? "Bancos" : "Caja"',
+		),
+		'movement_type.description:text:Tipo',
+		'operation_date',
+		'amount:number:Monto',
+		'entity.name:text:Entidad',
+		'entity_name',
+		'description',
+		'journal_entry_id',
+		array(
+			'class'=>'CButtonColumn',
+			'template'=>'{view}',
+            'viewButtonUrl' => 'array("operation/view", "id"=>$data->id)',
+		),
+	),
+));
+?>
+
 <p></p>
 <p><b>Si deseas imprimir el documento, por favor haz click en el siguiente enlace:</b><br />
 <a class="btnPrint" href='<?php echo $this->createUrl("document/print/$model->id"); ?>'>IMPRIMIR</a></p>

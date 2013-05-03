@@ -23,14 +23,38 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'debitAccount',
-		'debitAmount',
+		'debitAmount:number:Monto Debitado',
 		'creditAccount',
-		'creditAmount',
-		'branchID',
+		'creditAmount:number:Monto Acreditado',
+		//'branchID',
 		'journalEntry_date',
 		'notes',
 		// 'user_id',
 		// 'createdon',
 		// 'updatedon',
+	),
+)); ?>
+
+<br/>
+<hr/>
+<h2>Movimiento al que corresponde el Asiento:</h2>
+
+<?php $this->widget('zii.widgets.CDetailView', array(
+	'data'=>$model->operation,
+	'attributes'=>array(
+		'id',
+		'input',
+		'bank',
+		'type_id',
+		'operation_date',
+		'amount:number:Monto',
+		'entity_id',
+		'entity_name',
+		'reference_price',
+		'description',
+		'document_id',
+		/* 'user_id',
+		'createdon',
+		'updatedon', */
 	),
 )); ?>

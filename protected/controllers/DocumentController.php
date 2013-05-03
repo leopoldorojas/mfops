@@ -43,8 +43,16 @@ class DocumentController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$operation=new Operation('search');
+
+		if(isset($_GET['Operation']))
+			$operation->attributes=$_GET['Operation'];
+
+		$operation->document_id = $id;
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'operation'=>$operation,
 		));
 	}
 
@@ -339,8 +347,12 @@ class DocumentController extends Controller
 	 */
 	public function actionPrint($id)
 	{
+		$operation=new Operation('search');
+		$operation->document_id = $id;
+
 		$this->render('print',array(
 			'model'=>$this->loadModel($id),
+			'operation'=>$operation,
 		));
 	}
 

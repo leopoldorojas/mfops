@@ -49,6 +49,7 @@ class Operation extends CActiveRecord
 		return array(
 			array('type_id, operation_date, input, bank, amount, document_id', 'required'),
 			array('type_id, entity_id', 'numerical', 'integerOnly'=>true),
+			array('amount, reference_price', 'numerical'),
 			array('amount, reference_price', 'length', 'max'=>19),
 			array('entity_name', 'length', 'max'=>255),
 			// The following rule is used by search().
@@ -131,6 +132,9 @@ class Operation extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+				'defaultOrder'=>'id DESC',
+			),
 		));
 	}
 

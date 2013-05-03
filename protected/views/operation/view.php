@@ -16,24 +16,51 @@ $this->menu=array(
 );
 ?>
 
-<h1>Movimiento Id <?php echo $model->id; ?></h1>
+<h1>Movimiento Id <?php echo $model->id; ?> del Documento <?php echo $model->document_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'input',
-		'bank',
-		'type_id',
+		'document.number:text:Número de Documento',
+		array(
+			'label' => '¿Entrada o Salida?',
+			'value' => CHtml::encode($model->input ? "Entrada" : "Salida"),
+		),
+		array(
+			'label' => '¿Caja o Bancos?',
+			'value' => CHtml::encode($model->bank ? "Bancos" : "Caja"),
+		),
+		'movement_type.description:text:Tipo',
 		'operation_date',
-		'amount',
-		'entity_id',
+		'amount:number:Monto',
+		'entity.name:text:Entidad',
 		'entity_name',
 		'reference_price',
 		'description',
-		'document_id',
 		/* 'user_id',
 		'createdon',
 		'updatedon', */
+	),
+)); ?>
+
+<br/>
+<hr/>
+<h2>Asiento Contable del Movimiento:</h2>
+
+<?php $this->widget('zii.widgets.CDetailView', array(
+	'data'=>$model->journalEntry,
+	'attributes'=>array(
+		'id',
+		'debitAccount',
+		'debitAmount:number:Monto Debitado',
+		'creditAccount',
+		'creditAmount:number:Monto Acreditado',
+		// 'branchID',
+		'journalEntry_date',
+		'notes',
+		// 'user_id',
+		// 'createdon',
+		// 'updatedon',
 	),
 )); ?>

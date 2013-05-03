@@ -18,7 +18,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Impresión de Documento Id <?php echo $model->id; ?></h1>
+<h1>Número de Documento: <?php echo $model->number; ?></h1>
 
 <?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {
@@ -38,4 +38,33 @@ $this->menu=array(
 		'description',
 	),
 )); 
+?>
+
+<br/>
+<hr/>
+<br/>
+<h2>Movimientos del Documento:</h2>
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'operation-grid',
+	'dataProvider'=>$operation->search(),
+	'columns'=>array(
+		'id',
+		array(
+			'header' => '¿Entrada o Salida?',
+			'value' => '$data->input ? "Entrada" : "Salida"',
+		),
+		array(
+			'header' => '¿Caja o Bancos?',
+			'value' => '$data->bank ? "Bancos" : "Caja"',
+		),
+		'movement_type.description:text:Tipo',
+		'operation_date',
+		'amount:number:Monto',
+		'entity.name:text:Entidad',
+		'entity_name',
+		'description',
+		'journal_entry_id',
+	),
+));
 ?>
