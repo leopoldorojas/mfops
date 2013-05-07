@@ -49,18 +49,35 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		array(
 			'header' => '¿Entrada o Salida?',
 			'value' => '$data->input ? "Entrada" : "Salida"',
+			'filter' => CHtml::activeDropDownList($model,'input',
+				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'--'))
 		),
 		array(
 			'header' => '¿Caja o Bancos?',
 			'value' => '$data->bank ? "Bancos" : "Caja"',
+			'filter' => CHtml::activeDropDownList($model,'bank',
+				array(true=>'Bancos', false=>'Caja'), array('empty'=>'--'))
 		),
-		'movement_type.description:text:Tipo',
+		array(
+			'header'=>'Tipo',
+			'value'=>'$data->movement_type ? $data->movement_type->description : ""',
+			'filter' => CHtml::activeDropDownList($model,'type_id',
+				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
+		),
 		'operation_date',
 		'amount:number:Monto',
-		'entity.name:text:Entidad',
+		array(
+			'header'=>'Entidad',
+			'value'=>'$data->entity ? $data->entity->name : ""',
+			'filter' => CHtml::activeDropDownList($model,'entity_id',
+				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
+		),
 		'entity_name',
 		'description',
-		'document.number:text:Número de Documento',
+		array(
+			'name' => 'document.number',
+			'filter'=>CHtml::activeTextField($model,'documentNumber'),
+		),
 		'journal_entry_id',
 		array(
 			'class'=>'CButtonColumn',

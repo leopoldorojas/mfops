@@ -46,10 +46,20 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'document_type.description:text:Tipo de Documento',
+		array(
+			'header'=>'Tipo de Documento',
+			'value'=>'$data->document_type ? $data->document_type->description : ""',
+			'filter' => CHtml::activeDropDownList($model,'documentType_id',
+				CHtml::listData(DocumentType::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
+		),
 		'number',
 		'document_date',
-		'entity.name:text:Entidad',
+		array(
+			'header'=>'Entidad',
+			'value'=>'$data->entity ? $data->entity->name : ""',
+			'filter' => CHtml::activeDropDownList($model,'entity_id',
+				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
+		),
 		'entity_name',
 		'description',
 		// 'user_id',

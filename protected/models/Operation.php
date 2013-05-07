@@ -21,6 +21,8 @@
  */
 class Operation extends CActiveRecord
 {
+	public $documentNumber = "";
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -54,7 +56,7 @@ class Operation extends CActiveRecord
 			array('entity_name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id, user_id, createdon, updatedon', 'safe',),
+			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id, user_id, createdon, updatedon, documentNumber', 'safe',),
 		);
 	}
 
@@ -115,25 +117,30 @@ class Operation extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('type_id',$this->type_id);
 		$criteria->compare('input',$this->input);
 		$criteria->compare('bank',$this->bank);
 		$criteria->compare('operation_date',$this->operation_date,true);
 		$criteria->compare('amount',$this->amount,true);
-		$criteria->compare('entity_id',$this->entity_id);
-		$criteria->compare('entity_name',$this->entity_name,true);
+		$criteria->compare('t.entity_id',$this->entity_id);
+		$criteria->compare('t.entity_name',$this->entity_name,true);
 		$criteria->compare('reference_price',$this->reference_price,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('t.description',$this->description,true);
 		$criteria->compare('document_id',$this->document_id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
+		$criteria->compare('t.user_id',$this->user_id);
+		$criteria->compare('t.createdon',$this->createdon,true);
+		$criteria->compare('t.updatedon',$this->updatedon,true);
+
+		if ($this->documentNumber) {
+			$criteria->with='document';
+			$criteria->compare('document.number',$this->documentNumber,true);
+		}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>array(
-				'defaultOrder'=>'id DESC',
+				'defaultOrder'=>'t.id DESC',
 			),
 		));
 	}
