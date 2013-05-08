@@ -49,11 +49,20 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		array(
 			'header' => '¿Entrada o Salida?',
 			'value' => '$data->input ? "Entrada" : "Salida"',
+			'filter' => CHtml::activeDropDownList($model,'input',
+				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'--'))
 		),
-		'movement_type.description:text:Tipo de Movimiento',
 		array(
 			'header' => '¿Caja o Bancos?',
 			'value' => '$data->bank ? "Bancos" : "Caja"',
+			'filter' => CHtml::activeDropDownList($model,'bank',
+				array(true=>'Bancos', false=>'Caja'), array('empty'=>'--'))
+		),
+		array(
+			'header'=>'Tipo',
+			'value'=>'$data->movement_type ? $data->movement_type->description : ""',
+			'filter' => CHtml::activeDropDownList($model,'type_id',
+				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
 		),
 		'description',
 		'debitAccount1',

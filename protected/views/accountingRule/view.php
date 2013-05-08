@@ -48,20 +48,20 @@ $this->menu=array(
 	'filter'=>$operation,
 	'columns'=>array(
 		'id',
-		array(
-			'header' => '¿Entrada o Salida?',
-			'value' => '$data->input ? "Entrada" : "Salida"',
-		),
-		array(
-			'header' => '¿Caja o Bancos?',
-			'value' => '$data->bank ? "Bancos" : "Caja"',
-		),
-		'movement_type.description:text:Tipo',
 		'operation_date',
 		'amount:number:Monto',
-		'entity.name:text:Entidad',
+		array(
+			'header'=>'Entidad',
+			'value'=>'$data->entity ? $data->entity->name : ""',
+			'filter' => CHtml::activeDropDownList($operation,'entity_id',
+				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
+		),
 		'entity_name',
 		'description',
+		array(
+			'name' => 'document.number',
+			'filter'=>CHtml::activeTextField($operation,'documentNumber'),
+		),
 		'journal_entry_id',
 		array(
 			'class'=>'CButtonColumn',

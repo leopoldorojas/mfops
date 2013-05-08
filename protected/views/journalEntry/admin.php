@@ -52,7 +52,10 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'creditAmount:number:Monto Acreditado',
 		//'branchID',
 		'journalEntry_date',
-		'operation.document.number:text:Número de Documento',
+		array(
+			'name' => 'operation.document.number',
+			'filter'=>CHtml::activeTextField($model,'documentNumber'),
+		),
 		'notes',
 		/*
 		'user_id',

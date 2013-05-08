@@ -59,7 +59,7 @@ $this->menu=array(
 				'amount:number:Monto',
 				'entity.name:text:Entidad',
 				'entity_name',
-				'reference_price',
+				'reference_price:number:Precio Unitario',
 				'description',
 				/* 'user_id',
 				'createdon',

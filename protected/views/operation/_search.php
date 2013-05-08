@@ -66,8 +66,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'document_id'); ?>
-		<?php echo $form->textField($model,'document_id',array('size'=>19,'maxlength'=>19)); ?>
+		<?php echo $form->label($model,'documentNumber'); ?>
+		<?php echo $form->textField($model,'documentNumber',array('size'=>19,'maxlength'=>19)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'journal_entry_id'); ?>
+		<?php echo $form->textField($model,'journal_entry_id',array('size'=>19,'maxlength'=>19)); ?>
 	</div>
 
 	<div class="row buttons">

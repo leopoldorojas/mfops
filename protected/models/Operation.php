@@ -56,7 +56,7 @@ class Operation extends CActiveRecord
 			array('entity_name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id, user_id, createdon, updatedon, documentNumber', 'safe',),
+			array('id, type_id, operation_date, input, bank, amount, entity_id, entity_name, reference_price, description, document_id, user_id, createdon, updatedon, documentNumber, journal_entry_id', 'safe',),
 		);
 	}
 
@@ -99,6 +99,7 @@ class Operation extends CActiveRecord
 			'reference_price' => 'Precio unitario',
 			'description' => 'Descripción',
 			'document_id' => 'Número de Documento',
+			'documentNumber' => 'Número de Documento',
 			'journal_entry_id' => 'Asiento Diario',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
@@ -114,7 +115,6 @@ class Operation extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('t.id',$this->id);
@@ -131,10 +131,11 @@ class Operation extends CActiveRecord
 		$criteria->compare('t.user_id',$this->user_id);
 		$criteria->compare('t.createdon',$this->createdon,true);
 		$criteria->compare('t.updatedon',$this->updatedon,true);
+		$criteria->compare('journal_entry_id',$this->journal_entry_id,true);		
 
 		if ($this->documentNumber) {
 			$criteria->with='document';
-			$criteria->compare('document.number',$this->documentNumber,true);
+			$criteria->compare('document.number',$this->documentNumber,true);			
 		}
 
 		return new CActiveDataProvider($this, array(

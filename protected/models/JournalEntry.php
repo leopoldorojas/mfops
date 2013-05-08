@@ -18,6 +18,8 @@
  */
 class JournalEntry extends CActiveRecord
 {
+	public $documentNumber = "";
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -51,7 +53,7 @@ class JournalEntry extends CActiveRecord
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, debitAccount, debitAmount, creditAccount, creditAmount, branchID, journalEntry_date, notes, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, debitAccount, debitAmount, creditAccount, creditAmount, branchID, journalEntry_date, notes, user_id, createdon, updatedon, documentNumber', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,6 +83,7 @@ class JournalEntry extends CActiveRecord
 			'branchID' => 'Sucursal',
 			'journalEntry_date' => 'Fecha del asiento',
 			'notes' => 'Notas',
+			'documentNumber' => 'Número de Documento',
 			'user_id' => 'Usuario',
 			'createdon' => 'Registrado en',
 			'updatedon' => 'Actualizado en',
@@ -98,7 +101,7 @@ class JournalEntry extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('debitAccount',$this->debitAccount,true);
 		$criteria->compare('debitAmount',$this->debitAmount,true);
 		$criteria->compare('creditAccount',$this->creditAccount,true);
@@ -106,14 +109,19 @@ class JournalEntry extends CActiveRecord
 		$criteria->compare('branchID',$this->branchID);
 		$criteria->compare('journalEntry_date',$this->journalEntry_date,true);
 		$criteria->compare('notes',$this->notes,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
+		$criteria->compare('t.user_id',$this->user_id);
+		$criteria->compare('t.createdon',$this->createdon,true);
+		$criteria->compare('t.updatedon',$this->updatedon,true);
+
+		if ($this->documentNumber) {
+			$criteria->with=array('operation', 'operation.document');
+			$criteria->compare('document.number',$this->documentNumber,true);			
+		}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'sort'=>array(
-				'defaultOrder'=>'id DESC',
+				'defaultOrder'=>'t.id DESC',
 			),
 		));
 	}

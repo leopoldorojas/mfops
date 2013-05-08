@@ -57,15 +57,29 @@ $this->menu=array(
 		array(
 			'header' => '¿Entrada o Salida?',
 			'value' => '$data->input ? "Entrada" : "Salida"',
+			'filter' => CHtml::activeDropDownList($operation,'input',
+				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'--'))
 		),
 		array(
 			'header' => '¿Caja o Bancos?',
 			'value' => '$data->bank ? "Bancos" : "Caja"',
+			'filter' => CHtml::activeDropDownList($operation,'bank',
+				array(true=>'Bancos', false=>'Caja'), array('empty'=>'--'))
 		),
-		'movement_type.description:text:Tipo',
+		array(
+			'header'=>'Tipo',
+			'value'=>'$data->movement_type ? $data->movement_type->description : ""',
+			'filter' => CHtml::activeDropDownList($operation,'type_id',
+				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
+		),
 		'operation_date',
 		'amount:number:Monto',
-		'entity.name:text:Entidad',
+		array(
+			'header'=>'Entidad',
+			'value'=>'$data->entity ? $data->entity->name : ""',
+			'filter' => CHtml::activeDropDownList($operation,'entity_id',
+				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
+		),
 		'entity_name',
 		'description',
 		'journal_entry_id',

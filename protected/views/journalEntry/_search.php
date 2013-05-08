@@ -36,16 +36,21 @@
 		<?php echo $form->textField($model,'creditAmount',array('size'=>19,'maxlength'=>19)); ?>
 	</div>
 
-	<div class="row">
+	<?php /* <div class="row">
 		<?php echo $form->label($model,'branchID'); ?>
 		<?php echo $form->textField($model,'branchID'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row">
 		<?php echo $form->label($model,'journalEntry_date'); ?>
 		<?php echo $form->textField($model,'journalEntry_date'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'documentNumber'); ?>
+		<?php echo $form->textField($model,'documentNumber'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->label($model,'notes'); ?>
 		<?php echo $form->textArea($model,'notes',array('rows'=>6, 'cols'=>50)); ?>
