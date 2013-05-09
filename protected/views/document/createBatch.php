@@ -2,8 +2,13 @@
 /* @var $this DocumentController */
 /* @var $model Document */
 
-// Angular.js
+Yii::app()->clientScript->registerCoreScript('jquery.ui');
+Yii::app()->clientScript->registerCssFile(
+	Yii::app()->clientScript->getCoreScriptUrl().
+	'/jui/css/base/jquery-ui.css'
+);
 Yii::app()->clientScript->registerScriptFile('https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/vendors/date.js');
 
 $this->breadcrumbs=array(
 	'Documentos'=>array('admin'),
@@ -16,13 +21,24 @@ $this->menu=array(
 );
 
 Yii::app()->clientScript->registerScript('angularController', "
+var app = angular.module('arckantoApp', ['ui.date']);
+
 function adminTotal(\$scope, \$http) {
+	\$scope.documentReadOnly = false;	
 	\$scope.amount = 0;
 	\$scope.varTotal = 0;
 	\$scope.document = {}
 	\$scope.operations = [
 		{}
 	];
+
+	\$scope.dateOptions = {
+	    dateFormat: 'yy-mm-dd',     
+	    yearRange: '2007:2025',     
+		changeYear: true,           
+		changeMonth: true,          
+		maxDate: '0',
+	};
 
 	\$http.get('http://localhost:8888/mfops/index.php/documentType/list').success(function(data) {
     	\$scope.document_types = data;
@@ -34,8 +50,10 @@ function adminTotal(\$scope, \$http) {
 
 		if (index > 0) {
 			\$scope.document.number = \$scope.document_types[index].next_number;
+			\$scope.documentReadOnly = true;	
 		} else {
 			\$scope.document.number = '';
+			\$scope.documentReadOnly = false;	
 		}
 	}	
 

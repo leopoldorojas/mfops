@@ -3,6 +3,7 @@
 /* @var $model MovementType */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Tipos de Movimiento'=>array('admin'),
 	$model->id,
 );

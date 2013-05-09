@@ -3,6 +3,7 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Categorías de Movimientos'=>array('admin'),
 	$model->id,
 );

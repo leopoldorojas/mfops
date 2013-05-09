@@ -3,6 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Categorías de Movimientos',
 );
 

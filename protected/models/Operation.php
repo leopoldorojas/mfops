@@ -51,6 +51,7 @@ class Operation extends CActiveRecord
 		return array(
 			array('type_id, operation_date, input, bank, amount, document_id', 'required'),
 			array('type_id, entity_id', 'numerical', 'integerOnly'=>true),
+			//array('operation_date', 'date', 'format'=>'dd-MM-yyyy'),
 			array('amount, reference_price', 'numerical'),
 			array('amount, reference_price', 'length', 'max'=>19),
 			array('entity_name', 'length', 'max'=>255),
@@ -93,7 +94,6 @@ class Operation extends CActiveRecord
 			'bank' => '¿Caja o Bancos?',
 			'operation_date' => 'Fecha del Movimiento',
 			'amount' => 'Monto',
-			'sAmount' => 'Monto',
 			'entity_id' => 'Entidad operación',
 			'entity_name' => 'Notas o Entidad',
 			'reference_price' => 'Precio unitario',

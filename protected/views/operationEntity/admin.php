@@ -3,6 +3,7 @@
 /* @var $model OperationEntity */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Entidades de Operación'=>array('admin'),
 	'Administrar',
 );
@@ -50,6 +51,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'code',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}',
 		),
 	),
 )); ?>

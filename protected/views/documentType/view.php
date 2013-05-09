@@ -3,6 +3,7 @@
 /* @var $model DocumentType */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Tipos de Documento'=>array('admin'),
 	$model->id,
 );

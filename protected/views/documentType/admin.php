@@ -3,6 +3,7 @@
 /* @var $model DocumentType */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Tipos de Documento'=>array('admin'),
 	'Administrar',
 );
@@ -28,7 +29,7 @@ $('.search-form form').submit(function(){
 
 <h1>Administrar Tipos de Documento</h1>
 
-<p>
+<?php /* <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realizar la comparación.
 </p>
@@ -38,18 +39,19 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
-</div><!-- search-form -->
+</div><!-- search-form --> */ ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'document-type-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	// 'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'description',
 		'next_number',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}',
 		),
 	),
 )); ?>

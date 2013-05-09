@@ -3,6 +3,7 @@
 /* @var $model MovementCategory */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Categorías de Movimientos'=>array('admin'),
 	'Administrar',
 );
@@ -28,7 +29,7 @@ $('.search-form form').submit(function(){
 
 <h1>Administrar Categorías de Movimientos</h1>
 
-<p>
+<? /* <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realizar la comparación.
 </p>
@@ -38,17 +39,18 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
-</div><!-- search-form -->
+</div><!-- search-form --> */ ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'movement-category-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'description',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}',
 		),
 	),
 )); ?>

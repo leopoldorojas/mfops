@@ -3,6 +3,7 @@
 /* @var $model MovementType */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Tipos de Movimiento'=>array('admin'),
 	'Administrar',
 );
@@ -28,7 +29,7 @@ $('.search-form form').submit(function(){
 
 <h1>Administrar Tipos de Movimiento</h1>
 
-<p>
+<?php /* <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realizar la comparación.
 </p>
@@ -38,7 +39,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
-</div><!-- search-form -->
+</div><!-- search-form --> */ ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'movement-type-grid',
@@ -46,10 +47,16 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'movement_category.description:text:Categoría de Movimiento',
+		array(
+			'header'=>'Categoría de Movimiento',
+			'value'=>'$data->movement_category ? $data->movement_category->description : ""',
+			'filter' => CHtml::activeDropDownList($model,'movement_category_id',
+				CHtml::listData(MovementCategory::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
+		),
 		'description',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}',
 		),
 	),
 )); ?>

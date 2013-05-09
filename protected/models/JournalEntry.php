@@ -135,11 +135,11 @@ class JournalEntry extends CActiveRecord
 			$this->creditAccount = $accountingRule->creditAccount1;
 			$this->creditAmount = $operation->amount;
 			$this->journalEntry_date = $operation->operation_date;
-			$this->notes = $operation->description . ". Documento en Sistema de Operaciones: $operation->document_id";
+			$this->notes = $operation->description . ". Informacion del Sistema de Operaciones: ID de Documento: $operation->document_id y Numero de Documento: " . $operation->document->number;
 			if ($this->save()) {
 				return array('journal_entry_id' => $this->id, 'status'=>'success', 'message'=>"Operación grabada exitosamente");
 			} else {
-				return array('journal_entry_id' => 0, 'status'=>'error', 'message'=>"No se pudo grabar la transacción. Intente más tarde");;
+				return array('journal_entry_id' => 0, 'status'=>'error', 'message'=>"No se pudo grabar la transacción. Intente más tarde y la fecha es $operation->operation_date");;
 			}
 		} else {
 			return array('status'=>'error', 'message'=>'La regla contable no existe. No se pudo grabar');
@@ -156,8 +156,9 @@ class JournalEntry extends CActiveRecord
 
 		        if (Yii::app()->mambu->isInitialized && Yii::app()->mambu->connect())
 		        {
+		        	$journalEntryDate = date("Y-m-d", strtotime($this->journalEntry_date));
 			    	Yii::app()->mambu->postBody = "{
-						'date'			:'$this->journalEntry_date',
+						'date'			:'$journalEntryDate',
 						'debitAccount1'	:'$this->debitAccount',
 						'debitAmount1'	:'$this->debitAmount',
 						'creditAccount1':'$this->creditAccount',

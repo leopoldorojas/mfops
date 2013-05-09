@@ -31,16 +31,20 @@
 		<?php echo $form->error($model,'documentType_id'); ?>
 	</div>
 
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'number'); ?>
-		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number', 'ng-readonly'=>'document.number > 0')); ?>
+		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number', 'ng-readonly'=>'documentReadOnly')); ?>
 		<?php echo $form->error($model,'number'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'document_date'); ?>
-		<?php echo $form->textField($model,'document_date', array('ng-model'=>'document.document_date')); ?>
+		<?php echo $form->textField($model,'document_date',
+			array(
+				'ng-model'=>'document.document_date',
+				'ui-date'=>'dateOptions',
+			)
+		); ?>
 		<?php echo $form->error($model,'document_date'); ?>
 	</div>
 
@@ -120,7 +124,13 @@
 		</td>
 
 		<td>
-			<?php echo CHtml::activeDateField($operation,"operation_date", array('placeholder'=>'Fecha de Movimiento', 'ng-model'=>'operation.operation_date')); ?>
+			<?php echo $form->textField($operation,'operation_date',
+				array(
+					'ng-model'=>'operation.operation_date',
+					'ui-date'=>'dateOptions',
+					'id'=>'Operation_operation_date_{{$index + 1}}',
+				)
+			); ?>
 			<?php echo $form->error($operation,"operation_date"); ?>
 		</td>
 

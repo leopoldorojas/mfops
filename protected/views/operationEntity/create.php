@@ -3,6 +3,7 @@
 /* @var $model OperationEntity */
 
 $this->breadcrumbs=array(
+	'Administración de Tipos' => array('/site/typesAdmin'),
 	'Entidades de Operación'=>array('admin'),
 	'Crear',
 );
