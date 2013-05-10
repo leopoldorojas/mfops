@@ -89,6 +89,13 @@ function adminTotal(\$scope, \$http) {
 		\$scope.url = 'http://localhost:8888/mfops/index.php/document/createRestfulBatch';
 	    \$scope.code = null;
 	    \$scope.response = null;
+
+	    for (var i=0, numOperations=\$scope.operations.length; i < numOperations; i++) {
+	    	\$scope.operations[i].entity_id = \$scope.operations[i].entity_id || \$scope.document.entity_id;
+	    	\$scope.operations[i].entity_name = \$scope.operations[i].entity_name || \$scope.document.entity_name;
+	    	\$scope.operations[i].operation_date = \$scope.operations[i].operation_date || \$scope.document.document_date;
+	    }
+
 	    \$scope.dataToSend = {
 	    	'Document': \$scope.document,
 	    	'Operation': \$scope.operations 
