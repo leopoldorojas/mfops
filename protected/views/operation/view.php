@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Movimiento Id <?php echo $model->id; ?> del Documento <?php echo $model->document_id; ?></h1>
+<h1>Movimiento Id <?php echo $model->id; ?>. Documento Número <?php echo $model->document->number; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

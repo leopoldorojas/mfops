@@ -173,8 +173,10 @@
 	</ul>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar Documento' : 'Grabar', array('ng-disabled'=>'amountNotValid()')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrar Documento' : 'Grabar', array('ng-disabled'=>'amountNotValid() || loading')); ?>
 	</div>
+
+	<?php echo CHtml::image(Yii::app()->theme->baseUrl . '/images/ajaxSpinner.gif', 'Ajax Spinner', array('width'=>'20px', 'ng-show'=>'loading')) ?>
 
 <?php $this->endWidget(); ?>
 

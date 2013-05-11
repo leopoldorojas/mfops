@@ -24,6 +24,7 @@ Yii::app()->clientScript->registerScript('angularController', "
 var app = angular.module('arckantoApp', ['ui.date']);
 
 function adminTotal(\$scope, \$http) {
+	\$scope.loading = false;
 	\$scope.documentReadOnly = false;	
 	\$scope.amount = 0;
 	\$scope.varTotal = 0;
@@ -85,6 +86,7 @@ function adminTotal(\$scope, \$http) {
 	};
 
 	\$scope.submit = function() {
+		\$scope.loading = true;
 		\$scope.method = 'POST';
 		\$scope.url = 'http://localhost:8888/mfops/index.php/document/createRestfulBatch';
 	    \$scope.code = null;
@@ -103,6 +105,7 @@ function adminTotal(\$scope, \$http) {
 
 	    \$http({method: \$scope.method, url: \$scope.url, data: \$scope.dataToSend, headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
 	      success(function(data, status) {
+			\$scope.loading = false;
 	        \$scope.status = status;
 	        \$scope.data = data;
 
@@ -113,6 +116,7 @@ function adminTotal(\$scope, \$http) {
 	        }
 	      }).
 	      error(function(data, status) {
+			\$scope.loading = false;
 	        \$scope.data = data; 
 	        \$scope.status = status;
 	        alert('Error. La transacción ha fallado. Posiblemente por fallas de comunicación con el sistema externo. Consulte con su administrador del sistema');
