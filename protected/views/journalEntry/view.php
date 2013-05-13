@@ -28,7 +28,11 @@ $this->menu=array(
 		'creditAmount:number:Monto Acreditado',
 		//'branchID',
 		'journalEntry_date',
-		'notes',
+        array(
+                'label'=>'Notas',
+                'value'=>nl2br($model->notes),
+                'type'=>'raw',
+        ),
 		// 'user_id',
 		// 'createdon',
 		// 'updatedon',
@@ -45,7 +49,11 @@ $this->menu=array(
 			'data'=>$model->operation,
 			'attributes'=>array(
 				'id',
-				'document.number:text:Número de Documento',
+				array(
+					'label'=>'Número de Documento',
+					'type'=>'raw',
+					'value'=>CHtml::link($model->operation->document->number, array('document/view','id'=>$model->operation->document_id))
+				),
 				array(
 					'label' => '¿Entrada o Salida?',
 					'value' => CHtml::encode($model->operation->input ? "Entrada de Dinero" : "Salida de Dinero"),

@@ -19,6 +19,7 @@
 class JournalEntry extends CActiveRecord
 {
 	public $documentNumber = "";
+	private $originalNotes = "";
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -135,7 +136,11 @@ class JournalEntry extends CActiveRecord
 			$this->creditAccount = $accountingRule->creditAccount1;
 			$this->creditAmount = $operation->amount;
 			$this->journalEntry_date = $operation->operation_date;
-			$this->notes = $operation->description . ". Informacion del Sistema de Operaciones: ID de Documento: $operation->document_id y Numero de Documento: " . $operation->document->number;
+			$this->originalNotes = $operation->description;
+			$this->notes = $operation->description;
+			if (!empty($this->notes))
+				$this->notes .= ". ";
+			$this->notes .= "Informacion del Sistema de Operaciones: ID de Documento: $operation->document_id y Numero de Documento: " . $operation->document->number;
 			if ($this->save()) {
 				return array('journal_entry_id' => $this->id, 'status'=>'success', 'message'=>"Operación grabada exitosamente");
 			} else {
@@ -172,7 +177,9 @@ class JournalEntry extends CActiveRecord
 						$entryID1 = $response['entryID1'];
 						$entryID2 = $response['entryID2'];
 						$transactionID = $response['transactionID'];
-						$this->notes .= " En Mambu => ID Asiento1: $entryID1, ID Asiento2: $entryID2, Identificador Transacción: $transactionID ";
+						if (!empty($this->originalNotes))
+							$this->originalNotes .= "\n\n";
+						$this->notes = $this->originalNotes . "Información Mambu:\nID Asiento1 => $entryID1,\nID Asiento2 => $entryID2,\nIdentificador Transacción => $transactionID";
 					}
 
 					return $response['return'];

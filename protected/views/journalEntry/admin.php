@@ -56,7 +56,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 			'name' => 'operation.document.number',
 			'filter'=>CHtml::activeTextField($model,'documentNumber'),
 		),
-		'notes',
+		//'notes',
 		/*
 		'user_id',
 		'createdon',
