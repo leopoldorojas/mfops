@@ -45,6 +45,10 @@ function adminTotal(\$scope, \$http) {
     	\$scope.document_types = data;
   	});
 
+	\$http.get('http://localhost:8888/mfops/index.php/movementType/list?withPrice=true').success(function(data) {
+    	\$scope.movement_types = data;
+  	});
+
 	\$scope.setDocumentNumber = function() {
 		var index = 0;
 		index = findIndexByKeyValue(\$scope.document_types, 'id', \$scope.document.documentType_id);
@@ -68,6 +72,22 @@ function adminTotal(\$scope, \$http) {
 	    return null;
 	}
 
+	\$scope.showReferencePrice = function(operation) {
+		var type_found = false;
+
+		for (var i=0; i < \$scope.movement_types.length; i++) {
+			if (\$scope.movement_types[i].id == operation.type_id) {
+				return (type_found = true);
+			}
+		}
+
+		if (!type_found) {
+			operation.reference_price = '';
+		}
+
+		return type_found;		
+	}
+
 	\$scope.calculatedTotalAmount = function() {
 		sumatory = 0;
 		angular.forEach(\$scope.operations, function(operation){
@@ -75,15 +95,15 @@ function adminTotal(\$scope, \$http) {
 		});
 		\$scope.varTotal = sumatory;
 		return \$scope.varTotal;
-  	};
+  	}
 
 	\$scope.addOperation = function() {
 		\$scope.operations.push({});
-	};
+	}
 
 	\$scope.removeOperation = function() {
 		\$scope.operations.pop();
-	};
+	}
 
 	\$scope.submit = function() {
 		\$scope.loading = true;

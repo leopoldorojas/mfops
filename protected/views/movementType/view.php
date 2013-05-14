@@ -25,5 +25,9 @@ $this->menu=array(
 		'id',
 		'movement_category.description:text:Categoría de Movimiento',
 		'description',
+		array(
+			'label'=>'¿Utiliza Precio de Referencia?',
+			'value' => CHtml::encode($model->with_price ? "Sí" : "No"),
+		),
 	),
 )); ?>

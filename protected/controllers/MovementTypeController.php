@@ -52,6 +52,20 @@ class MovementTypeController extends Controller
 	}
 
 	/**
+	 * Lists all models in Json format. This is an action as a REST API
+	 */
+	public function actionList()
+	{
+		$models = isset($_GET['withPrice']) ? MovementType::model()->findAllByAttributes(array('with_price'=>true)) : MovementType::model()->findAll();
+    	$rows = array();
+        foreach($models as $model)
+            $rows[] = $model->attributes;
+
+        echo json_encode($rows);
+        Yii::app()->end();
+	}
+
+	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */

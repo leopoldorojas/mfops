@@ -28,6 +28,12 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'with_price'); ?>
+		<?php echo $form->checkBox($model,'with_price'); ?>
+		<?php echo $form->error($model,'with_price'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Grabar'); ?>
 	</div>

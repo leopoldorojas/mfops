@@ -128,7 +128,7 @@ class DocumentTypeController extends Controller
 	 */
 	public function actionList()
 	{
-		$models=DocumentType::model()->findAll();;
+		$models=DocumentType::model()->findAll();
     	$rows = array();
         foreach($models as $model)
             $rows[] = $model->attributes;

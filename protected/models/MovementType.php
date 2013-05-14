@@ -10,6 +10,7 @@
  * @property integer $user_id
  * @property string $createdon
  * @property string $updatedon
+ * @property boolean $with_price
  */
 class MovementType extends CActiveRecord
 {
@@ -43,6 +44,7 @@ class MovementType extends CActiveRecord
 			array('movement_category_id', 'numerical', 'integerOnly'=>true),
 			array('description', 'length', 'max'=>255),
 			array('description', 'ext.UniqueAttributesValidator', 'with'=>'movement_category_id'),
+			array('with_price', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, movement_category_id, description', 'safe', 'on'=>'search'),
@@ -71,6 +73,7 @@ class MovementType extends CActiveRecord
 			'id' => 'Id',
 			'movement_category_id' => 'Categoría',
 			'description' => 'Descripción',
+			'with_price' => '¿Utiliza Precio de Referencia?',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creada en',
 			'updatedon' => 'Actualizada en',
@@ -91,6 +94,7 @@ class MovementType extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('movement_category_id',$this->movement_category_id);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('with_price',$this->with_price);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

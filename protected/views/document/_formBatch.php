@@ -152,8 +152,8 @@
 			<?php echo CHtml::activeTextField($operation,"entity_name", array('placeholder'=>'Entidad', 'ng-model'=>'operation.entity_name')); ?>
 			<?php echo $form->error($operation,"entity_name"); ?>
 		</td>
-		<td>
-			<?php echo CHtml::activeTextField($operation,"reference_price", array('placeholder'=>'Precio de Referencia', 'ng-model'=>'operation.reference_price')); ?>
+		<td ng-show='showReferencePrice(operation)'>
+			<?php echo CHtml::activeTextField($operation,"reference_price", array('placeholder'=>'Precio de Referencia de la Acción', 'ng-model'=>'operation.reference_price')); ?>
 			<?php echo $form->error($operation,"reference_price"); ?>
 		</td>
 

@@ -54,13 +54,19 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
     ),
 	'columns'=>array(
 		'id',
+		'description',
+		array(
+			'header'=>'¿Utiliza Precio de Referencia?',
+			'value'=>'$data->with_price ? "Sí" : "No"',
+			'filter' => CHtml::activeDropDownList($model,'with_price',
+				array(true=>'Sí', false=>'No'), array('empty'=>'--')),
+		),
 		array(
 			'header'=>'Categoría de Movimiento',
 			'value'=>'$data->movement_category ? $data->movement_category->description : ""',
 			'filter' => CHtml::activeDropDownList($model,'movement_category_id',
 				CHtml::listData(MovementCategory::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
 		),
-		'description',
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{update}{delete}',

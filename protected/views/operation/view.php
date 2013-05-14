@@ -14,9 +14,11 @@ $this->menu=array(
 	//array('label'=>'Borrar movimiento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Consultar movimientos', 'url'=>array('admin')),
 );
+
+$documentNumber = ($model->document) ? $model->document->number : '';
 ?>
 
-<h1>Movimiento Id <?php echo $model->id; ?>. Documento Número <?php echo $model->document->number; ?></h1>
+<h1>Movimiento Id <?php echo $model->id; ?>. Documento Número <?php echo $documentNumber; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -25,7 +27,7 @@ $this->menu=array(
 		array(
 			'label'=>'Número de Documento',
 			'type'=>'raw',
-			'value'=>CHtml::link($model->document->number, array('document/view','id'=>$model->document_id))
+			'value'=>CHtml::link($documentNumber, array('document/view','id'=>$model->document_id))
 		),
 		array(
 			'label' => '¿Entrada o Salida?',
