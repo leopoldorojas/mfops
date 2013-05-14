@@ -20,6 +20,7 @@ class JournalEntry extends CActiveRecord
 {
 	public $documentNumber = "";
 	private $originalNotes = "";
+	private $errorCodeMambu = 0;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -144,7 +145,7 @@ class JournalEntry extends CActiveRecord
 			if ($this->save()) {
 				return array('journal_entry_id' => $this->id, 'status'=>'success', 'message'=>"Operación grabada exitosamente");
 			} else {
-				return array('journal_entry_id' => 0, 'status'=>'error', 'message'=>"No se pudo grabar la transacción. Intente más tarde y la fecha es $operation->operation_date");;
+				return array('journal_entry_id' => 0, 'status'=>"Error Mambu $this->errorCodeMambu", 'message'=>"No se pudo grabar la transacción. Intente más tarde.");
 			}
 		} else {
 			return array('status'=>'error', 'message'=>'La regla contable no existe. No se pudo grabar');
@@ -174,12 +175,15 @@ class JournalEntry extends CActiveRecord
 					$response = Yii::app()->mambu->post();
 
 					if ($response['return']) {
+						$this->errorCodeMambu = 0;
 						$entryID1 = $response['entryID1'];
 						$entryID2 = $response['entryID2'];
 						$transactionID = $response['transactionID'];
 						if (!empty($this->originalNotes))
 							$this->originalNotes .= "\n\n";
 						$this->notes = $this->originalNotes . "Información Mambu:\nID Asiento1 => $entryID1,\nID Asiento2 => $entryID2,\nIdentificador Transacción => $transactionID";
+					} else {
+						$this->errorCodeMambu = $response['errorCode'];
 					}
 
 					return $response['return'];

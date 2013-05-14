@@ -17,6 +17,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Actualizar Categoría de Movimientos <?php echo $model->id; ?></h1>
+<h1>Actualizar Categoría de Movimientos Id <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

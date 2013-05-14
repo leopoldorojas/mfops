@@ -44,6 +44,13 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 	'id'=>'document-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+    'emptyText' => 'No hay ningún registro para mostrar',
+    'summaryText' => 'Mostrando {start}-{end} de {count} registro(s).',
+    'pager'=>array(
+        'header'         => 'Ir a página:',
+        'prevPageLabel'  => '< Previa',
+        'nextPageLabel'  => 'Próxima >',
+    ),
 	'columns'=>array(
 		'id',
 		array(

@@ -119,7 +119,7 @@ function adminTotal(\$scope, \$http) {
 			\$scope.loading = false;
 	        \$scope.data = data; 
 	        \$scope.status = status;
-	        alert('Error. La transacción ha fallado. Posiblemente por fallas de comunicación con el sistema externo. Consulte con su administrador del sistema');
+	        alert(data);
 	    });
     }
 

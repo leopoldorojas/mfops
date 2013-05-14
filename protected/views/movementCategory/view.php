@@ -35,12 +35,16 @@ $this->menu=array(
 	'id'=>'movement-type-grid',
 	'dataProvider'=>$movementType->search(),
 	'filter'=>$movementType,
+    'emptyText' => 'No hay ningún registro para mostrar',
+    'summaryText' => 'Mostrando {start}-{end} de {count} registro(s).',
+    'pager'=>array(
+        'header'         => 'Ir a página:',
+        'prevPageLabel'  => '< Previa',
+        'nextPageLabel'  => 'Próxima >',
+    ),
 	'columns'=>array(
 		'id',
 		'description',
-		array(
-			'class'=>'CButtonColumn',
-		),
 	),
 ));
 ?>

@@ -49,7 +49,7 @@ class MovementCategoryController extends Controller
 		$movementType=new MovementType('search');
 
 		if(isset($_GET['MovementType']))
-			$operation->attributes=$_GET['MovementType'];
+			$movementType->attributes=$_GET['MovementType'];
 
 		$movementType->movement_category_id = $id;
 		$this->render('view',array(

@@ -234,7 +234,7 @@ class DocumentController extends Controller
 										} else {
 											if (!$journalEntryHasErrors) {
 												$journalEntryHasErrors=true;
-												Yii::app()->user->setFlash('error', 'El documento sí se grabó pero uno o más de los detalles de movimientos de la transacción anterior no se pudieron grabar, posiblemente por fallas de conexión con sistema externo o datos inválidos para el sistema externo');
+												Yii::app()->user->setFlash('error', "El documento sí se grabó pero uno o más de los detalles de movimientos de la transacción anterior no se pudieron grabar, posiblemente por fallas de conexión con sistema externo o datos inválidos para el sistema externo. " . $status['status']);
 											}
 										}
 									}
