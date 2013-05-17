@@ -60,6 +60,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 			'value'=>'$data->with_price ? "Sí" : "No"',
 			'filter' => CHtml::activeDropDownList($model,'with_price',
 				array(true=>'Sí', false=>'No'), array('empty'=>'--')),
+			'visible'=> Yii::app()->user->name == 'admin',
 		),
 		array(
 			'header'=>'Categoría de Movimiento',

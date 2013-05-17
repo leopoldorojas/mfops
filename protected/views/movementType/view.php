@@ -28,6 +28,7 @@ $this->menu=array(
 		array(
 			'label'=>'¿Utiliza Precio de Referencia?',
 			'value' => CHtml::encode($model->with_price ? "Sí" : "No"),
+			'visible'=> Yii::app()->user->name == 'admin',
 		),
 	),
 )); ?>

@@ -17,8 +17,10 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('with_price')); ?>:</b>
-	<?php echo CHtml::encode($data->with_price ? "Sí" : "No"); ?>
-	<br />
+	<?php if (Yii::app()->user->name == 'admin') { ?>
+		<b><?php echo CHtml::encode($data->getAttributeLabel('with_price')); ?>:</b>
+		<?php echo CHtml::encode($data->with_price ? "Sí" : "No"); ?>
+		<br />
+	<?php } ?>
 
 </div>

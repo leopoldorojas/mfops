@@ -50,6 +50,7 @@ $this->menu=array(
 			'value'=>'$data->with_price ? "Sí" : "No"',
 			'filter' => CHtml::activeDropDownList($movementType,'with_price',
 				array(true=>'Sí', false=>'No'), array('empty'=>'--')),
+			'visible'=> Yii::app()->user->name == 'admin',
 		),
 	),
 ));

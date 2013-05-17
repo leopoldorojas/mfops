@@ -153,7 +153,7 @@
 			<?php echo $form->error($operation,"entity_name"); ?>
 		</td>
 		<td ng-show='showReferencePrice(operation)'>
-			<?php echo CHtml::activeTextField($operation,"reference_price", array('placeholder'=>'Precio de Referencia de la Acción', 'ng-model'=>'operation.reference_price')); ?>
+			<?php echo CHtml::activeTextField($operation,"reference_price", array('placeholder'=>'Precio de Referencia de la Acción', 'ng-model'=>'operation.reference_price', 'ng-required'=>'showReferencePrice(operation)')); ?>
 			<?php echo $form->error($operation,"reference_price"); ?>
 		</td>
 
