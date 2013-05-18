@@ -7,7 +7,7 @@ Yii::app()->clientScript->registerCssFile(
 	Yii::app()->clientScript->getCoreScriptUrl().
 	'/jui/css/base/jquery-ui.css'
 );
-Yii::app()->clientScript->registerScriptFile('https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js');
+Yii::app()->clientScript->registerScriptFile('https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/vendors/date.js');
 
 $this->breadcrumbs=array(

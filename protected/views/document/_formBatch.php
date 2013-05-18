@@ -12,6 +12,7 @@
 	'method'=>false,
 	'enableAjaxValidation'=>false,
 	'htmlOptions'=>array(
+		'name'=>'form',
 		'ng-submit'=>'submit()',
 	),
 )); ?>
@@ -23,7 +24,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'documentType_id'); ?>
 		<select
-			ng-model='document.documentType_id'
+			ng-model='document.documentType_id' required 
 			ng-options="document_type.id as document_type.description for document_type in document_types"
 			ng-change="setDocumentNumber()">
 			<option value="">Seleccione tipo de documento</option>
@@ -33,7 +34,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'number'); ?>
-		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number', 'ng-readonly'=>'documentReadOnly')); ?>
+		<?php echo $form->textField($model,'number',array('size'=>60,'maxlength'=>255, 'ng-model'=>'document.number', 'ng-readonly'=>'documentReadOnly', 'ng-required'=>true)); ?>
 		<?php echo $form->error($model,'number'); ?>
 	</div>
 
@@ -43,6 +44,7 @@
 			array(
 				'ng-model'=>'document.document_date',
 				'ui-date'=>'dateOptions',
+				'ng-required'=>true,
 			)
 		); ?>
 		<?php echo $form->error($model,'document_date'); ?>
@@ -69,7 +71,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'totalAmount'); ?>
-		<?php echo $form->textField($model,'totalAmount', array('ng-model'=>'totalAmount', 'placeholder'=>'Registre el monto')); ?>
+		<input ng-model="totalAmount" min="1" integer placeholder="Registre el monto" name="Document[totalAmount]" id="Document_totalAmount" type="number" value="0" />
+		<span ng-show="form.$error.integer">¡El monto debe ser un número entero!</span>
 		<?php echo $form->error($model,'totalAmount'); ?>
 	</div>
 
@@ -78,48 +81,27 @@
 		<?php echo $form->textField($model,'calculatedTotalAmount', array('readonly'=>true, 'value'=>'{{calculatedTotalAmount()}}')); ?>
 	</div>
 
-	<?php /* <hr />
-
-	<table>
-	<tr>
-		<th>Línea de Detalle</th>
-		<th><?php echo $form->labelEx($operation,'input'); ?></th>
-		<th><?php echo $form->labelEx($operation,'bank'); ?></th>
-		<th><?php echo $form->labelEx($operation,'type_id'); ?></th>
-		<th><?php echo $form->labelEx($operation,'operation_date'); ?></th>
-	</tr>
-	<tr>
-		<th><?php echo $form->labelEx($operation,'amount'); ?></th>
-		<th><?php echo $form->labelEx($operation,'entity_id'); ?></th>
-		<th><?php echo $form->labelEx($operation,'entity_name'); ?></th>
-		<th><?php echo $form->labelEx($operation,'reference_price'); ?></th>
-		<th><?php echo $form->labelEx($operation,'description'); ?></th>
-	</tr>
-	</table> */ ?>
-
 	<hr />
 	<ul style="list-style-type: none; margin:0; padding:0;">
 		<li ng-repeat="operation in operations">
 			<table ng-class-odd="'odd-detail'" ng-class-even="'even-detail'"> 
 
 	<tr>
-		<!-- <td>Detalle {{$index + 1}}</td> -->
-
 		<td>
 			<?php echo $form->dropdownlist($operation,"type_id",
-				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Tipo de Movimiento', 'ng-model'=>'operation.type_id')); ?>
+				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Tipo de Movimiento', 'ng-model'=>'operation.type_id', 'ng-required'=>true)); ?>
 			<?php echo $form->error($operation,"type_id"); ?>
 		</td>
 
 		<td>
 			<?php echo $form->dropdownlist($operation,"input",
-				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'Entrada o Salida', 'ng-model'=>'operation.input')); ?>
+				array(true=>'Entrada de dinero', false=>'Salida de dinero'), array('empty'=>'Entrada o Salida', 'ng-model'=>'operation.input', 'ng-required'=>true)); ?>
 			<?php echo $form->error($operation,"input"); ?>
 		</td>
 
 		<td>
 			<?php echo $form->dropdownlist($operation,"bank",
-				array(false=>'Caja', true=>'Bancos'), array('empty'=>'Caja o Bancos', 'ng-model'=>'operation.bank')); ?>
+				array(false=>'Caja', true=>'Bancos'), array('empty'=>'Caja o Bancos', 'ng-model'=>'operation.bank', 'ng-required'=>true)); ?>
 			<?php echo $form->error($operation,"bank"); ?>
 		</td>
 
@@ -135,13 +117,12 @@
 		</td>
 
 		<td>
-			<?php echo CHtml::activeTextField($operation,"amount", array('placeholder'=>'Monto del detalle', 'ng-model'=>'operation.amount')); ?>
+			<?php echo CHtml::activeNumberField($operation,"amount", array('placeholder'=>'Monto del detalle', 'ng-model'=>'operation.amount', 'min'=>'1')); ?>
 			<?php echo $form->error($operation,"amount"); ?>
 		</td>
-
 	</tr>
-	<tr>
 
+	<tr>
 		<td>
 			<?php echo $form->dropdownlist($operation,"entity_id", 
 				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'Entidad de operación', 'ng-model'=>'operation.entity_id')); ?>
