@@ -111,6 +111,7 @@
 					'ng-model'=>'operation.operation_date',
 					'ui-date'=>'dateOptions',
 					'id'=>'Operation_operation_date_{{$index + 1}}',
+					'placeholder'=>'Fecha de Operación',
 				)
 			); ?>
 			<?php echo $form->error($operation,"operation_date"); ?>

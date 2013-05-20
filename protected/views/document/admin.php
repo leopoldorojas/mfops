@@ -68,7 +68,11 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 				CHtml::listData(OperationEntity::model()->findAll(), 'id', 'name'), array('empty'=>'--')),
 		),
 		'entity_name',
-		'description',
+		array(
+			'name' => 'totalAmount',
+			'filter' => false,
+		),
+		//'description',
 		// 'user_id',
 		array(
 			'class'=>'CButtonColumn',

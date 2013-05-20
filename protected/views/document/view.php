@@ -37,6 +37,7 @@ $this->menu=array(
 		'document_type.description:text:Tipo de Documento',
 		'number',
 		'document_date',
+		'totalAmount:number:Monto Total',
 		'entity.name:text:Entidad',
 		'entity_name',
 		'description',

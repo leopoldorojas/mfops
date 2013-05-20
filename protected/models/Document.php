@@ -17,7 +17,7 @@
  */
 class Document extends CActiveRecord
 {
-	public $totalAmount = 0;
+	private $_totalAmount = 0;
 	public $calculatedTotalAmount = 0;
 
 	/**
@@ -81,7 +81,7 @@ class Document extends CActiveRecord
 			'id' => 'Id',
 			'documentType_id' => 'Tipo de Documento',
 			'number' => 'Número de Documento',
-			'document_date' => 'Fecha de Operación',
+			'document_date' => 'Fecha de Documento',
 			'entity_id' => 'Entidad de Operación',
 			'entity_name' => 'Nota acerca de la Entidad',
 			'description' => 'Descripción del Documento',
@@ -119,6 +119,14 @@ class Document extends CActiveRecord
 				'defaultOrder'=>'id DESC',
 			),
 		));
+	}
+
+	// Get the total amount of the operations.
+	public function getTotalAmount()
+	{
+		$this->_totalAmount = 0;
+		foreach ($this->operations as $operation) {	$this->_totalAmount += $operation->amount; }
+		return $this->_totalAmount;
 	}
 
 	protected function beforeSave()
