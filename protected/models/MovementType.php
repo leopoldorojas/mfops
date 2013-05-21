@@ -121,5 +121,18 @@ class MovementType extends CActiveRecord
 	    else
 	        return false;
 	}
-	
+
+	protected function beforeDelete()
+	{
+		if (parent::beforeDelete())
+			if (!empty($this->operations)) {
+				$this->addError('id','No se puede borrar el Tipo de Movimiento debido a que tiene movimientos registrados');
+				return false;
+			}
+			else
+				return true;
+		else
+			return false;
+	}
+
 }

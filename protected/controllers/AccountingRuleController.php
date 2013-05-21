@@ -116,11 +116,17 @@ class AccountingRuleController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		$result = $model->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
+		{
+			if (!$result)
+				Yii::app()->user->setFlash('error', $model->getError('id'));
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			echo json_encode(array('delete' => $result, 'message' => $model->getError('id')));
 	}
 
 	/**

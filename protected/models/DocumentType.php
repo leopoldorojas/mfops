@@ -96,4 +96,18 @@ class DocumentType extends CActiveRecord
 			),
 		));
 	}
+
+	protected function beforeDelete()
+	{
+		if (parent::beforeDelete())
+			if (!empty($this->documents)) {
+				$this->addError('id','No se puede borrar el Tipo de Documento debido a que tiene Documentos registrados');
+				return false;
+			}
+			else
+				return true;
+		else
+			return false;
+	}
+
 }

@@ -116,5 +116,18 @@ class OperationEntity extends CActiveRecord
 	    else
 	        return false;
 	}
-	
+
+	protected function beforeDelete()
+	{
+		if (parent::beforeDelete())
+			if (!empty($this->documents) || !empty($this->operations)) {
+				$this->addError('id','No se puede borrar la Entidad debido a que tiene Documentos o Movimientos registrados');
+				return false;
+			}
+			else
+				return true;
+		else
+			return false;
+	}
+
 }

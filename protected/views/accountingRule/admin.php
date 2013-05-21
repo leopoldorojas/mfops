@@ -40,6 +40,12 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 )); ?>
 </div><!-- search-form -->
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'accounting-rule-grid',
 	'dataProvider'=>$model->search(),
@@ -70,6 +76,10 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		// 'user_id',
 		array(
 			'class'=>'CButtonColumn',
+            'afterDelete' => 'function(link,success,data){
+                var result = $.parseJSON(data);
+                if (!result.delete) alert(result.message);
+            }',
 		),
 	),
 )); ?>

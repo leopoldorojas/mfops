@@ -53,7 +53,7 @@ function adminTotal($scope, $http) {
 		var index = 0;
 		index = findIndexByKeyValue($scope.document_types, 'id', $scope.document.documentType_id);
 
-		if (index > 0) {
+		if (index && parseInt($scope.document_types[index].next_number)>0) {
 			$scope.document.number = $scope.document_types[index].next_number;
 			$scope.documentReadOnly = true;	
 		} else {
@@ -75,9 +75,11 @@ function adminTotal($scope, $http) {
 	$scope.showReferencePrice = function(operation) {
 		var type_found = false;
 
-		for (var i=0; i < $scope.movement_types.length; i++) {
-			if ($scope.movement_types[i].id == operation.type_id) {
-				return (type_found = true);
+		if ($scope.movement_types) {
+			for (var i=0; i < $scope.movement_types.length; i++) {
+				if ($scope.movement_types[i].id == operation.type_id) {
+					return (type_found = true);
+				}
 			}
 		}
 

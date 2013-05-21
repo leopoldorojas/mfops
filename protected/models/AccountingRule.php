@@ -134,4 +134,21 @@ class AccountingRule extends CActiveRecord
 	    else
 	        return false;
 	}
+
+	protected function beforeDelete()
+	{
+		if (parent::beforeDelete())
+		{
+			$operations = $this->operations();
+			if (!empty($operations)) {
+				$this->addError('id','No se puede borrar la Regla Contable debido a que tiene Movimientos registrados');
+				return false;
+			}
+			else
+				return true;
+		}
+		else
+			return false;
+	}
+
 }
