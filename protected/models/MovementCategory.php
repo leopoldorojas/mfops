@@ -112,5 +112,20 @@ class MovementCategory extends CActiveRecord
 	    else
 	        return false;
 	}
+
+	protected function beforeDelete()
+	{
+		if (parent::beforeDelete())
+		{
+			if (!empty($this->movement_types)) {
+				$this->addError('id','No se puede borrar la Categoría debido a que tiene Tipos de Movimiento registrados');
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
 	
 }
