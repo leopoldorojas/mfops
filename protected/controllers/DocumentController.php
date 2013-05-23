@@ -49,23 +49,18 @@ class DocumentController extends Controller
 			$operation->attributes=$_GET['Operation'];
 
 		$operation->document_id = $id;
+		$toRender = isset($_GET['print']) ? 'printFull' : 'view';
 
-		if(isset($_GET['print']))
-		{
+		if (isset($_GET['print']))
 			$this->layout='main_print';
-			$this->render('printFull',array(
-				'model'=>$this->loadModel($id),
-				'operation'=>$operation,
-			));
+
+		$this->render($toRender,array(
+			'model'=>$this->loadModel($id),
+			'operation'=>$operation,
+		));
+
+		if (isset($_GET['print']))		
 			$this->layout='//layouts/column2';
-		}
-		else
-		{
-			$this->render('view',array(
-				'model'=>$this->loadModel($id),
-				'operation'=>$operation,
-			));			
-		}
 	}
 
 	/**
