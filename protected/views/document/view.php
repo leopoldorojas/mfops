@@ -94,5 +94,7 @@ $this->menu=array(
 ?>
 
 <p></p>
-<p><b>Si deseas imprimir el documento, por favor haz click en el siguiente enlace:</b><br />
-<a class="btnPrint" href='<?php echo $this->createUrl("document/print/$model->id"); ?>'>IMPRIMIR</a></p>
+<p><b>Si deseas imprimir el documento, por favor haz click en alguno de los siguientes enlaces:</b><br />
+[&nbsp;<a class="btnPrint" href='<?php echo $this->createUrl("document/print/$model->id"); ?>'>IMPRIMIR Formato Recibo</a>&nbsp;]&nbsp;&nbsp;
+[&nbsp;<a class="btnPrint" href='<?php echo $this->createUrl("document/$model->id?print=1"); ?>'>IMPRIMIR Hoja Completa</a>&nbsp;]
+</p>

@@ -50,10 +50,22 @@ class DocumentController extends Controller
 
 		$operation->document_id = $id;
 
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-			'operation'=>$operation,
-		));
+		if(isset($_GET['print']))
+		{
+			$this->layout='main_print';
+			$this->render('printFull',array(
+				'model'=>$this->loadModel($id),
+				'operation'=>$operation,
+			));
+			$this->layout='//layouts/column2';
+		}
+		else
+		{
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+				'operation'=>$operation,
+			));			
+		}
 	}
 
 	/**
@@ -347,8 +359,10 @@ class DocumentController extends Controller
 	 */
 	public function actionPrint($id)
 	{
+		$companyInfo = json_decode(json_encode(Yii::app()->params['companyInfo']), FALSE);
 		$this->renderPartial('print',array(
 			'model'=>$this->loadModel($id),
+			'companyInfo'=>$companyInfo,
 		));
 	}
 

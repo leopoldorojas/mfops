@@ -2,12 +2,12 @@
 /* @var $this DocumentController */
 /* @var $model Document */
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/vendors/jquery.printPage.js');
-//$this->renderPartial('_headerToPrint');
+$this->renderPartial('_headerToPrint', array('companyInfo'=>$companyInfo));
 ?>
 
-<p><b><?php echo $model->document_type->description; ?> número: <?php echo $model->number; ?></b></p>
+<b><?php echo $model->document_type->description; ?> número: <?php echo $model->number; ?></b><br/>
 
-<table>
+<table width=325px>
 <tr><td>Identificador:</td><td><?php echo $model->id; ?></td></tr>
 <tr><td>Fecha:</td><td><?php echo $model->document_date; ?></td></tr>
 <tr><td>Entidad:</td><td><?php echo $model->entity->name; ?></td></tr>
@@ -16,11 +16,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/vendors/
 </table>
 
 <br/>
-<p><b>Movimientos del Documento:</b></p>
+<b>Movimientos del Documento:</b><br/>
 <?php 
 	foreach ($model->operations as $operation)
 	{ ?>
-		<table>
+		<table width=325px>
 		<tr><td>Identificador:</td><td><?php echo $operation->id; ?></td></tr>
 		<tr><td>Comprobante de:</td><td><?php echo ($operation->input) ? 'Entrada de Dinero' : 'Salida de Dinero'; ?></td></tr>
 		<tr><td>Movimiento de:</td><td><?php echo ($operation->bank) ? 'Bancos' : 'Caja'; ?></td></tr>
