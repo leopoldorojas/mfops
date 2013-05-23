@@ -347,12 +347,8 @@ class DocumentController extends Controller
 	 */
 	public function actionPrint($id)
 	{
-		$operation=new Operation('search');
-		$operation->document_id = $id;
-
-		$this->render('print',array(
+		$this->renderPartial('print',array(
 			'model'=>$this->loadModel($id),
-			'operation'=>$operation,
 		));
 	}
 

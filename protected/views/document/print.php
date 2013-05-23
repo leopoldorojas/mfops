@@ -1,70 +1,34 @@
 <?php
 /* @var $this DocumentController */
 /* @var $model Document */
-
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/vendors/jquery.printPage.js');
-
-$this->breadcrumbs=array(
-	'Documentos'=>array('admin'),
-	$model->id,
-);
-
-$this->menu=array(
-	// array('label'=>'Listar Documentos', 'url'=>array('index')),
-	array('label'=>'Registrar Documento', 'url'=>array('createRestfulBatch')),
-	// array('label'=>'Actualizar Documento', 'url'=>array('update', 'id'=>$model->id)),
-	// array('label'=>'Borrar Documento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
-	array('label'=>'Consultar Documentos', 'url'=>array('admin')),
-);
+//$this->renderPartial('_headerToPrint');
 ?>
 
-<h1>Número de Documento: <?php echo $model->number; ?></h1>
+<p><b><?php echo $model->document_type->description; ?> número: <?php echo $model->number; ?></b></p>
 
-<?php
-    foreach(Yii::app()->user->getFlashes() as $key => $message) {
-        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
-    }
-?>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'documentType_id',
-		'number',
-		'document_date',
-		'entity_id',
-		'entity_name',
-		'description',
-	),
-)); 
-?>
+<table>
+<tr><td>Identificador:</td><td><?php echo $model->id; ?></td></tr>
+<tr><td>Fecha:</td><td><?php echo $model->document_date; ?></td></tr>
+<tr><td>Entidad:</td><td><?php echo $model->entity->name; ?></td></tr>
+<tr><td>Detalle Entidad:</td><td><?php echo $model->entity_name; ?></td></tr>
+<tr><td><b>Monto Total:</b></td><td><b><?php echo number_format($model->totalAmount,0); ?></b></td></tr>
+</table>
 
 <br/>
-<hr/>
-<br/>
-<h2>Movimientos del Documento:</h2>
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'operation-grid',
-	'dataProvider'=>$operation->search(),
-	'columns'=>array(
-		'id',
-		array(
-			'header' => '¿Entrada o Salida?',
-			'value' => '$data->input ? "Entrada" : "Salida"',
-		),
-		array(
-			'header' => '¿Caja o Bancos?',
-			'value' => '$data->bank ? "Bancos" : "Caja"',
-		),
-		'movement_type.description:text:Tipo',
-		'operation_date',
-		'amount:number:Monto',
-		'entity.name:text:Entidad',
-		'entity_name',
-		'description',
-		'journal_entry_id',
-	),
-));
+<p><b>Movimientos del Documento:</b></p>
+<?php 
+	foreach ($model->operations as $operation)
+	{ ?>
+		<table>
+		<tr><td>Identificador:</td><td><?php echo $operation->id; ?></td></tr>
+		<tr><td>Comprobante de:</td><td><?php echo ($operation->input) ? 'Entrada de Dinero' : 'Salida de Dinero'; ?></td></tr>
+		<tr><td>Movimiento de:</td><td><?php echo ($operation->bank) ? 'Bancos' : 'Caja'; ?></td></tr>
+		<tr><td>Tipo:</td><td><?php echo $operation->movement_type->description; ?></td></tr>
+		<tr><td>Fecha:</td><td><?php echo $operation->operation_date; ?></td></tr>
+		<tr><td>Entidad:</td><td><?php echo $operation->entity->name; ?></td></tr>
+		<tr><td>Detalle Entidad:</td><td><?php echo $operation->entity_name; ?></td></tr>
+		<tr><td><b>Monto:</b></td><td><b><?php echo number_format($operation->amount,0); ?></b></td></tr>
+		</table><br>
+	<?php }
 ?>

@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/form.css" />
 	
+	<?php $this->pageTitle = Yii::app()->name; ?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
