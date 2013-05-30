@@ -10,6 +10,7 @@ class LoginForm extends CFormModel
 	public $username;
 	public $password;
 	public $rememberMe;
+	public $company_id;
 
 	private $_identity;
 
@@ -38,6 +39,7 @@ class LoginForm extends CFormModel
 		return array(
 			'username'=>'Usuario',
 			'password'=>'Contraseña',
+			'company_id'=>'ID de Empresa',
 			'rememberMe'=>'Recordarme para la próxima vez',
 		);
 	}
@@ -51,6 +53,7 @@ class LoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity->company_id = $this->company_id;
 			if(!$this->_identity->authenticate())
 				$this->addError('password','Usuario o contraseña incorrectos.');
 		}
@@ -65,6 +68,7 @@ class LoginForm extends CFormModel
 		if($this->_identity===null)
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity->company_id = $this->company_id;
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)

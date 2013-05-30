@@ -10,7 +10,7 @@
  * @property string $createdon
  * @property string $updatedon
  */
-class DocumentType extends CActiveRecord
+class DocumentType extends BaseModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

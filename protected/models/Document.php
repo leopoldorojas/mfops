@@ -15,7 +15,7 @@
  * @property string $createdon
  * @property string $updatedon
  */
-class Document extends CActiveRecord
+class Document extends BaseModel
 {
 	private $_totalAmount = 0;
 	public $calculatedTotalAmount = 0;

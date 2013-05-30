@@ -16,7 +16,7 @@
  * @property string $createdon
  * @property string $updatedon
  */
-class JournalEntry extends CActiveRecord
+class JournalEntry extends BaseModel
 {
 	public $documentNumber = "";
 	private $originalNotes = "";

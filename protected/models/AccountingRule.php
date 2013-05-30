@@ -14,7 +14,7 @@
  * @property integer $user_id
  * @property string $createdon
  */
-class AccountingRule extends CActiveRecord
+class AccountingRule extends BaseModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

@@ -9,9 +9,11 @@
 class UserIdentity extends CUserIdentity
 {
     private $_id;
+    public $company_id;
+    
     public function authenticate()
     {
-        $record=User::model()->findByAttributes(array('username'=>$this->username));
+        $record=User::model()->findByAttributes(array('username'=>$this->username, 'company_id'=>$this->company_id));
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if($record->encrypted_password!==$this->password)

@@ -11,7 +11,7 @@
  * @property string $createdon
  * @property string $updatedon
  */
-class OperationEntity extends CActiveRecord
+class OperationEntity extends BaseModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

@@ -22,6 +22,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'identifier'); ?>
+		<?php echo $form->textField($model,'identifier',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'identifier'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'id_number'); ?>
 		<?php echo $form->textField($model,'id_number',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'id_number'); ?>

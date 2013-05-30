@@ -19,7 +19,7 @@
  * @property string $createdon
  * @property string $updatedon
  */
-class Operation extends CActiveRecord
+class Operation extends BaseModel
 {
 	public $documentNumber = "";
 

@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('identifier')); ?>:</b>
+	<?php echo CHtml::encode($data->identifier); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_number')); ?>:</b>
 	<?php echo CHtml::encode($data->id_number); ?>
 	<br />

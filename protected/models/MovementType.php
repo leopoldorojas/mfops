@@ -12,7 +12,7 @@
  * @property string $updatedon
  * @property boolean $with_price
  */
-class MovementType extends CActiveRecord
+class MovementType extends BaseModel
 {
 	/**
 	 * Returns the static model of the specified AR class.

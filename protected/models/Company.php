@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'company':
  * @property integer $id
  * @property string $name
+ * @property string $identifier
  * @property string $id_number
  * @property string $address_line_1
  * @property string $address_line_2
@@ -49,13 +50,14 @@ class Company extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, tenant_url, tenant_user, tenant_password, user_id, createdon', 'required'),
+			array('name, identifier, tenant_url, tenant_user, tenant_password, user_id, createdon', 'required'),
+			array('identifier','unique'),
 			array('user_id', 'numerical', 'integerOnly'=>true),
-			array('name, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password', 'length', 'max'=>255),
+			array('name, identifier, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password', 'length', 'max'=>255),
 			array('updatedon', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, name, identifier, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +80,7 @@ class Company extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'identifier'=>'Identifier',
 			'id_number' => 'Id Number',
 			'address_line_1' => 'Address Line 1',
 			'address_line_2' => 'Address Line 2',
@@ -108,6 +111,7 @@ class Company extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('identifier',$this->identifier,true);
 		$criteria->compare('id_number',$this->id_number,true);
 		$criteria->compare('address_line_1',$this->address_line_1,true);
 		$criteria->compare('address_line_2',$this->address_line_2,true);

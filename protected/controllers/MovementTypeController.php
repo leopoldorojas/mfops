@@ -32,7 +32,7 @@ class MovementTypeController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user
-				'users'=>array('admin'),
+				'roles'=>array('company-admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

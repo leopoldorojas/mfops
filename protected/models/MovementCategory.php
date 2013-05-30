@@ -10,7 +10,7 @@
  * @property string $createdon
  * @property string $updatedon
  */
-class MovementCategory extends CActiveRecord
+class MovementCategory extends BaseModel
 {
 	/**
 	 * Returns the static model of the specified AR class.
