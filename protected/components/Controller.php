@@ -24,28 +24,28 @@ class Controller extends CController
 
 	public function filterGetCompany($filterChain)
 	{
-		// Obtener el identificador de la compañía:
-		// Busco en el dominio (ya sea como subdirectorio o como TLD)
-		// Cuando ya lo tengo, voy a la tabla de compañías y saco el ID
-		// Si no tengo el dominio vía subdirectorio o ID (porque aún no estoy en esa estrategia sino solo en el Login, por ahora), entonces:
-		// Entonces uso Yii.app.user para buscar su compañía asociada y la obtengo de ahí.
-		// Si no existe el Yii.app.user enotnces pongo el default desde Yii-params
+		$this->company_id = (empty(Yii::app()->user->company_id) ? '' : Yii::app()->user->company_id);
 
-		if (!($company = getCompanyFromURL())
-			$this->company_id = Company::model()->findByAttributes(array('identifier' => $company));
-
-		if (empty($this->company_id) && !empty(Yii::app()->user->id))
-			$this->company_id = Company::model()->findByAttributes(array('id' => Yii::app()->user->id));
+		if (empty($this->company_id) && ($identifier = $this->getCompanyFromURL()))
+		{
+			$company = Company::model()->findByAttributes(array('identifier' => $identifier));
+			$this->company_id = (empty($company) ? '' : $company->id);
+		}
 
 		if (empty($this->company_id))
-			$this->company_id = Yii::app()->params['companyInfo']['id'];
+		{
+			$company = Company::model()->findByAttributes(array('identifier' => Yii::app()->params['defaultCompany']));
+			$this->company_id = (empty($company) ? '' : $company->id);
+		}
 
 	    $filterChain->run();
 	}
 
 	public function getCompanyFromURL()
 	{
-		return = 2;
+		$hostInfo = parse_url(Yii::app()->request->hostInfo);
+		$host = explode('.',preg_replace('/www./', '', $hostInfo['host'], 1));
+		return (empty($_GET['empresa']) ? $host[0] : $_GET['empresa']);
 	}
 
 }

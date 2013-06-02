@@ -23,6 +23,7 @@ class UserIdentity extends CUserIdentity
             $this->_id=$record->id;
             $this->setState('name', $record->name);
             $this->setState('permission_level', $record->permission_level);
+            $this->setState('company_id', $record->company_id);
             $this->errorCode=self::ERROR_NONE;
         }
         return !$this->errorCode;
