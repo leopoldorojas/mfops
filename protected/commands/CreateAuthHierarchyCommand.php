@@ -6,19 +6,19 @@ class CreateAuthHierarchyCommand extends CConsoleCommand
     {
 		$auth=Yii::app()->authManager;
 
-		$bizRule='return Yii::app()->user->permission_level >= 5;';
+		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 5);';
 		$auth->createRole('super-admin', 'Super Admin user', $bizRule);
 
-		$bizRule='return Yii::app()->user->permission_level >= 4;';
+		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 4);';
 		$auth->createRole('arckanto-admin', 'Arckanto Admin user', $bizRule);
 
-		$bizRule='return Yii::app()->user->permission_level >= 3;';
+		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 3);';
 		$auth->createRole('master-admin', 'Master Admin user', $bizRule);
 
-		$bizRule='return Yii::app()->user->permission_level >= 2;';
+		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 2);';
 		$auth->createRole('company-admin', 'Company Admin user', $bizRule);
 
-		$bizRule='return Yii::app()->user->permission_level >= 1;';
+		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 1);';
 		$auth->createRole('app-user', 'Application user', $bizRule);
     }
 }

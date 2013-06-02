@@ -17,6 +17,9 @@
  */
 class User extends CActiveRecord
 {
+	public $password = '';
+	public $password_confirmation = '';
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -43,13 +46,15 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, encrypted_password, company_id, user_id, createdon', 'required'),
+			array('username, company_id, user_id, createdon', 'required'),
+			array('password, password_confirmation', 'required', 'on' => 'create'),
 			array('company_id, user_id, permission_level', 'numerical', 'integerOnly'=>true),
-			array('username, encrypted_password, email, name, permission_level', 'length', 'max'=>255),
+			array('username, password, password_confirmation, email, name, permission_level', 'length', 'max'=>255),
+			array('password_confirmation', 'compare', 'compareAttribute'=>'password'),
 			array('updatedon', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, encrypted_password, email, name, company_id, permission_level, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, username, email, name, company_id, permission_level, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +77,8 @@ class User extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'username' => 'Username',
+			'password' => 'Password',
+			'password_confirmation' => 'Password Confirmation',
 			'encrypted_password' => 'Encrypted Password',
 			'email' => 'Email',
 			'name' => 'Name',
@@ -96,7 +103,6 @@ class User extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('encrypted_password',$this->encrypted_password,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('company_id',$this->company_id);
@@ -109,4 +115,27 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeSave()
+	{
+	    if(parent::beforeSave())
+	    {
+	        if($this->isNewRecord)
+	        {
+	            // $this->createdon=$this->updatedon=time();
+	            $this->user_id = (empty(Yii::app()->user->id) ? 999999 : Yii::app()->user->id);
+	            $this->encrypted_password=crypt($this->password, $this->password);
+	        }
+	        else
+	        {
+	            $this->updatedon=time();
+	            if ($this->password)
+	            	$this->encrypted_password=crypt($this->password, $this->password);
+	        }
+	        return true;
+	    }
+	    else
+	        return false;
+	}
+
 }

@@ -22,9 +22,15 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'encrypted_password'); ?>
-		<?php echo $form->textField($model,'encrypted_password',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'encrypted_password'); ?>
+		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'password'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'password_confirmation'); ?>
+		<?php echo $form->passwordField($model,'password_confirmation',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'password_confirmation'); ?>
 	</div>
 
 	<div class="row">

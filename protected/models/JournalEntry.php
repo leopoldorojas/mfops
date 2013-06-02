@@ -158,7 +158,7 @@ class JournalEntry extends BaseModel
 	    {
 	        if($this->isNewRecord)
 	        {
-	            $this->user_id=1;
+	            $this->user_id = (empty(Yii::app()->user->id) ? 999999 : Yii::app()->user->id);
 
 		        if (Yii::app()->mambu->isInitialized && Yii::app()->mambu->connect())
 		        {

@@ -29,7 +29,7 @@ class MovementTypeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin','view'),
+				'actions'=>array('admin','view','list'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user

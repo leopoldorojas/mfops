@@ -106,8 +106,7 @@ class OperationEntity extends BaseModel
 	        if($this->isNewRecord)
 	        {
 	            // $this->createdon=$this->updatedon=time();
-	            // $this->user_id=Yii::app()->user->id;
-	            $this->user_id=1;
+	            $this->user_id = (empty(Yii::app()->user->id) ? 999999 : Yii::app()->user->id);
 	        }
 	        else
 	            $this->updatedon=time();

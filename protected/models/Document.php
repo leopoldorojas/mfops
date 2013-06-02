@@ -136,8 +136,8 @@ class Document extends BaseModel
 	        if($this->isNewRecord)
 	        {
 	            // $this->createdon=$this->updatedon=time();
-	            // $this->user_id=Yii::app()->user->id;
-	            $this->user_id=1;
+	            $this->user_id = (empty(Yii::app()->user->id) ? 999999 : Yii::app()->user->id);
+
 	            if ($this->document_type->next_number > 0) {
 	            	$this->number = $this->document_type->next_number;
 	    			++$this->document_type->next_number;
