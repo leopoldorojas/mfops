@@ -3,20 +3,21 @@
 /* @var $model Company */
 
 $this->breadcrumbs=array(
-	'Companies'=>array('index'),
+	'Administración de Tipos' => array('/site/typesAdmin'),
+	'Empresas'=>array('admin'),
 	$model->name,
 );
 
 $this->menu=array(
-	array('label'=>'List Company', 'url'=>array('index')),
-	array('label'=>'Create Company', 'url'=>array('create')),
-	array('label'=>'Update Company', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Company', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Company', 'url'=>array('admin')),
+	// array('label'=>'List Company', 'url'=>array('index')),
+	array('label'=>'Crear Empresa', 'url'=>array('create')),
+	array('label'=>'Actualizar Empresa', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Borrar Empresa', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
+	array('label'=>'Administrar Empresas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Company #<?php echo $model->id; ?></h1>
+<h1>Empresa Id <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -35,8 +36,5 @@ $this->menu=array(
 		'tenant_url',
 		'tenant_user',
 		'tenant_password',
-		'user_id',
-		'createdon',
-		'updatedon',
 	),
 )); ?>

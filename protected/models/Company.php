@@ -50,14 +50,14 @@ class Company extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, identifier, tenant_url, tenant_user, tenant_password, user_id, createdon', 'required'),
+			array('name, identifier, tenant_url, tenant_user, tenant_password', 'required'),
 			array('identifier','unique'),
-			array('user_id', 'numerical', 'integerOnly'=>true),
-			array('name, identifier, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password', 'length', 'max'=>255),
-			array('updatedon', 'safe'),
+			array('name, identifier, id_number, address_line_1, address_line_2, city, country, telephone, tenant_user, tenant_password', 'length', 'max'=>255),
+			array('email', 'email'),
+			array('website, tenant_url', 'url'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, identifier, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, name, identifier, id_number, address_line_1, address_line_2, city, country, telephone, email, website, tenant_url, tenant_user, tenant_password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +69,7 @@ class Company extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'users' => array(self::HAS_MANY, 'User', 'company_id'),
 		);
 	}
 
@@ -79,22 +80,22 @@ class Company extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'identifier'=>'Identifier',
-			'id_number' => 'Id Number',
-			'address_line_1' => 'Address Line 1',
-			'address_line_2' => 'Address Line 2',
-			'city' => 'City',
-			'country' => 'Country',
-			'telephone' => 'Telephone',
+			'name' => 'Empresa',
+			'identifier'=>'Identificador',
+			'id_number' => 'Número Id',
+			'address_line_1' => 'Dirección',
+			'address_line_2' => 'Dirección segunda línea',
+			'city' => 'Ciudad',
+			'country' => 'País',
+			'telephone' => 'Teléfono',
 			'email' => 'Email',
-			'website' => 'Website',
-			'tenant_url' => 'Tenant Url',
-			'tenant_user' => 'Tenant User',
-			'tenant_password' => 'Tenant Password',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'website' => 'Sitio Web',
+			'tenant_url' => 'Dirección Mambu',
+			'tenant_user' => 'User Mambu',
+			'tenant_password' => 'Password Mambu',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creado en',
+			'updatedon' => 'Actualizado en',
 		);
 	}
 
@@ -123,9 +124,6 @@ class Company extends CActiveRecord
 		$criteria->compare('tenant_url',$this->tenant_url,true);
 		$criteria->compare('tenant_user',$this->tenant_user,true);
 		$criteria->compare('tenant_password',$this->tenant_password,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

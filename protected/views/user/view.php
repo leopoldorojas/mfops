@@ -3,20 +3,21 @@
 /* @var $model User */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
+	'Administración de Tipos' => array('/site/typesAdmin'),
+	'Usuarios'=>array('admin'),
 	$model->name,
 );
 
 $this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-	array('label'=>'Update User', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete User', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage User', 'url'=>array('admin')),
+	// array('label'=>'List User', 'url'=>array('index')),
+	array('label'=>'Crear Usuario', 'url'=>array('create')),
+	array('label'=>'Administrar Usuario', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Borrar Usuario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
+	array('label'=>'Administrar Usuarios', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View User #<?php echo $model->id; ?></h1>
+<h1>Usuario Id <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -25,10 +26,7 @@ $this->menu=array(
 		'username',
 		'email',
 		'name',
-		'company_id',
+		'company.identifier:text:Empresa',
 		'permission_level',
-		'user_id',
-		'createdon',
-		'updatedon',
 	),
 )); ?>

@@ -3,16 +3,17 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Companies',
+	'Administración de Tipos' => array('/site/typesAdmin'),
+	'Empresas',
 );
 
 $this->menu=array(
-	array('label'=>'Create Company', 'url'=>array('create')),
-	array('label'=>'Manage Company', 'url'=>array('admin')),
+	array('label'=>'Crear Empresa', 'url'=>array('create')),
+	array('label'=>'Administrar Empresas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Companies</h1>
+<h1>Empresas</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

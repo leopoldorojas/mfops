@@ -37,7 +37,6 @@
 	<?php echo CHtml::encode($data->country); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('telephone')); ?>:</b>
 	<?php echo CHtml::encode($data->telephone); ?>
 	<br />
@@ -62,6 +61,7 @@
 	<?php echo CHtml::encode($data->tenant_password); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />

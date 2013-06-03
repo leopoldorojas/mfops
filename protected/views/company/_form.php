@@ -11,7 +11,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -65,19 +65,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->emailField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'website'); ?>
-		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->urlField($model,'website',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'website'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'tenant_url'); ?>
-		<?php echo $form->textField($model,'tenant_url',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->urlField($model,'tenant_url',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'tenant_url'); ?>
 	</div>
 
@@ -93,6 +93,7 @@
 		<?php echo $form->error($model,'tenant_password'); ?>
 	</div>
 
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
 		<?php echo $form->textField($model,'user_id'); ?>
@@ -109,10 +110,11 @@
 		<?php echo $form->labelEx($model,'updatedon'); ?>
 		<?php echo $form->textField($model,'updatedon'); ?>
 		<?php echo $form->error($model,'updatedon'); ?>
-	</div>
+	</div> */
+	?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Grabar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

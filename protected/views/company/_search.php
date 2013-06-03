@@ -58,17 +58,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->emailField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'website'); ?>
-		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->urlField($model,'website',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'tenant_url'); ?>
-		<?php echo $form->textField($model,'tenant_url',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->urlField($model,'tenant_url',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
@@ -76,6 +76,7 @@
 		<?php echo $form->textField($model,'tenant_user',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
+	<?php /*
 	<div class="row">
 		<?php echo $form->label($model,'user_id'); ?>
 		<?php echo $form->textField($model,'user_id'); ?>
@@ -89,10 +90,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'updatedon'); ?>
 		<?php echo $form->textField($model,'updatedon'); ?>
-	</div>
+	</div> */
+	?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton('Buscar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

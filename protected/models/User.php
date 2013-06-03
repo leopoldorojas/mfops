@@ -46,15 +46,15 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, company_id, user_id, createdon', 'required'),
+			array('username, company_id', 'required'),
 			array('password, password_confirmation', 'required', 'on' => 'create'),
-			array('company_id, user_id, permission_level', 'numerical', 'integerOnly'=>true),
-			array('username, password, password_confirmation, email, name, permission_level', 'length', 'max'=>255),
 			array('password_confirmation', 'compare', 'compareAttribute'=>'password'),
-			array('updatedon', 'safe'),
+			array('company_id, permission_level', 'numerical', 'integerOnly'=>true),
+			array('email', 'email'),
+			array('username, password, password_confirmation, name, permission_level', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, email, name, company_id, permission_level, user_id, createdon, updatedon', 'safe', 'on'=>'search'),
+			array('id, username, email, name, company_id, permission_level', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +66,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
 		);
 	}
 
@@ -76,17 +77,17 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'password_confirmation' => 'Password Confirmation',
+			'username' => 'Usuario',
+			'password' => 'Contraseña',
+			'password_confirmation' => 'Confirmación de Contraseña',
 			'encrypted_password' => 'Encrypted Password',
 			'email' => 'Email',
-			'name' => 'Name',
-			'company_id' => 'Company',
-			'permission_level' => 'Permission Level',
-			'user_id' => 'User',
-			'createdon' => 'Createdon',
-			'updatedon' => 'Updatedon',
+			'name' => 'Nombre completo',
+			'company_id' => 'Empresa',
+			'permission_level' => 'Nivel de Permiso',
+			'user_id' => 'Usuario',
+			'createdon' => 'Creado en',
+			'updatedon' => 'Actualizado en',
 		);
 	}
 
@@ -107,9 +108,6 @@ class User extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('company_id',$this->company_id);
 		$criteria->compare('permission_level',$this->permission_level);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('createdon',$this->createdon,true);
-		$criteria->compare('updatedon',$this->updatedon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

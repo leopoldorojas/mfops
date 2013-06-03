@@ -11,7 +11,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->emailField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
@@ -46,17 +46,19 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id'); ?>
-		<?php echo $form->error($model,'company_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'permission_level'); ?>
 		<?php echo $form->textField($model,'permission_level',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'permission_level'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'company_id'); ?>
+		<?php echo $form->dropdownlist($model,'company_id',
+			CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
+		<?php echo $form->error($model,'company_id'); ?>
+	</div>
+
+	<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
 		<?php echo $form->textField($model,'user_id'); ?>
@@ -73,10 +75,11 @@
 		<?php echo $form->labelEx($model,'updatedon'); ?>
 		<?php echo $form->textField($model,'updatedon'); ?>
 		<?php echo $form->error($model,'updatedon'); ?>
-	</div>
+	</div> */
+	?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Grabar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

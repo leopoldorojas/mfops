@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->emailField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
@@ -32,15 +32,17 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'permission_level'); ?>
 		<?php echo $form->textField($model,'permission_level',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'company_id'); ?>
+		<?php echo $form->dropdownlist($model,'company_id',
+			CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
+	</div>
+
+	<?php /*
 	<div class="row">
 		<?php echo $form->label($model,'user_id'); ?>
 		<?php echo $form->textField($model,'user_id'); ?>
@@ -54,10 +56,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'updatedon'); ?>
 		<?php echo $form->textField($model,'updatedon'); ?>
-	</div>
+	</div> */
+	?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton('Buscar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
