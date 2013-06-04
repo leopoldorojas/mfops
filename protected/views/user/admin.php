@@ -29,6 +29,12 @@ $('.search-form form').submit(function(){
 
 <h1>Administrar Usuarios</h1>
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
 <p>
 Opcionalmente puedes usar un operador de comparación como (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realizar la comparación.
@@ -64,6 +70,10 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		*/
 		array(
 			'class'=>'CButtonColumn',
+            'afterDelete' => 'function(link,success,data){
+                var result = $.parseJSON(data);
+                if (!result.delete) alert(result.message);
+            }',
 		),
 	),
 )); ?>

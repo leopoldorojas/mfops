@@ -20,6 +20,9 @@ class CreateAuthHierarchyCommand extends CConsoleCommand
 
 		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 1);';
 		$auth->createRole('app-user', 'Application user', $bizRule);
+		 
+		$bizRule='return Yii::app()->user->id != $params["user"]->id;';
+		$auth->createOperation('deleteUser','delete a user',$bizRule);
     }
 }
 

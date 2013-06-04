@@ -18,7 +18,7 @@ $this->pageTitle=Yii::app()->name;
 </div>
 
 <?php
-if (Yii::app()->user->permission_level &&  Yii::app()->user->permission_level > 3)
+if(Yii::app()->user->checkAccess('arckanto-admin'))
 { ?>
 	<p><br>Administraciones adicionales en el sistema:</p>
 

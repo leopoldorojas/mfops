@@ -105,11 +105,27 @@ class UserController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$user = $this->loadModel($id);
+		$params=array('user'=>$user);
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		if(Yii::app()->user->checkAccess('deleteUser',$params))
+		{
+			$user->delete();
+
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+		{
+			if(!isset($_GET['ajax']))
+			{
+				Yii::app()->user->setFlash('error', 'No se puede borrar el usuario a sí mismo');
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			}
+			else
+				echo json_encode(array('delete' => false, 'message' => 'No se puede borrar el usuario a sí mismo'));
+		}
 	}
 
 	/**
