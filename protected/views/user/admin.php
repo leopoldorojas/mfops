@@ -62,6 +62,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 			'value'=>'$data->company ? $data->company->identifier : ""',
 			'filter' => CHtml::activeDropDownList($model,'company_id',
 				CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'--')),
+			'visible'=>Yii::app()->user->checkAccess('master-admin'),
 		),
 		/*
 		'user_id',
