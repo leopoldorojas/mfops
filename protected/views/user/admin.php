@@ -58,15 +58,16 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'name',
 		array(
 			'header'=>'Rol',
-			'value'=>'$data->rol',
-			'filter' => CHtml::activeDropDownList($model, 'rol', Yii::app()->params['roles'], array('empty'=>'--')),
+			'value'=>'Yii::app()->params["roles"]["$data->rol"]',
+			//'filter' => CHtml::activeDropDownList($model, 'rol', Yii::app()->params['roles'], array('empty'=>'--')),
+			'filter'=>false,
 		),
 		array(
 			'header'=>'Empresa',
 			'value'=>'$data->company ? $data->company->identifier : ""',
 			'filter' => CHtml::activeDropDownList($model,'company_id',
 				CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'--')),
-			'visible'=>Yii::app()->user->checkAccess('master-admin'),
+			'visible'=>Yii::app()->user->checkAccess('arckanto-admin'),
 		),
 		/*
 		'user_id',

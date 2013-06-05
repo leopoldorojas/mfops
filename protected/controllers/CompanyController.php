@@ -27,10 +27,6 @@ class CompanyController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin','view'),
-				'roles'=>array('master-admin'),
-			),
 			array('allow', // allow authenticated user
 				'roles'=>array('arckanto-admin'),
 			),

@@ -27,12 +27,8 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin','view'),
-				'roles'=>array('company-admin'),
-			),
 			array('allow', // allow authenticated user
-				'roles'=>array('master-admin'),
+				'roles'=>array('company-admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -150,8 +146,8 @@ class UserController extends Controller
 		if(isset($_GET['User']))
 			$model->attributes=$_GET['User'];
 
-		if (!Yii::app()->user->checkAccess('master-admin'))
-			$model->company_id = Yii::app()->user->company_id;
+        if (!Yii::app()->user->checkAccess('arckanto-admin'))
+        	$model->company_id = (empty(Yii::app()->user->company_id) ? 999999 : Yii::app()->user->company_id);
 
 		$this->render('admin',array(
 			'model'=>$model,

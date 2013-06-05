@@ -10,7 +10,6 @@
  * @property string $email
  * @property string $name
  * @property integer $company_id
- * @property string $rol
  * @property integer $user_id
  * @property string $createdon
  * @property string $updatedon
@@ -19,6 +18,7 @@ class User extends CActiveRecord
 {
 	public $password = '';
 	public $password_confirmation = '';
+	public $rol = '';
 	private $_oldRol = '';
 
 	/**
@@ -108,7 +108,7 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('company_id',$this->company_id);
-		$criteria->compare('rol',$this->rol);
+		//$criteria->compare('rol',$this->rol);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -124,15 +124,14 @@ class User extends CActiveRecord
 	            // $this->createdon=$this->updatedon=time();
 	            $this->user_id = (empty(Yii::app()->user->id) ? 999999 : Yii::app()->user->id);
 	            $this->encrypted_password=crypt($this->password, $this->password);
-	        	Yii::app()->authManager->assign($this->rol,$this->user_id);
+	            if (!Yii::app()->user->checkAccess('arckanto-admin'))
+	            	$this->company_id = (empty(Yii::app()->user->company_id) ? 999999 : Yii::app()->user->company_id);
 	        }
 	        else
 	        {
 	            $this->updatedon=time();
 	            if ($this->password)
 	            	$this->encrypted_password=crypt($this->password, $this->password);
-	           	Yii::app()->authManager->revoke($this->rol,$this->user_id);
-	            Yii::app()->authManager->assign($this->rol,$this->user_id);
 	        }
 
 	        return true;
@@ -152,10 +151,24 @@ class User extends CActiveRecord
 	    	Yii::app()->authManager->assign($this->rol,$this->id);
 	    }
 	}
+
+	protected function afterDelete()
+	{
+	    parent::afterDelete();
+	    Yii::app()->authManager->revoke($this->_oldRol,$this->id);
+	}
 	 	 
 	protected function afterFind()
 	{
 	    parent::afterFind();
+
+	    foreach (Yii::app()->params['roles'] as $rol => $description)
+    		if ($authAssignment=Yii::app()->authManager->getAuthAssignment($rol, $this->id))
+    		{
+    			$this->rol=$authAssignment->itemName;
+    			break;
+    		}
+
 	    $this->_oldRol=$this->rol;
 	}
 

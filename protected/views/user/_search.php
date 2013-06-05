@@ -31,16 +31,19 @@
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
-	<div class="row">
+	<?php /* <div class="row">
 		<?php echo $form->label($model,'rol'); ?>
 		<?php echo $form->dropDownList($model,'rol',Yii::app()->params['roles'],array('empty'=>'Seleccione el Rol')); ?>
-	</div>
+	</div> */ ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->dropDownList($model,'company_id',
-			CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
-	</div>
+	<?php 
+	if (Yii::app()->user->checkAccess('arckanto-admin')) { ?>
+		<div class="row">
+			<?php echo $form->label($model,'company_id'); ?>
+			<?php echo $form->dropDownList($model,'company_id',
+				CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
+		</div>
+	<?php } ?>
 
 	<?php /*
 	<div class="row">

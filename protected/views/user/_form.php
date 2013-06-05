@@ -51,12 +51,15 @@
 		<?php echo $form->error($model,'rol'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->dropDownList($model,'company_id',
-			CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
-		<?php echo $form->error($model,'company_id'); ?>
-	</div>
+	<?php 
+	if (Yii::app()->user->checkAccess('arckanto-admin')) { ?>
+		<div class="row">
+			<?php echo $form->labelEx($model,'company_id'); ?>
+			<?php echo $form->dropDownList($model,'company_id',
+				CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
+			<?php echo $form->error($model,'company_id'); ?>
+		</div>
+	<?php } ?>
 
 	<?php /*
 	<div class="row">
