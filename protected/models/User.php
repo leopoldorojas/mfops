@@ -10,7 +10,7 @@
  * @property string $email
  * @property string $name
  * @property integer $company_id
- * @property string $permission_level
+ * @property string $rol
  * @property integer $user_id
  * @property string $createdon
  * @property string $updatedon
@@ -19,6 +19,7 @@ class User extends CActiveRecord
 {
 	public $password = '';
 	public $password_confirmation = '';
+	private $_oldRol = '';
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -46,15 +47,15 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, company_id', 'required'),
+			array('username, company_id, rol', 'required'),
 			array('password, password_confirmation', 'required', 'on' => 'create'),
 			array('password_confirmation', 'compare', 'compareAttribute'=>'password'),
-			array('company_id, permission_level', 'numerical', 'integerOnly'=>true),
+			array('company_id', 'numerical', 'integerOnly'=>true),
 			array('email', 'email'),
-			array('username, password, password_confirmation, name, permission_level', 'length', 'max'=>255),
+			array('username, password, password_confirmation, name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, email, name, company_id, permission_level', 'safe', 'on'=>'search'),
+			array('id, username, email, name, company_id, rol', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,7 +85,7 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'name' => 'Nombre completo',
 			'company_id' => 'Empresa',
-			'permission_level' => 'Nivel de Permiso',
+			'rol' => 'Rol',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',
@@ -107,7 +108,7 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('company_id',$this->company_id);
-		$criteria->compare('permission_level',$this->permission_level);
+		$criteria->compare('rol',$this->rol);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -123,17 +124,39 @@ class User extends CActiveRecord
 	            // $this->createdon=$this->updatedon=time();
 	            $this->user_id = (empty(Yii::app()->user->id) ? 999999 : Yii::app()->user->id);
 	            $this->encrypted_password=crypt($this->password, $this->password);
+	        	Yii::app()->authManager->assign($this->rol,$this->user_id);
 	        }
 	        else
 	        {
 	            $this->updatedon=time();
 	            if ($this->password)
 	            	$this->encrypted_password=crypt($this->password, $this->password);
+	           	Yii::app()->authManager->revoke($this->rol,$this->user_id);
+	            Yii::app()->authManager->assign($this->rol,$this->user_id);
 	        }
+
 	        return true;
 	    }
 	    else
 	        return false;
+	}
+
+	protected function afterSave()
+	{
+	    parent::afterSave();
+
+	    if ($this->rol != $this->_oldRol)
+	    {
+	    	if (!$this->isNewRecord)
+	    		Yii::app()->authManager->revoke($this->_oldRol,$this->id);
+	    	Yii::app()->authManager->assign($this->rol,$this->id);
+	    }
+	}
+	 	 
+	protected function afterFind()
+	{
+	    parent::afterFind();
+	    $this->_oldRol=$this->rol;
 	}
 
 }

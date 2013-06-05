@@ -108,7 +108,7 @@ class UserController extends Controller
 		$user = $this->loadModel($id);
 		$params=array('user'=>$user);
 
-		if(Yii::app()->user->checkAccess('deleteUser',$params))
+		if(Yii::app()->user->checkAccess('notDeleteOwnUser',$params))
 		{
 			$user->delete();
 

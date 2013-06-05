@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	// array('label'=>'List User', 'url'=>array('index')),
 	array('label'=>'Crear Usuario', 'url'=>array('create')),
-	array('label'=>'Administrar Usuario', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Actualizar Usuario', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Borrar Usuario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que desear borrar esto del sistema?')),
 	array('label'=>'Administrar Usuarios', 'url'=>array('admin')),
 );
@@ -27,6 +27,6 @@ $this->menu=array(
 		'email',
 		'name',
 		'company.identifier:text:Empresa',
-		'permission_level',
+		'rol',
 	),
 )); ?>

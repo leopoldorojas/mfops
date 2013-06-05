@@ -56,7 +56,11 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'username',
 		'email',
 		'name',
-		'permission_level',
+		array(
+			'header'=>'Rol',
+			'value'=>'$data->rol',
+			'filter' => CHtml::activeDropDownList($model, 'rol', Yii::app()->params['roles'], array('empty'=>'--')),
+		),
 		array(
 			'header'=>'Empresa',
 			'value'=>'$data->company ? $data->company->identifier : ""',

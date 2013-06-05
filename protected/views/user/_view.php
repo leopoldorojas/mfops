@@ -25,8 +25,8 @@
 	<?php echo CHtml::encode($data->company_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('permission_level')); ?>:</b>
-	<?php echo CHtml::encode($data->permission_level); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('rol')); ?>:</b>
+	<?php echo CHtml::encode($data->rol); ?>
 	<br />
 
 	<?php /*

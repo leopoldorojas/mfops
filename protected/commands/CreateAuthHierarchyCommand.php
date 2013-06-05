@@ -6,23 +6,30 @@ class CreateAuthHierarchyCommand extends CConsoleCommand
     {
 		$auth=Yii::app()->authManager;
 
-		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 5);';
-		$auth->createRole('super-admin', 'Super Admin user', $bizRule);
+		$appUser=$auth->createRole('app-user', 'Application user');
 
-		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 4);';
-		$auth->createRole('arckanto-admin', 'Arckanto Admin user', $bizRule);
+		$companyAdmin=$auth->createRole('company-admin', 'Company Admin user');
+		$companyAdmin->addChild('app-user');
 
-		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 3);';
-		$auth->createRole('master-admin', 'Master Admin user', $bizRule);
+		$masterAdmin=$auth->createRole('master-admin', 'Master Admin user');
+		$masterAdmin->addChild('company-admin');
 
-		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 2);';
-		$auth->createRole('company-admin', 'Company Admin user', $bizRule);
+		$arckantoAdmin=$auth->createRole('arckanto-admin', 'Arckanto Admin user');
+		$arckantoAdmin->addChild('master-admin');
 
-		$bizRule='return (empty(Yii::app()->user->permission_level) ? false : Yii::app()->user->permission_level >= 1);';
-		$auth->createRole('app-user', 'Application user', $bizRule);
+		$superAdmin=$auth->createRole('super-admin', 'Super Admin user');
+		$superAdmin->addChild('arckanto-admin');
 		 
 		$bizRule='return Yii::app()->user->id != $params["user"]->id;';
-		$auth->createOperation('deleteUser','delete a user',$bizRule);
+		$auth->createOperation('notDeleteOwnUser','Not allow to delete own user',$bizRule);
+
+		/*
+		$auth->assign('super-admin',1);
+		$auth->assign('arckanto-admin',5);
+		$auth->assign('master-admin',2);
+		$auth->assign('company-admin',3);
+		$auth->assign('app-user',4);
+		*/
     }
 }
 

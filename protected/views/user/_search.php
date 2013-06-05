@@ -32,13 +32,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'permission_level'); ?>
-		<?php echo $form->textField($model,'permission_level',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'rol'); ?>
+		<?php echo $form->dropDownList($model,'rol',Yii::app()->params['roles'],array('empty'=>'Seleccione el Rol')); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->dropdownlist($model,'company_id',
+		<?php echo $form->dropDownList($model,'company_id',
 			CHtml::listData(Company::model()->findAll(), 'id', 'identifier'), array('empty'=>'Seleccione la Empresa')); ?>
 	</div>
 
