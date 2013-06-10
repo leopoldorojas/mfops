@@ -1,5 +1,5 @@
 assets/
 protected/runtime/
 protected/config/
-protected/data
+protected/data/
 themes/classic/views/
