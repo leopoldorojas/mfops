@@ -25,7 +25,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>
 		<?php echo $form->dropdownlist($model,'type_id',
-			CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Seleccione un Tipo de Movimiento')); ?>
+			CHtml::listData(MovementType::model()->findAll(array('order'=>'description')), 'id', 'description'), array('empty'=>'Seleccione un Tipo de Movimiento')); ?>
 		<?php echo $form->error($model,'type_id'); ?>
 	</div>
 

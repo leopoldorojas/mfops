@@ -71,7 +71,7 @@ $this->menu=array(
 			'header'=>'Tipo',
 			'value'=>'$data->movement_type ? $data->movement_type->description : ""',
 			'filter' => CHtml::activeDropDownList($operation,'type_id',
-				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
+				CHtml::listData(MovementType::model()->findAll(array('order'=>'description')), 'id', 'description'), array('empty'=>'--')),
 		),
 		'operation_date',
 		'amount:number:Monto',

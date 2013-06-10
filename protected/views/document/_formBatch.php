@@ -89,7 +89,7 @@
 	<tr>
 		<td>
 			<?php echo $form->dropdownlist($operation,"type_id",
-				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'Tipo de Movimiento', 'ng-model'=>'operation.type_id', 'ng-required'=>true)); ?>
+				CHtml::listData(MovementType::model()->findAll(array('order'=>'description')), 'id', 'description'), array('empty'=>'Tipo de Movimiento', 'ng-model'=>'operation.type_id', 'ng-required'=>true)); ?>
 			<?php echo $form->error($operation,"type_id"); ?>
 		</td>
 

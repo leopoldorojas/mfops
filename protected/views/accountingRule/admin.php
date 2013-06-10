@@ -68,7 +68,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 			'header'=>'Tipo',
 			'value'=>'$data->movement_type ? $data->movement_type->description : ""',
 			'filter' => CHtml::activeDropDownList($model,'type_id',
-				CHtml::listData(MovementType::model()->findAll(), 'id', 'description'), array('empty'=>'--')),
+				CHtml::listData(MovementType::model()->findAll(array('order'=>'description')), 'id', 'description'), array('empty'=>'--')),
 		),
 		'description',
 		'debitAccount1',

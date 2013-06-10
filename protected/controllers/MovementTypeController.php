@@ -57,7 +57,7 @@ class MovementTypeController extends Controller
 	 */
 	public function actionList()
 	{
-		$models = isset($_GET['withPrice']) ? MovementType::model()->findAllByAttributes(array('with_price'=>true)) : MovementType::model()->findAll();
+		$models = isset($_GET['withPrice']) ? MovementType::model()->findAllByAttributes(array('with_price'=>true),array('order'=>'description')) : MovementType::model()->findAll(array('order'=>'description'));
     	$rows = array();
         foreach($models as $model)
             $rows[] = $model->attributes;
