@@ -135,7 +135,7 @@ class Operation extends BaseModel
 
 		if ($this->documentNumber) {
 			$criteria->with='document';
-			$criteria->compare('document.number',$this->documentNumber,true);			
+			$criteria->compare('document.number',$this->documentNumber,true);
 		}
 
 		return new CActiveDataProvider($this, array(

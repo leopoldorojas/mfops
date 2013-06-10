@@ -9,7 +9,7 @@ class BaseModel extends CActiveRecord
 	public function defaultScope()
     { 
         return array(
-            'condition'=>"company_id='".Yii::App()->user->company_id."'",
+            'condition'=>$this->getTableAlias(false, false) . ".company_id='".Yii::app()->user->company_id."'",
         );
     }   
 

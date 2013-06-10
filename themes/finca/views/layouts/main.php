@@ -50,7 +50,7 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		By <a href="http://www.arckanto.com" target=_blank>Arckanto software</a> &<br/>
+		Por <a href="http://www.arckanto.com" target=_blank>Arckanto software</a> &<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
