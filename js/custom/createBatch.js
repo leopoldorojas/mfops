@@ -41,11 +41,11 @@ function adminTotal($scope, $http) {
 		maxDate: '0',
 	};
 
-	$http.get('http://localhost:8888/mfops/index.php/documentType/list').success(function(data) {
+	$http.get('/mfops/index.php/documentType/list').success(function(data) {
     	$scope.document_types = data;
   	});
 
-	$http.get('http://localhost:8888/mfops/index.php/movementType/list?withPrice=true').success(function(data) {
+	$http.get('/mfops/index.php/movementType/list?withPrice=true').success(function(data) {
     	$scope.movement_types = data;
   	});
 
@@ -125,7 +125,7 @@ function adminTotal($scope, $http) {
 
 		$scope.loading = true;
 		$scope.method = 'POST';
-		$scope.url = 'http://localhost:8888/mfops/index.php/document/createRestfulBatch';
+		$scope.url = '/mfops/index.php/document/createRestfulBatch';
 
 	    $scope.dataToSend = {
 	    	'Document': $scope.document,
@@ -139,7 +139,7 @@ function adminTotal($scope, $http) {
 	        $scope.data = data;
 
 	        if (data.status == 'success') {
-	        	window.location = 'http://localhost:8888/mfops/index.php/document/' + data.model.toString();
+	        	window.location = '/mfops/index.php/document/' + data.model.toString();
 	        } else {
 	        	alert(data.message);
 	        }
