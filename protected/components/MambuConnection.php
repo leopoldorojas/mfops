@@ -11,13 +11,29 @@ class MambuConnection extends CApplicationComponent
 	private $uri;
 	private $alreadyConnect = false;
 
-	public function connect()
+	public function connect($tenant=null)
 	{
 		if (!$this->alreadyConnect)
 		{
 			require_once($this->restClientLib);
+
+			if ($tenant)
+			{
+				$this->tenantUrl = $tenant->tenant_url;
+				$this->user = $tenant->tenant_user;
+				$this->password = $tenant->tenant_password;
+			}
+
 			$this->uri = "$this->tenantUrl/$this->apiSubdirectory/$this->transaction";
 			$testUri = "$this->tenantUrl/$this->apiSubdirectory/branches";		// Test requiring Branches only to confirm there is a connection
+
+            /* $response = array(
+            	'status' => 'error',
+            	'model' => 0,
+            	'message' => "El tenant es $this->tenantUrl, el user es $this->user, el password es $this->password",
+            );
+            echo json_encode($response);
+            Yii::app()->end(); */
 
 			$response = \Httpful\Request::get($testUri)
 				->sendsJson()              
