@@ -356,7 +356,9 @@ class DocumentController extends Controller
 	 */
 	public function actionPrint($id)
 	{
-		$companyInfo = json_decode(json_encode(Yii::app()->params['companyInfo']), FALSE);
+		if (!($companyInfo = Company::model()->findByAttributes(array('id'=>Yii::app()->user->company_id))))
+			$companyInfo = json_decode(json_encode(Yii::app()->params['companyInfo']), FALSE);
+
 		$this->renderPartial('print',array(
 			'model'=>$this->loadModel($id),
 			'companyInfo'=>$companyInfo,

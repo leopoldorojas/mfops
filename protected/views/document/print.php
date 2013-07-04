@@ -7,7 +7,7 @@ $this->renderPartial('_headerToPrint', array('companyInfo'=>$companyInfo));
 
 <b><?php echo $model->document_type->description; ?> número: <?php echo $model->number; ?></b><br/>
 
-<table width=325px>
+<table width=285px>
 <tr><td>Identificador:</td><td><?php echo $model->id; ?></td></tr>
 <tr><td>Fecha:</td><td><?php echo $model->document_date; ?></td></tr>
 <tr><td>Entidad:</td><td><?php echo $model->entity ? $model->entity->name : ''; ?></td></tr>
@@ -20,7 +20,7 @@ $this->renderPartial('_headerToPrint', array('companyInfo'=>$companyInfo));
 <?php 
 	foreach ($model->operations as $operation)
 	{ ?>
-		<table width=325px>
+		<table width=285px>
 		<tr><td>Identificador:</td><td><?php echo $operation->id; ?></td></tr>
 		<tr><td>Comprobante de:</td><td><?php echo ($operation->input) ? 'Entrada de Dinero' : 'Salida de Dinero'; ?></td></tr>
 		<tr><td>Movimiento de:</td><td><?php echo ($operation->bank) ? 'Bancos' : 'Caja'; ?></td></tr>
