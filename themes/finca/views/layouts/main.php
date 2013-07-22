@@ -27,6 +27,7 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
+		<?php $short_name = (strlen(Yii::app()->user->name) > 18) ? substr(Yii::app()->user->name,0,15) . '...' : Yii::app()->user->name; ?>
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')),
@@ -38,7 +39,7 @@
 				array('label'=>'Administración de Tipos', 'url'=>array('/site/typesAdmin')),
 				//array('label'=>'Contacto', 'url'=>array('/site/contact')),
 				array('label'=>'Iniciar Sesión', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Salir ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Salir ('.$short_name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('title' => Yii::app()->user->name))
 			),
 		)); ?>
 	</div><!-- mainmenu -->
