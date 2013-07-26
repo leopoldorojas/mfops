@@ -47,7 +47,14 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol'); ?>
-		<?php echo $form->dropDownList($model,'rol',Yii::app()->params['roles'],array('empty'=>'Seleccione el Rol')); ?>
+		<?php echo $form->dropDownList($model,'rol',
+			array_filter (array_map(
+				function ($infoRol) { 
+					return ($infoRol['privilege'] >= Yii::app()->user->privilege && !Yii::app()->user->checkAccess('super-admin')) ? false : $infoRol['label'];
+				},
+				Yii::app()->params['roles']
+			)), array('empty'=>'Seleccione el Rol')); ?>
+
 		<?php echo $form->error($model,'rol'); ?>
 	</div>
 

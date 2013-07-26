@@ -29,7 +29,7 @@ $this->menu=array(
 		'company.identifier:text:Empresa',
 		array(
 			'label'=>'Rol',
-			'value' => CHtml::encode(Yii::app()->params["roles"]["$model->rol"]),
+			'value' => CHtml::encode(Yii::app()->params["roles"]["$model->rol"]["label"]),
 		),
 	),
 )); ?>

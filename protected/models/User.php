@@ -13,6 +13,7 @@
  * @property integer $user_id
  * @property string $createdon
  * @property string $updatedon
+ * @property integer $privilege
  */
 class User extends CActiveRecord
 {
@@ -86,6 +87,7 @@ class User extends CActiveRecord
 			'name' => 'Nombre completo',
 			'company_id' => 'Empresa',
 			'rol' => 'Rol',
+			'privilege' => 'Nivel de Privilegio',
 			'user_id' => 'Usuario',
 			'createdon' => 'Creado en',
 			'updatedon' => 'Actualizado en',
@@ -114,6 +116,14 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function defaultScope()
+    {
+    	$privilege = (Yii::app()->user->isGuest || Yii::app()->user->checkAccess('super-admin')) ? 100 : Yii::app()->user->privilege;
+        return array(
+            'condition'=>$this->getTableAlias(false, false) . ".privilege<'".$privilege."'",
+        );
+    }
 
 	protected function beforeSave()
 	{
@@ -162,7 +172,7 @@ class User extends CActiveRecord
 	{
 	    parent::afterFind();
 
-	    foreach (Yii::app()->params['roles'] as $rol => $description)
+	    foreach (Yii::app()->params['roles'] as $rol => $infoRol)
     		if ($authAssignment=Yii::app()->authManager->getAuthAssignment($rol, $this->id))
     		{
     			$this->rol=$authAssignment->itemName;

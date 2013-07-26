@@ -58,7 +58,7 @@ o <b>=</b>) al inicio de cada valor de búsqueda, para especificar cómo realiza
 		'name',
 		array(
 			'header'=>'Rol',
-			'value'=>'Yii::app()->params["roles"]["$data->rol"]',
+			'value'=>'Yii::app()->params["roles"]["$data->rol"]["label"]',
 			//'filter' => CHtml::activeDropDownList($model, 'rol', Yii::app()->params['roles'], array('empty'=>'--')),
 			'filter'=>false,
 		),
