@@ -26,6 +26,7 @@ if(Yii::app()->user->checkAccess('arckanto-admin'))
 	<ul>
 		<li>[<a href="<?php echo CHtml::encode($this->createUrl('user/admin')) ?>">Usuarios</a>]</li>
 		<li>[<a href="<?php echo CHtml::encode($this->createUrl('company/admin')) ?>">Empresas</a>]</li>
+		<li>[<a href="<?php echo CHtml::encode($this->createUrl('companySeed/create')) ?>">Cargas cuentas contables</a>]</li>
 	</ul>
 	</div>
 <?php 

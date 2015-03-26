@@ -42,17 +42,27 @@ class CompanySeedForm extends CFormModel
 	{
 		// Copy from $this->source to $this->target
     // return successful_copy or false if not
-    $accountingRules = AccountingRule::model()->findAllByAttributes(array('company_id'=>4), array(),'');
+    $company_logged = Yii::App()->user->company_id;
+    Yii::App()->user->company_id = $this->target_company;
 
-    foreach ($accountingRules as $accountingRule)
-    {
-        $movementType = MovementType::model()->findByAttributes(array('id'=>$accountingRule->type_id));
-        $movementType2 = MovementType::model()->findByAttributes(array('description'=>$movementType->description, 'company_id'=>8));
-
-        $accountingRule2 = AccountingRule::model()->findByAttributes(array('description'=>$accountingRule->description, 'company_id'=>8));
-        $accountingRule2->type_id = $movementType2->id;
-        $accountingRule2->save();
+    $movementCategories = MovementCategory::model()->findAllByAttributes(array('company_id'=>$this->source_company));
+    foreach ($movementCategories as $movementCategory) {
+      $newMovementCategory=new MovementCategory;
+      $newMovementCategory->attributes=$movementCategory->attributes;
+      $newMovementCategory->save();
     }
-	}
+
+    $movementTypes = MovementType::model()->findAllByAttributes(array('company_id'=>$this->source_company));
+    foreach ($movementTypes as $movementType) {
+      $newMovementType=new MovementType;
+      $newMovementType->attributes=$movementType->attributes;
+      $newMovementType->category_id = $local_category_id; ///////// FALTAAAAAAA
+      $newMovementType->save();
+    }
+
+
+    Yii::App()->user->company_id = $company_logged;
+
+    // Here the same as above but using Types and afterwads with Accounting Rules
 
 }
