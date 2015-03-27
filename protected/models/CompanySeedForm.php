@@ -46,23 +46,38 @@ class CompanySeedForm extends CFormModel
     Yii::App()->user->company_id = $this->target_company;
 
     $movementCategories = MovementCategory::model()->findAllByAttributes(array('company_id'=>$this->source_company));
+    if(empty($movementCategories)) return false;
     foreach ($movementCategories as $movementCategory) {
       $newMovementCategory=new MovementCategory;
       $newMovementCategory->attributes=$movementCategory->attributes;
-      $newMovementCategory->save();
+      if (!$newMovementCategory->save())
+      	return false;
     }
 
     $movementTypes = MovementType::model()->findAllByAttributes(array('company_id'=>$this->source_company));
+    if(empty($movementTypes)) return false;
     foreach ($movementTypes as $movementType) {
+      $local_category_id = MovementCategory::model()->findByAttributes(array('company_id'=>$this->target_company, 'description'=>$movementType->movement_category->description));
+
       $newMovementType=new MovementType;
       $newMovementType->attributes=$movementType->attributes;
-      $newMovementType->category_id = $local_category_id; ///////// FALTAAAAAAA
-      $newMovementType->save();
+      $newMovementType->category_id = $local_category_id->id;
+      if (!$newMovementType->save())
+      	return false;
     }
 
+    $accountingRules = AccountingRule::model()->findAllByAttributes(array('company_id'=>$this->source_company));
+    if(empty($accountingRules)) return false;
+    foreach ($accountingRules as $accountingRule) {
+      $local_movementType_id = MovementType::model()->findByAttributes(array('company_id'=>$this->target_company, 'description'=>$accountingRule->movement_type->description));
+
+      $newAccountingRule=new AccountingRule;
+      $newAccountingRule->attributes=$accountingRule->attributes;
+      $newAccountingRule->type_id = $local_movementType_id->id;
+      if (!$newAccountingRule->save())
+      	return false;
+    }
 
     Yii::App()->user->company_id = $company_logged;
-
-    // Here the same as above but using Types and afterwads with Accounting Rules
-
+    return true;
 }
