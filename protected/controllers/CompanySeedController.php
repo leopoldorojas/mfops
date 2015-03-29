@@ -46,11 +46,6 @@ class CompanySeedController extends Controller
 		$this->render('view');
 	}
 
-	public function actionView2()
-	{
-		$this->render('view2');
-	}
-
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
