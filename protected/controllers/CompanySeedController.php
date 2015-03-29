@@ -58,6 +58,7 @@ class CompanySeedController extends Controller
 	public function actionCreate()
 	{
 		$model=new CompanySeedForm;
+		$result = 0;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -65,14 +66,14 @@ class CompanySeedController extends Controller
 		if(isset($_POST['CompanySeedForm']))
 		{
 			$model->attributes=$_POST['CompanySeedForm'];
-			if($model->loadData())
+			$result = $model->loadData();
+			if($result == 99)
 				$this->redirect(array('view'));
-			else
-				$this->redirect(array('view2'));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'result'=>$result,
 		));
 	}
 

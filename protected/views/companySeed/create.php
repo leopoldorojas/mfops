@@ -7,6 +7,10 @@ $this->breadcrumbs=array(
 	'Cargar Datos Iniciales de Empresa',
 );
 
+if($result != 0) {
+  ?>
+	  <p>El resultado fue <? echo $result; ?></p>
+  <? }
 ?>
 
 <h1>Cargar Datos Iniciales de Empresa</h1>
